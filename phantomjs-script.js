@@ -1,13 +1,13 @@
-console.log('started');
+//console.log('started');
 
 var args = require('system').args;
 var webPage = require('webpage');
 var page = webPage.create();
 
 var path = args[1];
-console.log('path=' + path);
+//console.log('path=' + path);
 var fileUrl = path + 'chart.html';
-console.log('fileUrl=' + fileUrl);
+//console.log('fileUrl=' + fileUrl);
 
 page.viewportSize = { width: 1920, height: 1080 };
 
@@ -19,7 +19,7 @@ phantom.onError = function(msg, trace) {
       msgStack.push(' -> ' + (t.file || t.sourceURL) + ': ' + t.line + (t.function ? ' (in function ' + t.function +')' : ''));
     });
   }
-  console.log(msgStack.join('\n'));
+  //console.log(msgStack.join('\n'));
   phantom.exit(1);
 };
 
@@ -34,44 +34,44 @@ page.onError = function(msg, trace) {
     });
   }
 
-  console.error(msgStack.join('\n'));
+  //console.error(msgStack.join('\n'));
 
 	// Consider error fully handled
           return true;
 };
 
 
-console.log('calling page.open...');
+//console.log('calling page.open...');
 
 var url = 'http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.com/';
 
 page.open(fileUrl, function (status) {
     setTimeout(function() {
             
-	      console.log('entered page.onLoadFinished, status=' + status);
+	     // console.log('entered page.onLoadFinished, status=' + status);
 	    
-	    console.log('page.content=' + page.content);
+	  //  console.log('page.content=' + page.content);
 
   try {	
 	
-    console.log('rendering base64...');
+   // console.log('rendering base64...');
 	  
     var base64 = page.renderBase64('PNG');
     
-    console.log('base64=' + base64);
+    console.log(base64);
 	  
-	  page.render('screenshot.png');
+	//  page.render('screenshot.png');
 	  
-	  console.log('screenshot rendered');
+	//  console.log('screenshot rendered');
 
   } catch(err) {  
-    console.log('error');
-    console.log('err.message=' + err.message);  
+   // console.log('error');
+   // console.log('err.message=' + err.message);  
   }
 	    
 
 	
-  console.log('exiting phantom script');	
+ // console.log('exiting phantom script');	
   phantom.exit();
 	    
 	    
@@ -80,4 +80,4 @@ page.open(fileUrl, function (status) {
 
 
 
-console.log('after page.open');
+//console.log('after page.open');
