@@ -36,53 +36,27 @@ page.onError = function(msg, trace) {
 
 page.onLoadFinished = function(status) {
  	
-    console.log('entered page.onLoadFinished, status=' + status);
-    // Do other things here...
-	
-	try {	
+  console.log('entered page.onLoadFinished, status=' + status);
+
+  try {	
 	
     console.log('rendering base64...');
 	  
     var base64 = page.renderBase64('PNG');
+    
     console.log('base64=' + base64);
 
-  } catch(err) {
-	  
+  } catch(err) {  
     console.log('error');
     console.log('err.message=' + err.message);  
   }
 	
-	
-	
-  console.log('exiting phantom script');
-	
+  console.log('exiting phantom script');	
   phantom.exit();
 };
-
 
 console.log('calling page.open...');
 
 page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.com/');
 
 console.log('after page.open');
-
-/*, function (status) {
-
-  console.log('page opened, content=' + page.content);
-	
-  try {	
-	
-    console.log('rendering base64...');
-	  
-    var base64 = page.renderBase64('PNG');
-    console.log('base64=' + base64);
-
-  } catch(err) {
-	  
-    console.log('error');
-    console.log('err.message=' + err.message);  
-  }
-*/
-
-
-});
