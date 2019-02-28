@@ -34,9 +34,13 @@ page.onError = function(msg, trace) {
           return true;
 };
 
-page.onLoadFinished = function(status) {
- 	
-  console.log('entered page.onLoadFinished, status=' + status);
+
+console.log('calling page.open...');
+
+page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.com/', function (status) {
+    setTimeout(function() {
+            
+	      console.log('entered page.onLoadFinished, status=' + status);
 
   try {	
 	
@@ -53,10 +57,11 @@ page.onLoadFinished = function(status) {
 	
   console.log('exiting phantom script');	
   phantom.exit();
-};
+	    
+	    
+    }, 5000);
+});
 
-console.log('calling page.open...');
 
-page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.com/');
 
 console.log('after page.open');
