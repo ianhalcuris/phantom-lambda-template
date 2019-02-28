@@ -6,7 +6,12 @@ var fs = require('fs');
 exports.handler = function(event, context, callback) {
     console.log('I am on master');
     
-    const LAMBDA_TASK_ROOT = process.env.LAMBDA_TASK_ROOT;
+    var LAMBDA_TASK_ROOT = process.env.LAMBDA_TASK_ROOT;
+    console.log('LAMBDA_TASK_ROOT=' + LAMBDA_TASK_ROOT);
+    
+    if (LAMBDA_TASK_ROOT == null) {
+         LAMBDA_TASK_ROOT = '/var/task';
+    }
     console.log('LAMBDA_TASK_ROOT=' + LAMBDA_TASK_ROOT);
     
     fs.readdir(LAMBDA_TASK_ROOT, function(err, items) {
