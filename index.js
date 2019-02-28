@@ -32,7 +32,7 @@ exports.handler = function(event, context, callback) {
 
     phantom.on('exit', code => {
         
-        console.log('entered phantom.onExit');
+        console.log('entered phantom.onExit, code=' + code);
         
         callback(null, 'fin!!');
     });
