@@ -1,17 +1,22 @@
 console.log('start phantom');
 
 var page = require('webpage').create();
-page.open('https://s.codepen.io/amcharts/debug/cd2e8ce27e3a96f43bb79d5d23722d11', function(status) {
-  var title = page.evaluate(function() {
-    return document.title;
-  });
-  console.log('Page title is ' + title);
+
+console.log('opening page...');
+
+page.open('https://s.codepen.io/amcharts/debug/cd2e8ce27e3a96f43bb79d5d23722d11');
+
+console.log('after page.open');
+
+console.log('calling page.onLoadFinished');
+
+page.onLoadFinished = function(status) {
+  var url = page.url;
+  console.log("Status:  " + status);
+  console.log("Loaded:  " + url);
+  page.render("/tmp/example.png");
   
-  console.log('Rendering the page...');
-  
-  page.render('/tmp/example.png');
-  
-  console.log('Page rendered OK');
+  console.log('image saved');
   
   phantom.exit();
-});
+};
