@@ -14,9 +14,7 @@ exports.handler = function(event, context, callback) {
     }
     console.log('LAMBDA_TASK_ROOT=' + LAMBDA_TASK_ROOT);
     
-    fs.readdirSync(LAMBDA_TASK_ROOT).forEach(file => {
-      console.log(file);
-    });
+
 
     var phantom = phantomjs.exec('phantomjs-script.js', LAMBDA_TASK_ROOT, 'arg2');
 
@@ -33,6 +31,10 @@ exports.handler = function(event, context, callback) {
     phantom.on('exit', code => {
         
         console.log('entered phantom.onExit, code=' + code);
+        
+        fs.readdirSync(LAMBDA_TASK_ROOT).forEach(file => {
+          console.log(file);
+        });
         
         callback(null, 'fin!!');
     });
