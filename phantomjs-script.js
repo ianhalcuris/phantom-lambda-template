@@ -61,10 +61,11 @@ page.open(fileUrl, function (status) {
     
     console.log('base64=' + base64);
 	  
-    fs.writeFile("screenshot.txt", base64, function(err) {
-    if(err) {
-        return console.log('file writer err='+err);
-    }
+fs.writeFile('screenshot.txt', 'Hello World!', function (err) {
+    if (err) 
+        return console.log(err);
+    console.log('Wrote Hello World in file helloworld.txt, just check it');
+});
 
     console.log("The file was saved!");
 }); 
