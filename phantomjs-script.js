@@ -44,11 +44,9 @@ page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.c
 	
     console.log('rendering base64...');
 	  
-   // var base64 = page.renderBase64('PNG');
+    var base64 = page.renderBase64('PNG');
    // console.log('base64=' + base64);
-  
-	  page.render()
-	  
+
   } catch(err) {
 	  
     console.log('error');
