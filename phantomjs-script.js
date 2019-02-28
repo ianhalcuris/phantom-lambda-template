@@ -1,9 +1,10 @@
 console.log('started');
 
+var AWS = require('aws-sdk');
 var webPage = require('webpage');
 var page = webPage.create();
 
-//console.log('LAMBDA_TASK_ROOT=' + process.env.LAMBDA_TASK_ROOT);
+console.log('LAMBDA_TASK_ROOT=' + process.env.LAMBDA_TASK_ROOT);
 
 page.viewportSize = { width: 1920, height: 1080 };
 
