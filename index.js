@@ -32,11 +32,25 @@ exports.handler = function(event, context, callback) {
         
         console.log('entered phantom.onExit, code=' + code);
         
-        fs.readdirSync(LAMBDA_TASK_ROOT).forEach(file => {
-          console.log(file);
-        });
-        
-        callback(null, 'fin!!');
-    });
+        if (code == 0) {
+            
+            fs.readFile('screenshot.png', function(err, data) {
+                if (err) {
+                 callback(null, 'err='+err);   
+                }
+                
+                const response = {
+                    statusCode: 200,
+                    headers: {'Content-type' : 'image/png'},
+                    body: Buffer.from(data).toString('base64'),
+                    isBase64Encoded : true,
+                };
+                
+                callback(null, response);
+           });
+        }
+        else {
+             callback(null, 'code='+code);
+        }
 
 };
