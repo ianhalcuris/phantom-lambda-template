@@ -3,10 +3,7 @@ console.log('started');
 var webPage = require('webpage');
 var page = webPage.create();
 
-page.viewportSize = {
-	width: 1024,
-	height: 768
-};
+page.viewportSize = { width: 1920, height: 1080 };
 
 phantom.onError = function(msg, trace) {
   var msgStack = ['PHANTOM ERROR: ' + msg];
@@ -33,6 +30,8 @@ page.onError = function(msg, trace) {
 
   console.error(msgStack.join('\n'));
 
+	// Consider error fully handled
+          return true;
 };
 
 console.log('opening page...');
@@ -45,9 +44,11 @@ page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.c
 	
     console.log('rendering base64...');
 	  
-    var base64 = page.renderBase64('PNG');
-    console.log('base64=' + base64);
+   // var base64 = page.renderBase64('PNG');
+   // console.log('base64=' + base64);
   
+	  page.render()
+	  
   } catch(err) {
 	  
     console.log('error');
