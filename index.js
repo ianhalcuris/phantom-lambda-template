@@ -34,7 +34,14 @@ exports.handler = function(event, context, callback) {
         
         if (code == 0) {
             
-            fs.readFile('screenshot.txt', function(err, data) {
+            fs.readdirSync(LAMBDA_TASK_ROOT).forEach(file => {
+              console.log(file);
+            });
+            
+            var screenFile = LAMBDA_TASK_ROOT + 'screenshot.txt';
+            console.log('screenFile=' + screenFile);
+            
+            fs.readFile(screenFile, function(err, data) {
                 if (err) {
                  callback(null, 'err='+err);   
                 }
