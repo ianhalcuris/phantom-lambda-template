@@ -34,9 +34,39 @@ page.onError = function(msg, trace) {
           return true;
 };
 
-console.log('opening page...');
+page.onLoadFinished = function(status) {
+ 	
+    console.log('entered page.onLoadFinished, status=' + status);
+    // Do other things here...
+	
+	try {	
+	
+    console.log('rendering base64...');
+	  
+    var base64 = page.renderBase64('PNG');
+    console.log('base64=' + base64);
 
-page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.com/', function (status) {
+  } catch(err) {
+	  
+    console.log('error');
+    console.log('err.message=' + err.message);  
+  }
+	
+	
+	
+  console.log('exiting phantom script');
+	
+  phantom.exit();
+};
+
+
+console.log('calling page.open...');
+
+page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.com/');
+
+console.log('after page.open');
+
+/*, function (status) {
 
   console.log('page opened, content=' + page.content);
 	
@@ -52,8 +82,7 @@ page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.c
     console.log('error');
     console.log('err.message=' + err.message);  
   }
-	
-  console.log('exiting phantom script');
-	
-  phantom.exit();
+*/
+
+
 });
