@@ -1,5 +1,6 @@
 console.log('started');
 
+var fs = require('fs');
 var args = require('system').args;
 var webPage = require('webpage');
 var page = webPage.create();
@@ -7,8 +8,13 @@ var page = webPage.create();
 var path = args[1];
 console.log('path=' + path);
 
-var fileUrl = 'file//' + path + '/chart.html';
-console.log('fileUrl=' + fileUrl);
+fs.readdir(path, function(err, items) {
+    console.log(items);
+ 
+    for (var i=0; i<items.length; i++) {
+        console.log(items[i]);
+    }
+});
 
 page.viewportSize = { width: 1920, height: 1080 };
 
