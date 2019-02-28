@@ -59,6 +59,10 @@ page.open(fileUrl, function (status) {
     var base64 = page.renderBase64('PNG');
     
     console.log('base64=' + base64);
+	  
+    page.render('screenshot.png');
+	  
+	  console.log('rendered screenshot');
 
   } catch(err) {  
     console.log('error');
@@ -68,7 +72,7 @@ page.open(fileUrl, function (status) {
 
 	
   console.log('exiting phantom script');	
-  phantom.exit('hello my name is Ian');
+  phantom.exit();
 	    
 	    
     }, 5000);
