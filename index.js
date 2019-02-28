@@ -34,15 +34,17 @@ exports.handler = function(event, context, callback) {
         
         if (code == 0) {
             
-            fs.readFile('screenshot.png', function(err, data) {
+            fs.readFile('screenshot.txt', function(err, data) {
                 if (err) {
                  callback(null, 'err='+err);   
                 }
                 
+                console.log('screenshot.txt = ' + data);
+                
                 const response = {
                     statusCode: 200,
                     headers: {'Content-type' : 'image/png'},
-                    body: Buffer.from(data).toString('base64'),
+                    body: data,
                     isBase64Encoded : true,
                 };
                 
