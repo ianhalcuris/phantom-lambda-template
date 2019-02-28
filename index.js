@@ -10,16 +10,12 @@ exports.handler = function(event, context, callback) {
     console.log('LAMBDA_TASK_ROOT=' + LAMBDA_TASK_ROOT);
     
     if (LAMBDA_TASK_ROOT == null) {
-         LAMBDA_TASK_ROOT = '/var/task';
+         LAMBDA_TASK_ROOT = '/var/task/';
     }
     console.log('LAMBDA_TASK_ROOT=' + LAMBDA_TASK_ROOT);
     
-    fs.readdir(LAMBDA_TASK_ROOT, function(err, items) {
-        console.log(items);
-
-        for (var i=0; i<items.length; i++) {
-            console.log(items[i]);
-        }
+    fs.readdirSync(LAMBDA_TASK_ROOT).forEach(file => {
+      console.log(file);
     });
 
     var phantom = phantomjs.exec('phantomjs-script.js', LAMBDA_TASK_ROOT, 'arg2');
