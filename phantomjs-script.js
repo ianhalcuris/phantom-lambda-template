@@ -10,7 +10,7 @@ page.viewportSize = {
 
 console.log('opening page...');
 
-page.open('http://phantomjs.org', function (status) {
+page.open('file:///chart.html', function (status) {
 
   console.log('page opened, rendering base64...');
 	
