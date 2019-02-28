@@ -38,12 +38,7 @@ exports.handler = function(event, context, callback) {
             fs.readdirSync(LAMBDA_TASK_ROOT).forEach(file => {
               console.log(file);
             });
-            
-            console.log('listing files in ' + LAMBDA_TASK_ROOT + 'tmp/');
-            fs.readdirSync(LAMBDA_TASK_ROOT + 'tmp/').forEach(file => {
-              console.log(file);
-            });
-            
+
             console.log('listing files in /');
             fs.readdirSync('/').forEach(file => {
               console.log(file);
