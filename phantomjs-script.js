@@ -7,7 +7,11 @@ page.open('https://s.codepen.io/amcharts/debug/cd2e8ce27e3a96f43bb79d5d23722d11'
   });
   console.log('Page title is ' + title);
   
-  page.render('example.png');
+  console.log('Rendering the page...');
+  
+  page.render('/tmp/example.png');
+  
+  console.log('Page rendered OK');
   
   phantom.exit();
 });
