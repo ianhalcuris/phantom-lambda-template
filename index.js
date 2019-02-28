@@ -14,12 +14,17 @@ exports.handler = function(event, context, callback) {
     }
     console.log('LAMBDA_TASK_ROOT=' + LAMBDA_TASK_ROOT);
     
-
+var base64 = '';
 
     var phantom = phantomjs.exec('phantomjs-script.js', LAMBDA_TASK_ROOT, 'arg2');
 
     phantom.stdout.on('data', function(buf) {
-        console.log('[STR] stdout "%s"', String(buf));
+       
+        var content = String(buf);
+        
+        base64 += content;
+        
+        console.log('[STR] stdout "%s"', content);
     });
     phantom.stderr.on('data', function(buf) {
         console.log('[STR] stderr "%s"', String(buf));
@@ -32,21 +37,14 @@ exports.handler = function(event, context, callback) {
         
         console.log('entered phantom.onExit, code=' + code);
         
-        if (code == 0) {
-            
-            console.log('listing files in ' + LAMBDA_TASK_ROOT);
-            fs.readdirSync(LAMBDA_TASK_ROOT).forEach(file => {
-              console.log(file);
-            });
+        const response = {
+            statusCode: 200,
+            headers: {'Content-type' : 'image/png'},
+            body: base64,
+            isBase64Encoded : true,
+        };
 
-            console.log('listing files in /');
-            fs.readdirSync('/').forEach(file => {
-              console.log(file);
-            });
-      
-        }
-
-        callback(null, 'code='+code);
+        callback(null, response);
         
    });
 };
