@@ -7,6 +7,9 @@ var page = webPage.create();
 var path = args[1];
 console.log('path=' + path);
 
+var fileUrl = 'file//' + path + '/chart.html';
+console.log('fileUrl=' + fileUrl);
+
 page.viewportSize = { width: 1920, height: 1080 };
 
 phantom.onError = function(msg, trace) {
@@ -41,7 +44,9 @@ page.onError = function(msg, trace) {
 
 console.log('calling page.open...');
 
-page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.com/', function (status) {
+var url = 'http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.com/';
+
+page.open(fileUrl, function (status) {
     setTimeout(function() {
             
 	      console.log('entered page.onLoadFinished, status=' + status);
