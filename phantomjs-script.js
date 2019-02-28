@@ -1,7 +1,7 @@
 console.log('start phantom');
 
 var page = require('webpage').create();
-page.open(url, function(status) {
+page.open('https://www.google.co.uk/', function(status) {
   var title = page.evaluate(function() {
     return document.title;
   });
