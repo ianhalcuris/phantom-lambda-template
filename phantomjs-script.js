@@ -1,5 +1,6 @@
 console.log('started');
 
+var fs = require('fs');
 var args = require('system').args;
 var webPage = require('webpage');
 var page = webPage.create();
@@ -60,9 +61,13 @@ page.open(fileUrl, function (status) {
     
     console.log('base64=' + base64);
 	  
-    page.render('screenshot.png');
-	  
-	  console.log('rendered screenshot');
+    fs.writeFile("screenshot.txt", base64, function(err) {
+    if(err) {
+        return console.log('file writer err='+err);
+    }
+
+    console.log("The file was saved!");
+}); 
 
   } catch(err) {  
     console.log('error');
