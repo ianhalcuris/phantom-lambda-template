@@ -10,7 +10,7 @@ page.viewportSize = {
 
 console.log('opening page...');
 
-page.open('http://phantomjs.org', function (status) {
+page.open('http://s.codepen.io/amcharts/debug/cd2e8ce27e3a96f43bb79d5d23722d11', function (status) {
   
   console.log('page opened, rendering base64...');
   
