@@ -7,26 +7,25 @@ var url = 'https://www.google.co.uk/';
 
 console.log('url=' + url);
 
-page.open(url, function start(status) {
+page.open(url);
 
-  console.log('after page.open');
+console.log('after page.open');
+
+page.onLoadFinished = function(status) {
+  console.log('entered page.onLoadFinished, status=' + status);
+  // Do other things here...
   
-  // Set the background to white, just in case
-  page.evaluate(function() {
-    document.body.style.background = 'white';
-  }); 
-
-  // Wait an extra second for things to load
-  window.setTimeout(function() { 
-
-    console.log('rendering base64');
+  console.log('rendering base64');
     
-    // Return image of the page as base64-encoded string
-    var base64 = page.renderBase64('JPEG');
+  // Return image of the page as base64-encoded string
+  //var base64 = page.renderBase64('JPEG');
     
-    console.log('base64=' + base64);
-    
-    phantom.exit();
-
-  }, 1000);
-});
+  //console.log('base64=' + base64);
+  
+  console.log('all done, calling phantom.exit');
+  
+  phantom.exit();
+  
+  console.log('after phantom.exit');
+  
+};
