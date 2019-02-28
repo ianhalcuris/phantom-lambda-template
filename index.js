@@ -4,10 +4,11 @@ var phantomjs = require('phantomjs-prebuilt');
 
 exports.handler = function(event, context, callback) {
     console.log('I am on master');
-    var phantom = phantomjs.exec('phantomjs-script.js', 'arg1', 'arg2');
     
     const LAMBDA_TASK_ROOT = process.env.LAMBDA_TASK_ROOT;
     console.log('LAMBDA_TASK_ROOT=' + LAMBDA_TASK_ROOT);
+    
+    var phantom = phantomjs.exec('phantomjs-script.js', LAMBDA_TASK_ROOT, 'arg2');
 
     phantom.stdout.on('data', function(buf) {
         console.log('[STR] stdout "%s"', String(buf));
