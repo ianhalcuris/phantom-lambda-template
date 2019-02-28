@@ -18,7 +18,7 @@ exports.handler = function(event, context, callback) {
       console.log(file);
     });
 
-    var phantom = phantomjs.exec('phantomjs-script.js', LAMBDA_TASK_ROOT, 'arg2');
+    var phantom = phantomjs.exec('phantomjs-script.js', LAMBDA_TASK_ROOT, callback);
 
     phantom.stdout.on('data', function(buf) {
         console.log('[STR] stdout "%s"', String(buf));
@@ -31,7 +31,10 @@ exports.handler = function(event, context, callback) {
     });
 
     phantom.on('exit', code => {
-        callback(null, 'fin!!');
+        
+        console.log('entered phantom.onExit');
+        
+        //callback(null, 'fin!!');
     });
 
 };
