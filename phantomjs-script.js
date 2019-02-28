@@ -68,7 +68,7 @@ page.open(fileUrl, function (status) {
 
 	
   console.log('exiting phantom script');	
-  phantom.exit();
+  phantom.exit('hello my name is Ian');
 	    
 	    
     }, 5000);
