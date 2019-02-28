@@ -38,7 +38,7 @@ exports.handler = function(event, context, callback) {
               console.log(file);
             });
             
-            var screenFile = LAMBDA_TASK_ROOT + 'screenshot.txt';
+            var screenFile = LAMBDA_TASK_ROOT + 'screenshot.png';
             console.log('screenFile=' + screenFile);
             
             fs.readFile(screenFile, function(err, data) {
@@ -46,7 +46,7 @@ exports.handler = function(event, context, callback) {
                  callback(null, 'err='+err);   
                 }
                 
-                console.log('screenshot.txt = ' + data);
+                console.log('screenshot.png = ' + data);
                 
                 const response = {
                     statusCode: 200,
