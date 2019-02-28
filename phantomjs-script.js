@@ -8,6 +8,18 @@ page.viewportSize = {
 	height: 1080
 };
 
+phantom.onError = function(msg, trace) {
+  var msgStack = ['PHANTOM ERROR: ' + msg];
+  if (trace && trace.length) {
+    msgStack.push('TRACE:');
+    trace.forEach(function(t) {
+      msgStack.push(' -> ' + (t.file || t.sourceURL) + ': ' + t.line + (t.function ? ' (in function ' + t.function +')' : ''));
+    });
+  }
+  console.log(msgStack.join('\n'));
+  phantom.exit(1);
+};
+
 page.onError = function(msg, trace) {
 
   var msgStack = ['ERROR: ' + msg];
@@ -39,16 +51,10 @@ page.open('http://s.codepen.io/amcharts/debug/cd2e8ce27e3a96f43bb79d5d23722d11',
 	
   console.log('page opened, rendering base64...');
 	
-  try {
   
     var base64 = page.renderBase64('PNG');
     console.log('base64 rendered');
     console.log(base64);
-  
-  } catch(err) {
-    console.log('ERROR: ' + err.message);
-  }
-
   console.log('finished, calling phantom.exit');
 
   phantom.exit();
