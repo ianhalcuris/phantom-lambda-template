@@ -50,6 +50,8 @@ page.open(fileUrl, function (status) {
     setTimeout(function() {
             
 	      console.log('entered page.onLoadFinished, status=' + status);
+	    
+	    console.log('page.content=' + page.content);
 
   try {	
 	
