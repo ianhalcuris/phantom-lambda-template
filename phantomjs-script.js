@@ -1,7 +1,11 @@
 console.log('started');
 
+var args = require('system').args;
 var webPage = require('webpage');
 var page = webPage.create();
+
+var path = args[1];
+console.log('path=' + path);
 
 page.viewportSize = { width: 1920, height: 1080 };
 
