@@ -34,32 +34,24 @@ exports.handler = function(event, context, callback) {
         
         if (code == 0) {
             
+            console.log('listing files in ' + LAMBDA_TASK_ROOT);
             fs.readdirSync(LAMBDA_TASK_ROOT).forEach(file => {
               console.log(file);
             });
             
-            var screenFile = LAMBDA_TASK_ROOT + 'screenshot.png';
-            console.log('screenFile=' + screenFile);
+            console.log('listing files in ' + LAMBDA_TASK_ROOT + 'tmp/');
+            fs.readdirSync(LAMBDA_TASK_ROOT + 'tmp/').forEach(file => {
+              console.log(file);
+            });
             
-            fs.readFile(screenFile, function(err, data) {
-                if (err) {
-                 callback(null, 'err='+err);   
-                }
-                
-                console.log('screenshot.png = ' + data);
-                
-                const response = {
-                    statusCode: 200,
-                    headers: {'Content-type' : 'image/png'},
-                    body: data,
-                    isBase64Encoded : true,
-                };
-                
-                callback(null, response);
-           });
+            console.log('listing files in /');
+            fs.readdirSync('/').forEach(file => {
+              console.log(file);
+            });
+      
         }
-        else {
-             callback(null, 'code='+code);
-        }
+
+        callback(null, 'code='+code);
+        
    });
 };
