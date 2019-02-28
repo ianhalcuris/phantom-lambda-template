@@ -38,11 +38,18 @@ page.open('http://s.codepen.io/amcharts/debug/cd2e8ce27e3a96f43bb79d5d23722d11',
   console.log('page opened, content=' + page.content);
 	
   console.log('page opened, rendering base64...');
+	
+  try {
   
-  var base64 = page.renderBase64('PNG');
+    var base64 = page.renderBase64('PNG');
+    console.log('base64 rendered');
+    console.log(base64);
   
-  console.log('base64 rendered');
-  
-  console.log(base64);
+  } catch(err) {
+    console.log('ERROR: ' + err.message);
+  }
+
+  console.log('finished, calling phantom.exit');
+
   phantom.exit();
 });
