@@ -12,7 +12,7 @@ console.log('opening page...');
 
 page.open('file:///chart.html', function (status) {
 
-  console.log('page opened, rendering base64...');
+  console.log('page opened, content=' + page.content);
 	
   var base64 = page.renderBase64('PNG');
   console.log('base64=' + base64);
