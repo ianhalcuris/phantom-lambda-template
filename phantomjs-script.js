@@ -6,6 +6,8 @@ var page = webPage.create();
 
 var path = args[1];
 console.log('path=' + path);
+var fileUrl = path + 'chart.html';
+console.log('fileUrl=' + fileUrl);
 
 page.viewportSize = { width: 1920, height: 1080 };
 
