@@ -45,7 +45,7 @@ page.onResourceTimeout = function(e) {
 
 console.log('opening page...');
 
-page.open('http://s.codepen.io/amcharts/debug/cd2e8ce27e3a96f43bb79d5d23722d11', function (status) {
+page.open('http://www.researchpipeline.com/mediawiki/images/a/a4/AmCharts_home.gif', function (status) {
   
   console.log('page opened, content=' + page.content);
 	
