@@ -9,7 +9,7 @@ exports.handler = function(event, context, callback) {
     var LAMBDA_TASK_ROOT = process.env.LAMBDA_TASK_ROOT;
     console.log('LAMBDA_TASK_ROOT=' + LAMBDA_TASK_ROOT);
     
-    fs.readdirSync('/var/').forEach(file => {
+    fs.readdirSync('/var/task/').forEach(file => {
       console.log(file);
     });
 
