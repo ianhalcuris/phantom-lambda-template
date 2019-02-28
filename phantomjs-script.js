@@ -1,5 +1,10 @@
 console.log('start phantom');
-setTimeout(function() {
-    console.log('Boo from phantom');
-    phantom.exit();
-}, 1000);
+
+var page = require('webpage').create();
+page.open(url, function(status) {
+  var title = page.evaluate(function() {
+    return document.title;
+  });
+  console.log('Page title is ' + title);
+  phantom.exit();
+});
