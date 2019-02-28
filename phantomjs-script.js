@@ -10,7 +10,7 @@ page.viewportSize = {
 
 console.log('opening page...');
 
-page.open('file:///chart.html', function (status) {
+page.open('http://amchartstestserver-env.e6gtdmyuck.eu-west-2.elasticbeanstalk.com/', function (status) {
 
   console.log('page opened, content=' + page.content);
 	
