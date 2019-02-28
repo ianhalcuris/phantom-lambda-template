@@ -35,7 +35,7 @@ exports.handler = function(event, context, callback) {
         const response = {
             statusCode: 200,
             headers: {'Content-type' : 'image/png'},
-            body: base64,
+            body: chartImageBase64,
             isBase64Encoded : true,
         };
         
