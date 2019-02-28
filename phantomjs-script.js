@@ -5,6 +5,8 @@ var webPage = require('webpage');
 var page = webPage.create();
 
 var path = args[1];
+var callback - args[2];
+
 console.log('path=' + path);
 var fileUrl = path + 'chart.html';
 console.log('fileUrl=' + fileUrl);
@@ -64,6 +66,8 @@ page.open(fileUrl, function (status) {
     console.log('error');
     console.log('err.message=' + err.message);  
   }
+	    
+	    callback(null, 'fin!!');
 	
   console.log('exiting phantom script');	
   phantom.exit();
