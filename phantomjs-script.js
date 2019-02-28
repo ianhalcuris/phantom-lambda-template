@@ -1,6 +1,5 @@
 console.log('started');
 
-var fs = require('fs');
 var args = require('system').args;
 var webPage = require('webpage');
 var page = webPage.create();
@@ -61,14 +60,9 @@ page.open(fileUrl, function (status) {
     
     console.log('base64=' + base64);
 	  
-fs.writeFile('screenshot.txt', 'Hello World!', function (err) {
-    if (err) 
-        return console.log(err);
-    console.log('Wrote Hello World in file helloworld.txt, just check it');
-});
-
-    console.log("The file was saved!");
-}); 
+	  page.render('screenshot.png');
+	  
+	  console.log('screenshot rendered');
 
   } catch(err) {  
     console.log('error');
