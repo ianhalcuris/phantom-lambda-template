@@ -51,10 +51,10 @@
                    console.log('{name: ' + deviceName + ', fromDate: ' + start + ', toDate: ' + end + ', color: ' + colorSet.getIndex(c).brighten(b) + '}');
 
                     chartData.push({
-                            name: deviceName,
-                            fromDate: start,
-                            toDate: end,
-                            color: colorSet.getIndex(c).brighten(b)
+                            "name": new String(deviceName),
+                            "fromDate": new String(start),
+                            "toDate": new String(end),
+                            "color": colorSet.getIndex(c).brighten(b)
                     });
                     
                      b+=0.02;
