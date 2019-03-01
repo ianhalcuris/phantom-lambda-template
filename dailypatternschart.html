@@ -31,29 +31,40 @@
         colorSet.saturation = 0.4;
 
         var chartData = [];
-/*        
+        var c = 0;
+        
         for (i = 0; i < theData.sensorTypes.length; i++) { 
             
             for (j = 0; j < theData.sensorTypes[i].devices.length; j++) { 
             
                 var deviceName = theData.sensorTypes[i].devices[j].name;
                 
+                var b = 0.00;     
+                
                 for (k = 0; k < theData.sensorTypes[i].devices[j].data.length; k++) { 
                 
                     var d = theData.sensorTypes[i].devices[j].data[k];
                     
-                    //console.log('deviceName: ' + deviceName + ', start: ' + new Date(d.start*1000).toISOString() + ', end: ' + new Date(d.end*1000).toISOString());
+                    var start = new Date(d.start*1000).toISOString();
+                    var end = new Date(d.end*1000).toISOString();
+                    
+                    console.log('deviceName: ' + deviceName + ', start: ' + start + ', end: ' + end);
 
                     chartData.push({
                             name: deviceName,
-                            fromDate: new Date(d.start*1000).toISOString(),
-                            toDate: new Date(d.end*1000).toISOString()
+                            fromDate: start,
+                            toDate: end,
+                            color: colorSet.getIndex(c).brighten(b)
                     })
+                    
+                     b+=0.02;
                 }
+                
+                 c++;
             }
         }
- */       
-        
+       
+/*        
         chartData.push({
             name: "John",
             fromDate: "2018-01-01T08:00:00.000Z",
@@ -118,7 +129,7 @@
             toDate: "2018-01-01T24:00:00.000Z",
             color: colorSet.getIndex(8).brighten(0)
           });
-        
+     */   
         
         
         
