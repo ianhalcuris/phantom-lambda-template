@@ -43,7 +43,7 @@ exports.handler = function(event, context, callback) {
 		var chartImageBase64 = '';
 	
 		
-		    var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, apiData);
+		    var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, result);
 
 		    phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
