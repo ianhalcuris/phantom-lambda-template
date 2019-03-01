@@ -11,18 +11,6 @@
 
 <script>
 
-        var apiUrl = 'https://dev-api.memohub.co.uk/memo/service/insight/hub/8/service/scatterData?offset=13&range=14&precision=5';
-
-        <!-- Get the API data -->
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('GET', apiUrl, false); // false for synchronous request
-        xmlHttp.setRequestHeader('MEMO-USER-ID', '10');
-        xmlHttp.send(null);
-
-        var response = xmlHttp.responseText;
-    
-        document.write(response);
-
         /* Create chart instance */
         var chart = am4core.create("chartdiv", am4charts.RadarChart);
 
