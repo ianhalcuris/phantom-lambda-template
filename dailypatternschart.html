@@ -42,12 +42,12 @@
                 
                     var d = theData.sensorTypes[i].devices[j].data[k];
                     
-                    console.log('deviceName: ' + deviceName + ', start: ' + d.start*1000 + ', end: ' + d.end*1000);
+                    console.log('deviceName: ' + deviceName + ', start: ' + new Date(d.start*1000).toISOString() + ', end: ' + new Date(d.end*1000).toISOString());
 
                     chartData.push({
                             name: deviceName,
-                            fromDate: new Date(d.start*1000),
-                            toDate: new Date(d.end*1000)
+                            fromDate: new Date(d.start*1000).toISOString(),
+                            toDate: new Date(d.end*1000).toISOString()
                     })
                 }
             }
