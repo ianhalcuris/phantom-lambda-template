@@ -15,10 +15,8 @@
         
         console.log('in chart.html, apiData: ' + apiData);
         
-        for (var key in apiData) {
-            console.log(key + ' => ' + apiData[key]);
-            // key is key
-            // value is p[key]
+        for (i in mycars) {
+            console.log('sensor.name: ' + apiData[i].name);
         }
         
         /* Create chart instance */
