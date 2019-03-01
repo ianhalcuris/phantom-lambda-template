@@ -8,7 +8,7 @@ var htmlFile = args[1];
 var apiData = args[2];
 
 // TODO pass in as args depending on chart type?
-page.viewportSize = { width: 900, height: 900 };
+page.viewportSize = { width: 800, height: 800 };
 
 page.onConsoleMessage = function(msg) {
   	console.log('console msg: ' + msg);
