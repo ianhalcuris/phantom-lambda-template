@@ -1,1 +1,60 @@
+<html>
+<head>
+</head>
+<body>
 
+    <script src="amcharts4/core.js"></script>
+    <script src="amcharts4/charts.js"></script>
+    <script src="amcharts4/themes/kelly.js"></script>
+
+    <div id="chartdiv" style="width: 1000px; height: 800px;" align="center"></div>
+
+    <script>
+    
+    am4core.useTheme(am4themes_kelly);
+
+    function renderChart(apiData) {
+        
+        apiData = '{ "sensors": ' + apiData + '}';
+
+        var theData = JSON.parse(apiData);
+          
+        /* Create chart instance */
+        var chart = am4core.create("chartdiv", am4charts.RadarChart);
+        
+        /* Create axes */
+        var xAxis = chart.xAxes.push(new am4charts.ValueAxis());
+        xAxis.renderer.maxLabelPosition = 0.99;
+       
+        xAxis.min = 0.0;
+        xAxis.max = 23.59;
+
+        var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        yAxis.renderer.labels.template.verticalCenter = "bottom";
+        yAxis.renderer.labels.template.horizontalCenter = "right";
+        yAxis.renderer.maxLabelPosition = 0.99;
+        yAxis.renderer.labels.template.paddingBottom = 1;
+        yAxis.renderer.labels.template.paddingRight = 3;
+        yAxis.min = -13;
+        yAxis.max = 0;
+ 
+        for (i = 0; i < theData.sensors.length; i++) { 
+            var series = chart.series.push(new am4charts.RadarSeries());
+            series.bullets.push(new am4charts.CircleBullet());
+            series.strokeOpacity = 0;
+            series.dataFields.valueX = "hour";
+            series.dataFields.valueY = "day";
+            series.name = theData.sensors[i].name;
+            series.sequencedInterpolation = true;
+            series.sequencedInterpolationDelay = 10;
+            series.data = theData.sensors[i].data;
+        }
+
+        /* Add legend */
+        chart.legend = new am4charts.Legend();
+    }
+            
+    </script>
+
+</body>
+</html>
