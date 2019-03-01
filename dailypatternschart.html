@@ -42,7 +42,8 @@
                 
                     var d = theData.sensorTypes[i].devices[j].data[k];
                     
-                    
+                    console.log('deviceName: ' + deviceName + ', start: ' + d.start*1000 + ', end: ' + d.end*1000);
+
                     chartData.push({
                             name: deviceName,
                             fromDate: (d.start*1000),
