@@ -11,6 +11,10 @@ page.viewportSize = { width: 1920, height: 1080 };
 page.open(chartHtmlFile, function (status) {
     setTimeout(function() {
 	    
+	page.evaluate(function() {
+    		renderChart();
+  	});
+	    
         var base64 = page.renderBase64('PNG');
         console.log(base64);
 	    
