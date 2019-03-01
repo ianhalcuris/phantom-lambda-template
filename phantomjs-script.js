@@ -10,6 +10,10 @@ var apiData = args[2];
 // TODO pass in as args depending on chart type?
 page.viewportSize = { width: 1920, height: 1080 };
 
+page.onConsoleMessage = function(msg) {
+  	console.log('console msg: ' + msg);
+}
+
 page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
