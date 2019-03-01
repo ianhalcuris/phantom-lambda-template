@@ -35,7 +35,7 @@ exports.handler = function(event, context, callback) {
 		console.log('got API data: ' + result);
 		
 		// TODO get chart html file name from function parameter?
-		var chartHtmlFile = process.env.LAMBDA_TASK_ROOT + '/' + 'activitypatternschart.html';
+		var chartHtmlFile = process.env.LAMBDA_TASK_ROOT + '/' + process.env.CHART_NAME + 'chart.html';
 		console.log('chartHtmlFile: ' + chartHtmlFile);
 
 		var chartImageBase64 = '';
