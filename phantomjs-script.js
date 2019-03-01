@@ -10,7 +10,7 @@ page.viewportSize = { width: 1920, height: 1080 };
 
 page.open(chartHtmlFile, function (status) {
 	
-	page.evaluate(function() {
+	page.evaluate(function(apiData) {
     		renderChart(apiData);
   	});
 	
