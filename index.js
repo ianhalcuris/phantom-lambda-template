@@ -2,6 +2,7 @@
 var AWS = require('aws-sdk');
 var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
+var request = require('request');
 
 function getApiData(hubId) {
 
@@ -25,49 +26,59 @@ function getApiData(hubId) {
 
 exports.handler = function(event, context, callback) {
     
-    console.log('started');
+    	console.log('started');
+    	console.log('getting API data...');
     
-    // TODO get chart html file name from function parameter?
-    var chartHtmlFile = process.env.LAMBDA_TASK_ROOT + '/' + 'chart.html';
-    console.log('chartHtmlFile: ' + chartHtmlFile);
-    
-    var chartImageBase64 = '';
-    
-    console.log('getting apiData...');
-    
-    // Get API data
-    var apiData = getApiData(event.hubId);
-    
-    console.log('apiData='+apiData);
+	// Get API data
+	getApiData(event.hubId).then(async function(result) {
 
-    var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, 'otherArg');
+		console.log('got API data: ' + result);
+		
+		var apiData = JSON.parse(result);
+		
+		// TODO get chart html file name from function parameter?
+		var chartHtmlFile = process.env.LAMBDA_TASK_ROOT + '/' + 'chart.html';
+		console.log('chartHtmlFile: ' + chartHtmlFile);
 
-    phantom.stdout.on('data', function(buf) {
-        var base64Data = String(buf).replace(/\n$/, '');
-        console.log('got base64 data: ' + base64Data);
-        chartImageBase64 += base64Data;
-    });
-    
-    phantom.stderr.on('data', function(buf) {
-        console.log('stderr "%s"', String(buf));
-    });
-    phantom.on('close', function(code) {
-        console.log('code', code);
-    });
+		var chartImageBase64 = '';
+	
+		
+		    var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, 'otherArg');
 
-    phantom.on('exit', code => {
-        
-        console.log('phantomjs exit, code: ' + code);
-        
-        const response = {
-            statusCode: 200,
-            headers: {'Content-type' : 'image/png'},
-            body: chartImageBase64,
-            isBase64Encoded : true,
-        };
-        
-        // TODO error response
+		    phantom.stdout.on('data', function(buf) {
+			var base64Data = String(buf).replace(/\n$/, '');
+			console.log('got base64 data: ' + base64Data);
+			chartImageBase64 += base64Data;
+		    });
 
-        callback(null, response);
-   });
+		    phantom.stderr.on('data', function(buf) {
+			console.log('stderr "%s"', String(buf));
+		    });
+		    phantom.on('close', function(code) {
+			console.log('code', code);
+		    });
+
+		    phantom.on('exit', code => {
+
+			console.log('phantomjs exit, code: ' + code);
+
+			const response = {
+			    statusCode: 200,
+			    headers: {'Content-type' : 'image/png'},
+			    body: chartImageBase64,
+			    isBase64Encoded : true,
+			};
+
+			// TODO error response
+
+			callback(null, response);
+		   });
+		
+	
+
+    	}, function(err) {
+		
+		console.log('IAN-TRACE ERROR ~ ' + err);
+		// TODO error function response
+    	});
 };
