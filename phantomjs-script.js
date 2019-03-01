@@ -18,10 +18,12 @@ page.open(chartHtmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
 		
+		// apiData is NOT defined here
+		
 		console.log('in page.evaluate, apiData=' + apiData);
 		
     		renderChart(apiData);
-  	});
+  	}, apiData);
 	
     	setTimeout(function() {
 		
