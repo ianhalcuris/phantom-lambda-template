@@ -31,6 +31,22 @@
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
 
+        
+                for (i = 0; i < theData.sensors.length; i++) { 
+            var series = chart.series.push(new am4charts.RadarSeries());
+            series.bullets.push(new am4charts.CircleBullet());
+            series.strokeOpacity = 0;
+            series.dataFields.valueX = "hour";
+            series.dataFields.valueY = "day";
+            series.name = theData.sensors[i].name;
+            series.sequencedInterpolation = true;
+            series.sequencedInterpolationDelay = 10;
+            series.data = theData.sensors[i].data;
+        }
+        
+        
+        
+        
         var chartData = [];
 /*        
         for (i = 0; i < theData.sensorTypes.length; i++) { 
@@ -54,7 +70,7 @@
             }
         }
  */       
-        
+ /*       
         chartData.push({
             name: "John",
             fromDate: "2018-01-01 08:00",
@@ -126,6 +142,7 @@
         
         
         chart.data = chartData;
+*/
 /*
         chart.data = [
           {
@@ -206,7 +223,7 @@
         dateAxis.max = new Date(2018, 0, 1, 24, 0, 0, 0).getTime();
         dateAxis.strictMinMax = true;
         dateAxis.renderer.tooltipLocation = 0;
-
+/*
         var series1 = chart.series.push(new am4charts.ColumnSeries());
         series1.columns.template.width = am4core.percent(80);
         series1.columns.template.tooltipText = "{name}: {openDateX} - {dateX}";
@@ -217,6 +234,27 @@
         series1.columns.template.propertyFields.fill = "color"; // get color from data
         series1.columns.template.propertyFields.stroke = "color";
         series1.columns.template.strokeOpacity = 1;
+ */       
+        
+        for (i = 0; i < theData.sensorTypes.length; i++) { 
+            
+            for (j = 0; j < theData.sensorTypes[i].devices.length; j++) { 
+            
+                var series1 = chart.series.push(new am4charts.ColumnSeries());
+                series1.columns.template.width = am4core.percent(80);
+                series1.columns.template.tooltipText = "{name}: {openDateX} - {dateX}";
+
+                series1.dataFields.openDateX = "start";
+                series1.dataFields.dateX = "end";
+                series1.dataFields.categoryY = "name";
+                series1.columns.template.propertyFields.fill = "color"; // get color from data
+                series1.columns.template.propertyFields.stroke = "color";
+                series1.columns.template.strokeOpacity = 1;
+                
+                series1.name = theData.sensorTypes[i].devices[j].name;
+                series1.data = theData.sensorTypes[i].devices[j].data;
+            }
+        }
     }
             
     </script>
