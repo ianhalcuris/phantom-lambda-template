@@ -15,14 +15,10 @@
         
         apiData = '{ "sensors": ' + apiData + '}';
         
-        console.log('in chart.html, apiData: ' + apiData);
+     // console.log('in chart.html, apiData: ' + apiData);
         
         var theData = JSON.parse(apiData);
-        
-        for (i = 0; i < theData.sensors.length; i++) { 
-              console.log('in chart.html, theData.sensors[' + i + '].name: ' + theData.sensors[i].name);
-        }
-               
+          
         /* Create chart instance */
         var chart = am4core.create("chartdiv", am4charts.RadarChart);
         
@@ -36,22 +32,22 @@
         yAxis.renderer.maxLabelPosition = 0.99;
         yAxis.renderer.labels.template.paddingBottom = 1;
         yAxis.renderer.labels.template.paddingRight = 3;
-        
-/*        apiData.forEach(function (sensor) {
-            
+ 
+        for (i = 0; i < theData.sensors.length; i++) { 
+         // console.log('in chart.html, theData.sensors[' + i + '].name: ' + theData.sensors[i].name);
             var series = chart.series.push(new am4charts.RadarSeries());
             series.bullets.push(new am4charts.CircleBullet());
             series.strokeOpacity = 0;
             series.dataFields.valueX = "hour";
             series.dataFields.valueY = "day";
-            series.name = sensor.name;
+            series.name = theData.sensors[i].name;
             series.sequencedInterpolation = true;
             series.sequencedInterpolationDelay = 10;
-            series.data = sensor.data;
+            series.data = theData.sensors[i].data;
         }
-*/
+
         /* Create and configure series */
-        var series1 = chart.series.push(new am4charts.RadarSeries());
+/*      var series1 = chart.series.push(new am4charts.RadarSeries());
         series1.bullets.push(new am4charts.CircleBullet());
         series1.strokeOpacity = 0;
         series1.dataFields.valueX = "x";
@@ -173,7 +169,7 @@
             { "x": 379, "y": 5.6 },
             { "x": 175, "y": 6.8 }
         ];
-       
+*/
         /* Add legend */
         chart.legend = new am4charts.Legend();
     }
