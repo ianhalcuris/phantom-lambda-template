@@ -10,7 +10,12 @@ page.viewportSize = { width: 1920, height: 1080 };
 
 page.open(chartHtmlFile, function (status) {
 	
+	console.log('in phamtom-script, apiData=' + apiData);
+	
 	page.evaluate(function(apiData) {
+		
+		console.log('page.evaluate, apiData=' + apiData);
+		
     		renderChart(apiData);
   	});
 	
