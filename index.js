@@ -7,11 +7,11 @@ const util = require('util');
 
 function getApiData(hubId) {
 
-	var url = util.format(process.env.API_URL, hubId);
-	console.log('IAN-TRACE url: ' + url);
+	var apiUrl = util.format(process.env.API_URL, hubId);
+	console.log('apiUrl: ' + apiUrl);
 	
 	var options = {
-		url: 'https://dev-api.memohub.co.uk/memo/service/insight/hub/' + hubId + '/service/scatterData?offset=13&range=14&precision=5',
+		url: apiUrl,
 		headers: {
 		  'MEMO-USER-ID': '10'
 		}
