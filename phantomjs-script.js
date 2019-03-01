@@ -9,16 +9,17 @@ var apiData = args[2];
 page.viewportSize = { width: 1920, height: 1080 };
 
 page.open(chartHtmlFile, function (status) {
-    setTimeout(function() {
-	    
+	
 	page.evaluate(function() {
     		renderChart();
   	});
+	
+    	setTimeout(function() {
+		
+        	var base64 = page.renderBase64('PNG');
+        	console.log(base64);
 	    
-        var base64 = page.renderBase64('PNG');
-        console.log(base64);
-	    
-        phantom.exit();
+        	phantom.exit();
 	        
-    }, 5000); // TODO tweak this timeout 
+    	}, 5000); // TODO tweak this timeout 
 });
