@@ -31,22 +31,6 @@
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
 
-        
-                for (i = 0; i < theData.sensors.length; i++) { 
-            var series = chart.series.push(new am4charts.RadarSeries());
-            series.bullets.push(new am4charts.CircleBullet());
-            series.strokeOpacity = 0;
-            series.dataFields.valueX = "hour";
-            series.dataFields.valueY = "day";
-            series.name = theData.sensors[i].name;
-            series.sequencedInterpolation = true;
-            series.sequencedInterpolationDelay = 10;
-            series.data = theData.sensors[i].data;
-        }
-        
-        
-        
-        
         var chartData = [];
 /*        
         for (i = 0; i < theData.sensorTypes.length; i++) { 
