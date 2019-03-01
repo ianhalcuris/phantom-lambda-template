@@ -8,7 +8,7 @@ var apiData = args[2];
 // TODO pass in as args depending on chart type?
 page.viewportSize = { width: 1920, height: 1080 };
 
-page.open(chartHtmlFile + '?apiData=' + apiData, function (status) {
+page.open(chartHtmlFile, function (status) {
     setTimeout(function() {
 	    
         var base64 = page.renderBase64('PNG');
