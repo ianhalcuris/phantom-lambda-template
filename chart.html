@@ -19,6 +19,10 @@
         
         var theData = JSON.parse(apiData);
         
+        for (i in theData) {
+            console.log('in chart.html, i: ' + i);
+        }
+        
         console.log('in chart.html, theData.sensors[1].name: ' + theData.sensors[1].name);
         
         /* Create chart instance */
