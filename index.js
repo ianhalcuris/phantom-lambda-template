@@ -7,7 +7,7 @@ const util = require('util');
 
 function getApiData(hubId) {
 
-	var url = util.format('https://dev-api.memohub.co.uk/memo/service/insight/hub/%s/service/scatterData?offset=13&range=14&precision=5', hubId);
+	var url = util.format(process.env.API_URL, hubId);
 	console.log('IAN-TRACE url: ' + url);
 	
 	var options = {
@@ -39,13 +39,13 @@ exports.handler = function(event, context, callback) {
 		console.log('got API data: ' + result);
 		
 		// TODO get chart html file name from function parameter?
-		var chartHtmlFile = process.env.LAMBDA_TASK_ROOT + '/' + process.env.CHART_NAME + 'chart.html';
-		console.log('chartHtmlFile: ' + chartHtmlFile);
+		var chartTemplate = process.env.LAMBDA_TASK_ROOT + '/' + process.env.CHART_TEMPLATE;
+		console.log('chartTemplate: ' + chartTemplate);
 
 		var chartImageBase64 = '';
 	
 		
-		var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, result);
+		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, result);
 
 	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
