@@ -25,8 +25,10 @@
         /* Create axes */
         var xAxis = chart.xAxes.push(new am4charts.ValueAxis());
         xAxis.renderer.maxLabelPosition = 0.99;
-        xAxis.minimum = 0.0;
-        xAxis.maximum = 23.59;
+        
+        xAxis.baseValue = 0;
+        xAxis.minimum = 0;
+        xAxis.maximum = 24;
 
         var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
         yAxis.renderer.labels.template.verticalCenter = "bottom";
