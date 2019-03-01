@@ -34,8 +34,6 @@ exports.handler = function(event, context, callback) {
 
 		console.log('got API data: ' + result);
 		
-		var apiData = JSON.parse(result);
-		
 		// TODO get chart html file name from function parameter?
 		var chartHtmlFile = process.env.LAMBDA_TASK_ROOT + '/' + 'chart.html';
 		console.log('chartHtmlFile: ' + chartHtmlFile);
@@ -43,7 +41,7 @@ exports.handler = function(event, context, callback) {
 		var chartImageBase64 = '';
 	
 		
-		var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, apiData);
+		var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, result);
 
 	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
