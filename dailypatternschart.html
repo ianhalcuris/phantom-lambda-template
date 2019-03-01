@@ -30,6 +30,31 @@
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
 
+        var chartData = [];
+        
+        for (i = 0; i < theData.sensorTypes.length; i++) { 
+            
+            for (j = 0; j < theData.sensorTypes[i].devices.length; j++) { 
+            
+                var deviceName = theData.sensorTypes[i].devices[j].name;
+                
+                for (k = 0; k < theData.sensorTypes[i].devices[j].data.length; k++) { 
+                
+                    var d = theData.sensorTypes[i].devices[j].data[k];
+                    
+                    
+                    chartData.push({
+                            name: deviceName,
+                            fromDate: (d.start*1000),
+                            toDate: (d.end*1000)
+                    })
+                }
+            }
+        }
+        
+        
+        chart.data = chartData;
+/*
         chart.data = [
           {
             name: "John",
@@ -96,7 +121,7 @@
             color: colorSet.getIndex(8).brighten(0)
           }
         ];
-
+*/
         var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
         categoryAxis.dataFields.category = "name";
         categoryAxis.renderer.grid.template.location = 0;
