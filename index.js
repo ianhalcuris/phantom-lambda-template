@@ -3,6 +3,26 @@ var AWS = require('aws-sdk');
 var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 
+function getApiData(hubId) {
+
+	var options = {
+		url: 'https://dev-api.memohub.co.uk/memo/service/insight/hub/' + hubId + '/service/scatterData?offset=13&range=14&precision=5',
+		headers: {
+		  'MEMO-USER-ID': '10'
+		}
+	};
+
+ 	return new Promise(function(resolve, reject) {
+		request.get(options, function(err, resp, body) {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(body);
+			}
+		})
+	})
+}
+
 exports.handler = function(event, context, callback) {
     
     console.log('started');
@@ -12,6 +32,13 @@ exports.handler = function(event, context, callback) {
     console.log('chartHtmlFile: ' + chartHtmlFile);
     
     var chartImageBase64 = '';
+    
+    console.log('getting apiData...');
+    
+    // Get API data
+    var apiData = getApiData(event.hubId);
+    
+    console.log('apiData='+apiData);
 
     var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, 'otherArg');
 
