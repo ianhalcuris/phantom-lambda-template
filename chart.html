@@ -25,10 +25,9 @@
         /* Create axes */
         var xAxis = chart.xAxes.push(new am4charts.ValueAxis());
         xAxis.renderer.maxLabelPosition = 0.99;
-        
-        xAxis.baseValue = 0;
-        xAxis.minimum = 0;
-        xAxis.maximum = 24;
+       
+        xAxis.min = 0;
+        xAxis.max = 24;
 
         var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
         yAxis.renderer.labels.template.verticalCenter = "bottom";
@@ -36,8 +35,8 @@
         yAxis.renderer.maxLabelPosition = 0.99;
         yAxis.renderer.labels.template.paddingBottom = 1;
         yAxis.renderer.labels.template.paddingRight = 3;
-        yAxis.minimum = -13;
-        yAxis.maximum = 0;
+        yAxis.min = -13;
+        yAxis.max = 0;
  
         for (i = 0; i < theData.sensors.length; i++) { 
          // console.log('in chart.html, theData.sensors[' + i + '].name: ' + theData.sensors[i].name);
