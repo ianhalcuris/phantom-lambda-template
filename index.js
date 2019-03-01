@@ -30,7 +30,7 @@ exports.handler = function(event, context, callback) {
     	console.log('getting API data...');
     
 	// Get API data
-	getApiData(event.hubId).then(async function(result) {
+	getApiData(event.hubId).then(function(result) {
 
 		console.log('got API data: ' + result);
 		
@@ -43,40 +43,38 @@ exports.handler = function(event, context, callback) {
 		var chartImageBase64 = '';
 	
 		
-		    var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, result);
+		var phantom = phantomjs.exec('phantomjs-script.js', chartHtmlFile, apiData);
 
-		    phantom.stdout.on('data', function(buf) {
+	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
 			console.log('got base64 data: ' + base64Data);
 			chartImageBase64 += base64Data;
-		    });
+	    	});
 
-		    phantom.stderr.on('data', function(buf) {
+	    	phantom.stderr.on('data', function(buf) {
 			console.log('stderr "%s"', String(buf));
-		    });
-		    phantom.on('close', function(code) {
+	    	});
+	    	phantom.on('close', function(code) {
 			console.log('code', code);
-		    });
+	    	});
 
-		    phantom.on('exit', code => {
+	    	phantom.on('exit', code => {
 
 			console.log('phantomjs exit, code: ' + code);
 
 			const response = {
-			    statusCode: 200,
-			    headers: {'Content-type' : 'image/png'},
-			    body: chartImageBase64,
-			    isBase64Encoded : true,
+				statusCode: 200,
+				headers: {'Content-type' : 'image/png'},
+				body: chartImageBase64,
+				isBase64Encoded : true,
 			};
 
 			// TODO error response
 
 			callback(null, response);
-		   });
+		});
 		
-	
-
-    	}, function(err) {
+	}, function(err) {
 		
 		console.log('IAN-TRACE ERROR ~ ' + err);
 		// TODO error function response
