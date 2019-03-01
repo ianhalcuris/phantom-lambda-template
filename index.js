@@ -3,9 +3,13 @@ var AWS = require('aws-sdk');
 var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 var request = require('request');
+const util = require('util');
 
 function getApiData(hubId) {
 
+	var url = util.format('https://dev-api.memohub.co.uk/memo/service/insight/hub/%s/service/scatterData?offset=13&range=14&precision=5', hubId);
+	console.log('IAN-TRACE url: ' + url);
+	
 	var options = {
 		url: 'https://dev-api.memohub.co.uk/memo/service/insight/hub/' + hubId + '/service/scatterData?offset=13&range=14&precision=5',
 		headers: {
