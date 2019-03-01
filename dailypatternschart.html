@@ -25,7 +25,7 @@
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.paddingRight = 30;
-        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
+        //chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
 
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
@@ -46,8 +46,8 @@
 
                     chartData.push({
                             name: deviceName,
-                            fromDate: (d.start*1000),
-                            toDate: (d.end*1000)
+                            fromDate: new Date(d.start*1000),
+                            toDate: new Date(d.end*1000)
                     })
                 }
             }
