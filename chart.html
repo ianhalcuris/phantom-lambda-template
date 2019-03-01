@@ -19,14 +19,10 @@
         
         var theData = JSON.parse(apiData);
         
-        for (i in theData) {
-            console.log('in chart.html, i: ' + i + ', theData[i]: ' + theData[i]);
+        for (i = 0; i < theData.sensors.length; i++) { 
+              console.log('in chart.html, theData.sensors[' + i + '].name: ' + theData.sensors[i].name);
         }
-        
-        console.log('in chart.html, theData.sensors.length: ' + theData.sensors.length);
-           
-        console.log('in chart.html, theData.sensors[1].name: ' + theData.sensors[1].name);
-        
+               
         /* Create chart instance */
         var chart = am4core.create("chartdiv", am4charts.RadarChart);
         
