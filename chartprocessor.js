@@ -32,6 +32,9 @@ exports.handler = function(apiUrl, chartTemplate, context, callback) {
 	
 	console.log('entered chart processor');
 	
+	console.log('chartprocessor apiUrl:' + apiUrl);
+	console.log('chartprocessor chartTemplate:' + chartTemplate);
+	
 	getApiData(apiUrl).then(function(data) {
 
 		console.log('got data: ' + data);
