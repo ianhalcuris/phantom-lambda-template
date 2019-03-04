@@ -20,11 +20,14 @@
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.paddingRight = 30;
-        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
+       // chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
 
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
-
+        
+        chart.data = apiData;
+        
+/*
         chart.data = [ {
           "category": "Module #1",
           "start": "1551685536000",
@@ -74,8 +77,8 @@
           "color": colorSet.getIndex(2).brighten(1.2),
           "task": "Testing and QA"
         } ];
-
-        chart.dateFormatter.dateFormat = "yyyy-MM-dd";
+*/
+        chart.dateFormatter.dateFormat = "HH:mm";
         chart.dateFormatter.inputDateFormat = "x";
 
         var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
