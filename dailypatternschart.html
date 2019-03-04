@@ -19,16 +19,11 @@
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.paddingRight = 30;
-        
+        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
+
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
-        
-        
-        let start = new Date();
-        start.setHours(0, 0, 0, 0);
-        let end = new Date();
-        end.setHours(23, 59, 59, 999);
-        
+
         chart.data = [ {
           "category": "Module #1",
           "start": "2016-01-01",
@@ -151,26 +146,33 @@
           "task": "Testing and QA"
         } ];
 
-        chart.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
+        chart.dateFormatter.dateFormat = "yyyy-MM-dd";
         chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
 
         var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = 'name';
-        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.dataFields.category = "category";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.inversed = true;
 
         var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-        dateAxis.renderer.minGridDistance = 45;
-        dateAxis.baseInterval = { count: 1, timeUnit: "minute" };
-        dateAxis.min = start.getTime();
-        dateAxis.max = end.getTime();
-        dateAxis.strictMinMax = true;
+        dateAxis.renderer.minGridDistance = 70;
+        dateAxis.baseInterval = { count: 1, timeUnit: "day" };
+        // dateAxis.max = new Date(2018, 0, 1, 24, 0, 0, 0).getTime();
+        //dateAxis.strictMinMax = true;
+        dateAxis.renderer.tooltipLocation = 0;
 
         var series1 = chart.series.push(new am4charts.ColumnSeries());
-        series1.dataFields.openDateX = 'start';
-        series1.dataFields.dateX = 'end';
-        series1.dataFields.categoryY = 'name';
-        series1.columns.height = 20;
-        series1.columns.tooltipText = 'From: {openDateX.formatDate(\'hh:mm\')} To: {dateX.formatDate(\'hh:mm\')}';
+        series1.columns.template.width = am4core.percent(80);
+        series1.columns.template.tooltipText = "{task}: [bold]{openDateX}[/] - [bold]{dateX}[/]";
+
+        series1.dataFields.openDateX = "start";
+        series1.dataFields.dateX = "end";
+        series1.dataFields.categoryY = "category";
+        series1.columns.template.propertyFields.fill = "color"; // get color from data
+        series1.columns.template.propertyFields.stroke = "color";
+        series1.columns.template.strokeOpacity = 1;
+
+        chart.scrollbarX = new am4core.Scrollbar();
 
     }
             
