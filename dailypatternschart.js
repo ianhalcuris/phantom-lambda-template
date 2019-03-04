@@ -1,6 +1,6 @@
-const AWS = require('aws-sdk');
-const util = require('util');
-const chartProcessor = require('./chartprocessor');
+var AWS = require('aws-sdk');
+var util = require('util');
+//var chartProcessor = require('./chartprocessor');
 
 
 exports.handler = function(event, context, callback) {
@@ -13,5 +13,5 @@ exports.handler = function(event, context, callback) {
 	console.log('apiUrl: ' + apiUrl);
 	console.log('chartTemplate: ' + chartTemplate);
 	
-	chartProcessor.handler(apiUrl, chartTemplate, context, callback);
+	//chartProcessor.handler(apiUrl, chartTemplate, context, callback);
 };
