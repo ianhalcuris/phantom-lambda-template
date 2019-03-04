@@ -4,6 +4,8 @@ var fs = require('fs');
 var request = require('request');
 const util = require('util');
 
+var myTest = require('./mytest');
+
 function getApiData(apiUrl) {
 	
 	console.log('calling api, url: ' + apiUrl);
@@ -27,7 +29,7 @@ function getApiData(apiUrl) {
 }
 
 exports.handler = function(event, context, callback) {
-	
+
 	console.log('started');
     
 	var hubId = event.hubId;
@@ -38,6 +40,9 @@ exports.handler = function(event, context, callback) {
 
 	var apiUrl = util.format(process.env.API_HOST + '/memo/service/insight/hub/%s/service/discreteData?precision=5', hubId);
 
+	myTest.renderChart(apiUrl, context, callback);
+	
+	
 	getApiData(apiUrl).then(function(result) {
 
 		console.log('got API data: ' + result);
