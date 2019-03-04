@@ -7,6 +7,8 @@ exports.handler = function(event, context, callback) {
 
 	console.log('started');
 	
+	const hubId = event.hubId;
+	
 	const apiUrl = util.format(process.env.API_HOST + '/memo/service/insight/hub/%s/service/discreteData?precision=5', hubId);
 	const chartTemplate = process.env.LAMBDA_TASK_ROOT + '/dailypatternschart.html';
 	
