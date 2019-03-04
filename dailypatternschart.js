@@ -5,6 +5,7 @@ var request = require('request');
 const util = require('util');
 
 
+
 function getApiData(apiUrl) {
 	
 	console.log('calling api, url: ' + apiUrl);
@@ -48,12 +49,11 @@ exports.handler = function(event, context, callback) {
 		var apiData = JSON.parse(result);
 
 		// Assemble chart data
-		let items = [];
-
+		let chartData = [];
 		apiData.forEach(service => {
 			service.devices.forEach(device => {
 				device.data.forEach(data => {
-					items.push({
+					chartData.push({
 						start: data.start * 1000,
 						end: data.end * 1000,
 						gp: device.id + '_' + service.id,
@@ -63,13 +63,47 @@ exports.handler = function(event, context, callback) {
 			});
 		});
 		
-		console.log('chart data: ' + JSON.stringify(items));
+		console.log('chart data: ' + JSON.stringify(chartData));
 		
-		const response = {
-			statusCode: 200
-		};
+		
+		
+		var chartTemplate = process.env.LAMBDA_TASK_ROOT + '/dailypatternschart.html';
+		console.log('chart template: ' + chartTemplate);
 
-		callback(null, response);
+		var chartImageBase64 = '';
+
+		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, chartData);
+
+	    	phantom.stdout.on('data', function(buf) {
+			var base64Data = String(buf).replace(/\n$/, '');
+			console.log('got base64 data: ' + base64Data);
+			chartImageBase64 += base64Data;
+	    	});
+
+	    	phantom.stderr.on('data', function(buf) {
+			console.log('stderr "%s"', String(buf));
+	    	});
+	    	phantom.on('close', function(code) {
+			console.log('code', code);
+	    	});
+
+	    	phantom.on('exit', code => {
+
+			console.log('phantomjs exit, code: ' + code);
+
+			const response = {
+				statusCode: 200,
+				headers: {'Content-type' : 'image/png'},
+				body: chartImageBase64,
+				isBase64Encoded : true,
+			};
+
+			// TODO error response
+
+			callback(null, response);
+		});
+		
+
 
 	}, function(err) {
 
