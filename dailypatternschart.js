@@ -65,7 +65,9 @@ exports.handler = function(event, context, callback) {
 		
 		//						gp: device.id + '_' + service.id,
 		
-		console.log('chart data: ' + JSON.stringify(chartData));
+		var chartDataString = JSON.stringify(chartData);
+		
+		console.log('chartDataString: ' + JSON.stringify(chartDataString));
 		
 		
 		
@@ -74,7 +76,7 @@ exports.handler = function(event, context, callback) {
 
 		var chartImageBase64 = '';
 
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, chartData);
+		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, chartDataString);
 
 	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
