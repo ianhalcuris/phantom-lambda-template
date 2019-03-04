@@ -34,38 +34,45 @@ exports.handler = function(event, context, callback) {
 	var hubId = event.hubId;
 	
     	console.log('hubId: ' + hubId);
-	
-	var summaryDataApiUrl = util.format(process.env.API_HOST + '/memo/service/hub/%s/summary', hubId);
 
-	console.log('getting summary data...');
-	
-	// Get summary data
-	getApiData(summaryDataApiUrl).then(function(summaryData) {
+	console.log('getting API data...');
 
-		console.log('got summary data: ' + summaryData);
-		
-		// Get discrete data
-		var discreteDataApiUrl = util.format(process.env.API_HOST + '/memo/service/insight/hub/%s/service/discreteData?precision=5', hubId);
-	
-		getApiData(discreteDataApiUrl).then(function(discreteData) {
-			
-			console.log('got discrete data: ' + discreteData);
-			
-			const response = {
-				statusCode: 200
-			};
-			
-			callback(null, response);
-			
-		}, function(err) {
-		
-			console.log('error getting discrete data: ' + err);
-			// TODO error function response
+	var apiUrl = util.format(process.env.API_HOST + '/memo/service/insight/hub/%s/service/discreteData?precision=5', hubId);
+
+	getApiData(apiUrl).then(function(apiData) {
+
+		console.log('got API data: ' + apiData);
+
+		console.log('assembling chart data...');
+
+		// Assemble chart data
+		let items = [];
+
+		apiData.forEach(service => {
+			service.devices.forEach(device => {
+				device.data.forEach(data => {
+					items.push({
+						start: data.start * 1000,
+						end: data.end * 1000,
+						gp: device.id + '_' + service.id,
+						name: device.name
+				    	})
+				});
+			});
 		});
 		
+		console.log('chart data: ' + JSON.stringify(items));
+		
+		const response = {
+			statusCode: 200
+		};
+
+		callback(null, response);
+
 	}, function(err) {
 
-		console.log('error getting summary data: ' + err);
+		console.log('error getting discrete data: ' + err);
 		// TODO error function response
 	});
+
 };
