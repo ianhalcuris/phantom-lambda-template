@@ -59,108 +59,13 @@ exports.handler = function(event, context, callback) {
 			
 		}, function(err) {
 		
-			console.log('IAN-TRACE ERROR ~ ' + err);
+			console.log('error getting discrete data: ' + err);
 			// TODO error function response
 		});
-/*
-		// TODO get chart html file name from function parameter?
-		var chartTemplate = process.env.LAMBDA_TASK_ROOT + '/' + process.env.CHART_TEMPLATE;
-		console.log('chartTemplate: ' + chartTemplate);
-
-		var chartImageBase64 = '';
-	
-		
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, result);
-
-	    	phantom.stdout.on('data', function(buf) {
-			var base64Data = String(buf).replace(/\n$/, '');
-			console.log('got base64 data: ' + base64Data);
-			chartImageBase64 += base64Data;
-	    	});
-
-	    	phantom.stderr.on('data', function(buf) {
-			console.log('stderr "%s"', String(buf));
-	    	});
-	    	phantom.on('close', function(code) {
-			console.log('code', code);
-	    	});
-
-	    	phantom.on('exit', code => {
-
-			console.log('phantomjs exit, code: ' + code);
-
-			const response = {
-				statusCode: 200,
-				headers: {'Content-type' : 'image/png'},
-				body: chartImageBase64,
-				isBase64Encoded : true,
-			};
-
-			// TODO error response
-
-			callback(null, response);
-		});
 		
 	}, function(err) {
-		
-		console.log('IAN-TRACE ERROR ~ ' + err);
+
+		console.log('error getting summary data: ' + err);
 		// TODO error function response
-    	});
-	
-	
-	
-	
-	
-	
-	
-    
-	// Get API data
-	getApiData(event.hubId).then(function(result) {
-
-		console.log('got API data: ' + result);
-		
-		// TODO get chart html file name from function parameter?
-		var chartTemplate = process.env.LAMBDA_TASK_ROOT + '/' + process.env.CHART_TEMPLATE;
-		console.log('chartTemplate: ' + chartTemplate);
-
-		var chartImageBase64 = '';
-	
-		
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, result);
-
-	    	phantom.stdout.on('data', function(buf) {
-			var base64Data = String(buf).replace(/\n$/, '');
-			console.log('got base64 data: ' + base64Data);
-			chartImageBase64 += base64Data;
-	    	});
-
-	    	phantom.stderr.on('data', function(buf) {
-			console.log('stderr "%s"', String(buf));
-	    	});
-	    	phantom.on('close', function(code) {
-			console.log('code', code);
-	    	});
-
-	    	phantom.on('exit', code => {
-
-			console.log('phantomjs exit, code: ' + code);
-
-			const response = {
-				statusCode: 200,
-				headers: {'Content-type' : 'image/png'},
-				body: chartImageBase64,
-				isBase64Encoded : true,
-			};
-
-			// TODO error response
-
-			callback(null, response);
-		});
-		
-	}, function(err) {
-		
-		console.log('IAN-TRACE ERROR ~ ' + err);
-		// TODO error function response
-    	});
-*/
+	});
 };
