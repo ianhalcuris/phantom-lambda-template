@@ -16,19 +16,11 @@ page.onConsoleMessage = function(msg) {
 
 page.open(htmlFile, function (status) {
 	
-	console.log('calling renderChart, apiData='+apiData);
-	
 	page.evaluate(function(apiData) {
-		
-			console.log('in page.evaluate, apiData='+apiData);
-		
+
     		renderChart(apiData);
 		
-		console.log('after renderChart, apiData='+apiData);
-		
   	}, apiData);
-	
-	console.log('after page.evaluate, apiData='+apiData);
 	
     	setTimeout(function() {
 		
