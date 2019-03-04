@@ -24,106 +24,12 @@
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
 
-        chart.data = [ {
-          "category": "Kitchen",
-          "start": "1451606400",
-          "end": "1452729600"/*,
-          "color": colorSet.getIndex(0).brighten(0),
-          "task": "Gathering requirements"*/
-        }, {
-          "category": "Kitchen",
-          "start": "1452902400",
-          "end": "1453852800"/*,
-          "color": colorSet.getIndex(0).brighten(0.4),
-          "task": "Producing specifications"*/
-        }, {
-          "category": "Kitchen",
-          "start": "1454630400",
-          "end": "1460934000"/*,
-          "color": colorSet.getIndex(0).brighten(0.8),
-          "task": "Development"*/
-        }, {
-          "category": "Kitchen",
-          "start": "1460934000",
-          "end": "1461970800"/*,
-          "color": colorSet.getIndex(0).brighten(1.2),
-          "task": "Testing and QA"*/
-        }, {
-          "category": "Bathroom",
-          "start": "1452211200",
-          "end": "1452384000"/*,
-          "color": colorSet.getIndex(2).brighten(0),
-          "task": "Gathering requirements"*/
-        }, {
-          "category": "Bathroom",
-          "start": "1452556800",
-          "end": "1452816000"/*,
-          "color": colorSet.getIndex(2).brighten(0.4),
-          "task": "Producing specifications"*/
-        }, {
-          "category": "Bathroom",
-          "start": "1452902400",
-          "end": "1454630400"/*,
-          "color": colorSet.getIndex(2).brighten(0.8),
-          "task": "Development"*/
-        }, {
-          "category": "Bathroom",
-          "start": "1455062400",
-          "end": "1455753600"/*,
-          "color": colorSet.getIndex(2).brighten(1.2),
-          "task": "Testing and QA"*/
-        }, {
-          "category": "Office Door",
-          "start": "1451692800",
-          "end": "1452211200"/*,
-          "color": colorSet.getIndex(4).brighten(0),
-          "task": "Gathering requirements"*/
-        }, {
-          "category": "Office Door",
-          "start": "1452211200",
-          "end": "1452902400"/*,
-          "color": colorSet.getIndex(4).brighten(0.4),
-          "task": "Producing specifications"*/
-        }, {
-          "category": "Office Door",
-          "start": "1453161600",
-          "end": "1456790400"/*,
-          "color": colorSet.getIndex(4).brighten(0.8),
-          "task": "Development"*/
-        }, {
-          "category": "Office Door",
-          "start": "1457740800",
-          "end": "1459810800"/*,
-          "color": colorSet.getIndex(4).brighten(1.2),
-          "task": "Testing and QA"*/
-        }, {
-          "category": "Shed",
-          "start": "1451606400",
-          "end": "1453161600"/*,
-          "color": colorSet.getIndex(6).brighten(0),
-          "task": "Gathering requirements"*/
-        }, {
-          "category": "Shed",
-          "start": "1453161600",
-          "end": "1454457600"/*,
-          "color": colorSet.getIndex(6).brighten(0.4),
-          "task": "Producing specifications"*/
-        }, {
-          "category": "Shed",
-          "start": "1458432000",
-          "end": "1461538800"/*,
-          "color": colorSet.getIndex(6).brighten(0.8),
-          "task": "Development"*/
-        }, {
-          "category": "Shed",
-          "start": "1461711600",
-          "end": "1463266800"/*,
-          "color": colorSet.getIndex(6).brighten(1.2),
-          "task": "Testing and QA"*/
-        }];
+        chart.data = apiData;
+        
+        
 
-        chart.dateFormatter.dateFormat = "yyyy-MM-dd";
-        chart.dateFormatter.inputDateFormat = "x";
+        chart.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
+        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm:ss";
 
         var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
         categoryAxis.dataFields.category = "category";
