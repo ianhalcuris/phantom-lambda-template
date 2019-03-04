@@ -21,135 +21,86 @@
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.paddingRight = 30;
-        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
 
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
 
         chart.data = [ {
           "name": "Module #1",
-          "start": "2016-01-01",
-          "end": "2016-01-14",
+          "start": "07:45:42",
+          "end": "07:52:24",
           "color": colorSet.getIndex(0).brighten(0),
           "task": "Gathering requirements"
         }, {
           "name": "Module #1",
-          "start": "2016-01-16",
-          "end": "2016-01-27",
+    "start": "08:29:06",
+    "end": "08:29:26",
           "color": colorSet.getIndex(0).brighten(0.4),
           "task": "Producing specifications"
         }, {
           "name": "Module #1",
-          "start": "2016-02-05",
-          "end": "2016-04-18",
+    "start": "08:40:44",
+    "end": "08:41:04",
           "color": colorSet.getIndex(0).brighten(0.8),
           "task": "Development"
         }, {
           "name": "Module #1",
-          "start": "2016-04-18",
-          "end": "2016-04-30",
+    "start": "08:54:46",
+    "end": "09:47:03",
           "color": colorSet.getIndex(0).brighten(1.2),
           "task": "Testing and QA"
         }, {
           "name": "Module #2",
-          "start": "2016-01-08",
-          "end": "2016-01-10",
+    "start": "07:45:36",
+    "end": "07:52:22",
           "color": colorSet.getIndex(2).brighten(0),
           "task": "Gathering requirements"
         }, {
           "name": "Module #2",
-          "start": "2016-01-12",
-          "end": "2016-01-15",
+    "start": "08:29:07",
+    "end": "08:29:27",
           "color": colorSet.getIndex(2).brighten(0.4),
           "task": "Producing specifications"
         }, {
           "name": "Module #2",
-          "start": "2016-01-16",
-          "end": "2016-02-05",
+    "start": "08:40:41",
+    "end": "08:41:01,
           "color": colorSet.getIndex(2).brighten(0.8),
           "task": "Development"
         }, {
           "name": "Module #2",
-          "start": "2016-02-10",
-          "end": "2016-02-18",
+    "start": "08:54:44",
+    "end": "08:55:04",
           "color": colorSet.getIndex(2).brighten(1.2),
           "task": "Testing and QA"
         }, {
           "name": "Module #3",
-          "start": "2016-01-02",
-          "end": "2016-01-08",
+    "start": "07:45:36",
+    "end": "07:45:45",
           "color": colorSet.getIndex(4).brighten(0),
           "task": "Gathering requirements"
         }, {
           "name": "Module #3",
-          "start": "2016-01-08",
-          "end": "2016-01-16",
+    "start": "07:46:59",
+    "end": "07:47:06",
           "color": colorSet.getIndex(4).brighten(0.4),
           "task": "Producing specifications"
         }, {
           "name": "Module #3",
-          "start": "2016-01-19",
-          "end": "2016-03-01",
+   "start": "07:52:01",
+    "end": "07:52:10",
           "color": colorSet.getIndex(4).brighten(0.8),
           "task": "Development"
         }, {
           "name": "Module #3",
-          "start": "2016-03-12",
-          "end": "2016-04-05",
+    "start": "08:29:09",
+    "end": "08:29:16",
           "color": colorSet.getIndex(4).brighten(1.2),
-          "task": "Testing and QA"
-        }, {
-          "name": "Module #4",
-          "start": "2016-01-01",
-          "end": "2016-01-19",
-          "color": colorSet.getIndex(6).brighten(0),
-          "task": "Gathering requirements"
-        }, {
-          "name": "Module #4",
-          "start": "2016-01-19",
-          "end": "2016-02-03",
-          "color": colorSet.getIndex(6).brighten(0.4),
-          "task": "Producing specifications"
-        }, {
-          "name": "Module #4",
-          "start": "2016-03-20",
-          "end": "2016-04-25",
-          "color": colorSet.getIndex(6).brighten(0.8),
-          "task": "Development"
-        }, {
-          "name": "Module #4",
-          "start": "2016-04-27",
-          "end": "2016-05-15",
-          "color": colorSet.getIndex(6).brighten(1.2),
-          "task": "Testing and QA"
-        }, {
-          "name": "Module #5",
-          "start": "2016-01-01",
-          "end": "2016-01-12",
-          "color": colorSet.getIndex(8).brighten(0),
-          "task": "Gathering requirements"
-        }, {
-          "name": "Module #5",
-          "start": "2016-01-12",
-          "end": "2016-01-19",
-          "color": colorSet.getIndex(8).brighten(0.4),
-          "task": "Producing specifications"
-        }, {
-          "name": "Module #5",
-          "start": "2016-01-19",
-          "end": "2016-03-01",
-          "color": colorSet.getIndex(8).brighten(0.8),
-          "task": "Development"
-        }, {
-          "name": "Module #5",
-          "start": "2016-03-08",
-          "end": "2016-03-30",
-          "color": colorSet.getIndex(8).brighten(1.2),
           "task": "Testing and QA"
         } ];
         
-        chart.dateFormatter.dateFormat = "yyyy-MM-dd";
-        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+        chart.dateFormatter.dateFormat = "HH:mm:ss";
+        chart.dateFormatter.inputDateFormat = "HH:mm:ss";
 
         var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
         categoryAxis.dataFields.category = "name";
