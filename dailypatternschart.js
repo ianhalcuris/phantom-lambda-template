@@ -54,8 +54,8 @@ exports.handler = function(event, context, callback) {
 			service.devices.forEach(device => {
 				device.data.forEach(data => {
 					chartData.push({
-						start: data.start * 1000,
-						end: data.end * 1000,
+						start: new Date(data.start * 1000),
+						end: new Date(data.end * 1000),
 						category: device.name
 				    	})
 				});
