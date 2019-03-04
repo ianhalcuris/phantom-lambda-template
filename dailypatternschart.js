@@ -45,8 +45,8 @@ exports.handler = function(event, context, callback) {
 		console.log('got summary data: ' + summaryData);
 		
 		// Get discrete data
-		var discreteDataApiUrl = util.format(process.env.API_HOST + '/memo/service/hub/%s/service/discreteData', hubId);
-		
+		var discreteDataApiUrl = util.format(process.env.API_HOST + '/memo/service/insight/hub/%s/service/discreteData?precision=5', hubId);
+	
 		getApiData(discreteDataApiUrl).then(function(discreteData) {
 			
 			console.log('got discrete data: ' + discreteData);
