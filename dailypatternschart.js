@@ -56,12 +56,12 @@ exports.handler = function(event, context, callback) {
 					chartData.push({
 						start: data.start * 1000,
 						end: data.end * 1000,
-						gp: device.id + '_' + service.id,
-						name: device.name
+						category: device.name
 				    	})
 				});
 			});
 		});
+		//						gp: device.id + '_' + service.id,
 		
 		console.log('chart data: ' + JSON.stringify(chartData));
 		
