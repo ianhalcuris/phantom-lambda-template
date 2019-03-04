@@ -4,8 +4,6 @@ var fs = require('fs');
 var request = require('request');
 const util = require('util');
 
-var myTest = require('./mytest');
-
 function getApiData(apiUrl) {
 	
 	console.log('calling api: ' + apiUrl);
