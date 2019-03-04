@@ -17,7 +17,7 @@
         
         apiData = '{ "sensors": ' + apiData + '}';
         
-        console.log('apiData: ' + apiData);
+       // console.log('apiData: ' + apiData);
        
         var theData = JSON.parse(apiData);
         
@@ -57,7 +57,7 @@
             }
         }
        
-        console.log('myChartData: ' + JSON.stringify(myChartData));
+      //  console.log('myChartData: ' + JSON.stringify(myChartData));
 
         var chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
@@ -66,6 +66,7 @@
         chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
 
 
+        chart.data = myChartData;
 /*        
         chart.data = [
         {
@@ -1566,8 +1567,6 @@
 }
 ];
 */
-        chart.data = apiData;
-        
         var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
         categoryAxis.dataFields.category = "name";
         categoryAxis.renderer.grid.template.location = 0;
