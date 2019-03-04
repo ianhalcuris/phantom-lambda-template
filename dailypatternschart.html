@@ -30,7 +30,7 @@
         
         for (i = 0; i < theData.sensors.length; i++) { 
             
-            for (j = 0, c=0; j < theData.sensors[i].devices.length; j++, c++) { 
+            for (j = 0, c=0; j < theData.sensors[i].devices.length; j++, c+=2) { 
                 
                 var deviceName = theData.sensors[i].devices[j].name;
                 
