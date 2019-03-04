@@ -19,8 +19,7 @@
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.paddingRight = 30;
-//        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
-
+        
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
         
@@ -46,12 +45,12 @@
         dateAxis.max = end.getTime();
         dateAxis.strictMinMax = true;
 
-        var series = chart.series.push(new am4charts.ColumnSeries());
-        series.dataFields.openDateX = 'start';
-        series.dataFields.dateX = 'end';
-        series.dataFields.categoryY = 'name';
-        series.columns.height = 20;
-        series.columns.tooltipText = 'From: {openDateX.formatDate(\'hh:mm\')} To: {dateX.formatDate(\'hh:mm\')}';
+        var series1 = chart.series.push(new am4charts.ColumnSeries());
+        series1.dataFields.openDateX = 'start';
+        series1.dataFields.dateX = 'end';
+        series1.dataFields.categoryY = 'name';
+        series1.columns.height = 20;
+        series1.columns.tooltipText = 'From: {openDateX.formatDate(\'hh:mm\')} To: {dateX.formatDate(\'hh:mm\')}';
 
     }
             
