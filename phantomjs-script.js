@@ -22,7 +22,7 @@ page.open(htmlFile, function (status) {
 		
 			console.log('in page.evaluate, apiData='+apiData);
 		
-    		renderChart('This is the API data');
+    		renderChart(apiData);
 		
 		console.log('after renderChart, apiData='+apiData);
 		
