@@ -3,6 +3,7 @@ var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 var request = require('request');
 const util = require('util');
+const dateFormat = require('dateformat');
 
 
 
@@ -55,8 +56,8 @@ exports.handler = function(event, context, callback) {
 				device.data.forEach(data => {
 					chartData.push({
 						name: device.name,
-						start: new Date(data.start * 1000).toLocaleTimeString(),
-						end: new Date(data.end * 1000).toLocaleTimeString()
+						start: dateFormat(new Date(data.start * 1000), "dd/mm/yyyy HH:MM:ss" ),
+						end: dateFormat(new Date(data.end * 1000), "dd/mm/yyyy HH:MM:ss" )
 				    	})
 				});
 			});
