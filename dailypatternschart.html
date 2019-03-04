@@ -55,8 +55,8 @@
                     myChartData.push({
                         name: deviceName,
                         fromDate: '2018-01-01 ' + startTime,
-                        toDate: '2018-01-01 ' + endTime,
-                        color: colorSet.getIndex(c)
+                        toDate: '2018-01-01 ' + endTime/*,
+                        color: colorSet.getIndex(c)*/
                     });
                 }
                 
@@ -101,8 +101,8 @@
         series1.dataFields.openDateX = "fromDate";
         series1.dataFields.dateX = "toDate";
         series1.dataFields.categoryY = "name";
-        series1.columns.template.propertyFields.fill = "color"; // get color from data
-        series1.columns.template.propertyFields.stroke = "color";
+      //  series1.columns.template.propertyFields.fill = "color"; // get color from data
+      //  series1.columns.template.propertyFields.stroke = "color";
         series1.columns.template.strokeOpacity = 1;
 
     }
