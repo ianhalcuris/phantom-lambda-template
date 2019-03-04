@@ -15,8 +15,34 @@
 
     function renderChart(apiData) {
         
-        console.log('apiData [raw]: ' + apiData);
-        console.log('apiData [stringified]: ' + JSON.stringify(apiData));
+        apiData = '{ "sensors": ' + apiData + '}';
+        
+        console.log('apiData: ' + apiData);
+       
+        var theData = JSON.parse(apiData);
+        
+        for (i = 0; i < theData.sensors.length; i++) { 
+            
+            for (j = 0; j < theData.sensors[i].devices.length; j++) { 
+                
+                var deviceName = theData.sensors[i].devices[j].name;
+                
+                for (k = 0; k < theData.sensors[i].devices[j].data.length; k++) { 
+                
+                    var start = theData.sensors[i].devices[j].data[k].start;
+                    var end = theData.sensors[i].devices[j].data[k].end;
+                    
+                    var startDate = new Date(start * 1000);
+                    var endDate = new Date(end * 1000);
+                    
+                    var startTime = startDate.getHours() + ":" + startDate.getMinutes();
+                    var endTime = endDate.getHours() + ":" + endDate.getMinutes();
+                    
+                    console.log('deviceName: ' + deviceName + ', startTime: ' + startTime + ', endTime: ' + endTime);
+                }
+            }
+        }
+       
         
         var chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
