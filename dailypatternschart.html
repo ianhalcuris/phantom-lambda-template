@@ -19,111 +19,111 @@
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.paddingRight = 30;
-        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
+//        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
 
         var colorSet = new am4core.ColorSet();
         colorSet.saturation = 0.4;
 
         chart.data = [ {
           "category": "Kitchen",
-          "start": "2016-01-01",
-          "end": "2016-01-14"/*,
+          "start": "1451606400",
+          "end": "1452729600"/*,
           "color": colorSet.getIndex(0).brighten(0),
           "task": "Gathering requirements"*/
         }, {
           "category": "Kitchen",
-          "start": "2016-01-16",
-          "end": "2016-01-27"/*,
+          "start": "1452902400",
+          "end": "1453852800"/*,
           "color": colorSet.getIndex(0).brighten(0.4),
           "task": "Producing specifications"*/
         }, {
           "category": "Kitchen",
-          "start": "2016-02-05",
-          "end": "2016-04-18"/*,
+          "start": "1454630400",
+          "end": "1460934000"/*,
           "color": colorSet.getIndex(0).brighten(0.8),
           "task": "Development"*/
         }, {
           "category": "Kitchen",
-          "start": "2016-04-18",
-          "end": "2016-04-30"/*,
+          "start": "1460934000",
+          "end": "1461970800"/*,
           "color": colorSet.getIndex(0).brighten(1.2),
           "task": "Testing and QA"*/
         }, {
           "category": "Bathroom",
-          "start": "2016-01-08",
-          "end": "2016-01-10"/*,
+          "start": "1452211200",
+          "end": "1452384000"/*,
           "color": colorSet.getIndex(2).brighten(0),
           "task": "Gathering requirements"*/
         }, {
           "category": "Bathroom",
-          "start": "2016-01-12",
-          "end": "2016-01-15"/*,
+          "start": "1452556800",
+          "end": "1452816000"/*,
           "color": colorSet.getIndex(2).brighten(0.4),
           "task": "Producing specifications"*/
         }, {
           "category": "Bathroom",
-          "start": "2016-01-16",
-          "end": "2016-02-05"/*,
+          "start": "1452902400",
+          "end": "1454630400"/*,
           "color": colorSet.getIndex(2).brighten(0.8),
           "task": "Development"*/
         }, {
           "category": "Bathroom",
-          "start": "2016-02-10",
-          "end": "2016-02-18"/*,
+          "start": "1455062400",
+          "end": "1455753600"/*,
           "color": colorSet.getIndex(2).brighten(1.2),
           "task": "Testing and QA"*/
         }, {
           "category": "Office Door",
-          "start": "2016-01-02",
-          "end": "2016-01-08"/*,
+          "start": "1451692800",
+          "end": "1452211200"/*,
           "color": colorSet.getIndex(4).brighten(0),
           "task": "Gathering requirements"*/
         }, {
           "category": "Office Door",
-          "start": "2016-01-08",
-          "end": "2016-01-16"/*,
+          "start": "1452211200",
+          "end": "1452902400"/*,
           "color": colorSet.getIndex(4).brighten(0.4),
           "task": "Producing specifications"*/
         }, {
           "category": "Office Door",
-          "start": "2016-01-19",
-          "end": "2016-03-01"/*,
+          "start": "1453161600",
+          "end": "1456790400"/*,
           "color": colorSet.getIndex(4).brighten(0.8),
           "task": "Development"*/
         }, {
           "category": "Office Door",
-          "start": "2016-03-12",
-          "end": "2016-04-05"/*,
+          "start": "1457740800",
+          "end": "1459810800"/*,
           "color": colorSet.getIndex(4).brighten(1.2),
           "task": "Testing and QA"*/
         }, {
           "category": "Shed",
-          "start": "2016-01-01",
-          "end": "2016-01-19"/*,
+          "start": "1451606400",
+          "end": "1453161600"/*,
           "color": colorSet.getIndex(6).brighten(0),
           "task": "Gathering requirements"*/
         }, {
           "category": "Shed",
-          "start": "2016-01-19",
-          "end": "2016-02-03"/*,
+          "start": "1453161600",
+          "end": "1454457600"/*,
           "color": colorSet.getIndex(6).brighten(0.4),
           "task": "Producing specifications"*/
         }, {
           "category": "Shed",
-          "start": "2016-03-20",
-          "end": "2016-04-25"/*,
+          "start": "1458432000",
+          "end": "1461538800"/*,
           "color": colorSet.getIndex(6).brighten(0.8),
           "task": "Development"*/
         }, {
           "category": "Shed",
-          "start": "2016-04-27",
-          "end": "2016-05-15"/*,
+          "start": "1461711600",
+          "end": "1463266800"/*,
           "color": colorSet.getIndex(6).brighten(1.2),
           "task": "Testing and QA"*/
         }];
 
         chart.dateFormatter.dateFormat = "yyyy-MM-dd";
-        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+        chart.dateFormatter.inputDateFormat = "x";
 
         var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
         categoryAxis.dataFields.category = "category";
