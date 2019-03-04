@@ -21,9 +21,16 @@
        
         var theData = JSON.parse(apiData);
         
+        
+        var colorSet = new am4core.ColorSet();
+        colorSet.saturation = 0.4;
+        
+        var myChartData = [];
+        
+        
         for (i = 0; i < theData.sensors.length; i++) { 
             
-            for (j = 0; j < theData.sensors[i].devices.length; j++) { 
+            for (j = 0, c=0; j < theData.sensors[i].devices.length; j++, c++) { 
                 
                 var deviceName = theData.sensors[i].devices[j].name;
                 
@@ -38,20 +45,27 @@
                     var startTime = startDate.getHours() + ":" + startDate.getMinutes();
                     var endTime = endDate.getHours() + ":" + endDate.getMinutes();
                     
-                    console.log('deviceName: ' + deviceName + ', startTime: ' + startTime + ', endTime: ' + endTime);
+                    //console.log('deviceName: ' + deviceName + ', startTime: ' + startTime + ', endTime: ' + endTime);
+
+                    myChartData.push({
+                        name: deviceName,
+                        fromDate: '2018-01-01 ' + startTime,
+                        toDate: '2018-01-01 ' + endTime,
+                        color: colorSet.getIndex(c)
+                    });
                 }
             }
         }
        
-        
+        console.log('myChartData: ' + JSON.stringify(myChartData));
+
         var chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.paddingRight = 30;
         chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
 
-        var colorSet = new am4core.ColorSet();
-        colorSet.saturation = 0.4;
+
 /*        
         chart.data = [
         {
