@@ -13,5 +13,5 @@ exports.handler = function(event, context, callback) {
 	console.log('apiUrl: ' + apiUrl);
 	console.log('chartTemplate: ' + chartTemplate);
 	
-	//chartProcessor.handler(apiUrl, chartTemplate, context, callback);
+	//chartProcessor.renderChart(apiUrl, chartTemplate, context, callback);
 };
