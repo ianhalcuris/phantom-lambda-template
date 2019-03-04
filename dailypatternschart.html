@@ -1534,7 +1534,7 @@
         var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
         dateAxis.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm";
         dateAxis.renderer.minGridDistance = 70;
-        dateAxis.baseInterval = { count: 30, timeUnit: "minute" };
+        dateAxis.baseInterval = { count: 1, timeUnit: "minute" };
         
         // new Date(year, month, day, hours, minutes, seconds, milliseconds)
         // dateAxis.max = new Date(2018, 0, 1, 24, 0, 0, 0).getTime();
