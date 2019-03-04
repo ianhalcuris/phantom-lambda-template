@@ -39,11 +39,13 @@ exports.handler = function(event, context, callback) {
 
 	var apiUrl = util.format(process.env.API_HOST + '/memo/service/insight/hub/%s/service/discreteData?precision=5', hubId);
 
-	getApiData(apiUrl).then(function(apiData) {
+	getApiData(apiUrl).then(function(result) {
 
-		console.log('got API data: ' + apiData);
+		console.log('got API data: ' + result);
 
 		console.log('assembling chart data...');
+		
+		var apiData = JSON.parse(result);
 
 		// Assemble chart data
 		let items = [];
