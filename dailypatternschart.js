@@ -54,13 +54,14 @@ exports.handler = function(event, context, callback) {
 			service.devices.forEach(device => {
 				device.data.forEach(data => {
 					chartData.push({
-						start: new String(new Date(data.start * 1000).getTime()),
-						end: new String(new Date(data.end * 1000).getTime()),
+						start: new Date(data.start * 1000).toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+						end: new Date(data.end * 1000).toISOString().replace(/T/, ' ').replace(/\..+/, ''),
 						category: device.name
 				    	})
 				});
 			});
 		});
+		
 		//						gp: device.id + '_' + service.id,
 		
 		console.log('chart data: ' + JSON.stringify(chartData));
