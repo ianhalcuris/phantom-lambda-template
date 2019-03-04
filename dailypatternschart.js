@@ -56,8 +56,8 @@ exports.handler = function(event, context, callback) {
 				device.data.forEach(data => {
 					chartData.push({
 						name: device.name,
-						start: dateFormat(new Date(data.start * 1000), "yyyy-mm-dd HH:MM" ),
-						end: dateFormat(new Date(data.end * 1000), "yyyy-mm-dd HH:MM" )
+						fromDate: dateFormat(new Date(data.start * 1000), "yyyy-mm-dd HH:MM" ),
+						toDate: dateFormat(new Date(data.end * 1000), "yyyy-mm-dd HH:MM" )
 				    	})
 				});
 			});
