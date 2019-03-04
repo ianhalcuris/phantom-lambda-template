@@ -3,9 +3,6 @@ var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 var request = require('request');
 const util = require('util');
-const dateFormat = require('dateformat');
-
-
 
 function getApiData(apiUrl) {
 	
@@ -44,33 +41,7 @@ exports.handler = function(event, context, callback) {
 	getApiData(apiUrl).then(function(result) {
 
 		console.log('got API data: ' + result);
-
-		console.log('assembling chart data...');
-		
-		var apiData = JSON.parse(result);
-
-		// Assemble chart data
-		let chartData = [];
-		apiData.forEach(service => {
-			service.devices.forEach(device => {
-				device.data.forEach(data => {
-					chartData.push({
-						name: device.name,
-						fromDate: '2018-01-01 ' + dateFormat(new Date(data.start * 1000), "HH:MM" ),
-						toDate: '2018-01-01 ' + dateFormat(new Date(data.end * 1000), "HH:MM" )
-				    	})
-				});
-			});
-		});
-		
-		//						gp: device.id + '_' + service.id,
-		
-		var chartDataString = JSON.stringify(chartData);
-		
-		console.log('chartDataString: ' + JSON.stringify(chartDataString));
-		
-		
-		
+			
 		var chartTemplate = process.env.LAMBDA_TASK_ROOT + '/dailypatternschart.html';
 		console.log('chart template: ' + chartTemplate);
 
@@ -106,9 +77,7 @@ exports.handler = function(event, context, callback) {
 
 			callback(null, response);
 		});
-		
-
-
+	
 	}, function(err) {
 
 		console.log('error getting discrete data: ' + err);
