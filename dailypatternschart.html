@@ -15,16 +15,6 @@
 
     function renderChart(apiData) {
         
-        apiData = '{ "sensorTypes": ' + apiData + '}';
-        
-        //console.log('apiData: ' + apiData);
-
-        var theData = JSON.parse(apiData);
-          
-        let start = new Date()
-        start.setHours(0, 0, 0, 0)
-        let end = new Date()
-        end.setHours(23, 59, 59, 999)
 
    //     am4core.options.commercialLicense = true
 
@@ -92,9 +82,9 @@
         
         
         // update chart times
-        start = new Date(this.props.query.date);
+        let start = new Date(this.props.query.date);
         start.setHours(0, 0, 0, 0)
-        end = new Date(this.props.query.date);
+        let end = new Date(this.props.query.date);
         end.setHours(23, 59, 59, 999)
 
      //   console.log("UPDATING CHART AXES");
@@ -103,93 +93,7 @@
         chart.xAxes.getIndex(0).max = end.getTime();
 
 
-        let groups = []  //props.services props.sensorData
-        let items = []
-
-   //     if (this.props.discreteData.services) {
-   //         this.props.discreteData.services.forEach(srv => {
-   //             if (srv.enabled) {
-
-        for (i = 0; i < theData.sensorTypes.length; i++) { 
-   //                 this.props.discreteData.sensorData.data.forEach(sd => {
-            
-
-   //                     if (sd.id == srv.id) {
-   //                         sd.devices.forEach(d => {
-            for (j = 0; j < theData.sensorTypes[i].devices.length; j++) { 
-   //                             d.data.forEach(data => {
-                
-                  var d = theData.sensorTypes[i].devices[j].data[k];
-
-                
-                                    items.push({
-                                        start: d.start * 1000,
-                                        end: d.end * 1000,
-                                        gp: theData.sensorTypes[i].devices[j].id + '_' + theData.sensorTypes[i].id,
-                                        name: theData.sensorTypes[i].devices[j].name
-                                    })
-                                })
-                            })
-                        }
-                    })
-   //             }
-   //        })
-   //     }
-        chart.data = items;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-/*
-        var chartData = [];
-        var c = 0;
-        
-        for (i = 0; i < theData.sensorTypes.length; i++) { 
-            
-            for (j = 0; j < theData.sensorTypes[i].devices.length; j++) { 
-            
-                var deviceName = theData.sensorTypes[i].devices[j].name;
-                
-                var b = 0.00;     
-                
-                for (k = 0; k < theData.sensorTypes[i].devices[j].data.length; k++) { 
-                
-                    var d = theData.sensorTypes[i].devices[j].data[k];
-                    
-                    var start = new Date(d.start*1000).toISOString();
-                    var end = new Date(d.end*1000).toISOString();
-                    
-                  // console.log('{name: ' + deviceName + ', fromDate: ' + start + ', toDate: ' + end + ', color: ' + colorSet.getIndex(c).brighten(b) + '}');
-
-                    chartData.push({
-                            "name": deviceName,
-                            "fromDate": start,
-                            "toDate": end,
-                            "color": colorSet.getIndex(c).brighten(b)
-                    });
-                    
-                     b+=0.02;
-                }
-                
-                 c++;
-            }
-        }
-*/
-        
-
+        chart.data = apiData;
     }
             
     </script>
