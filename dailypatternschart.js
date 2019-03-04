@@ -54,9 +54,9 @@ exports.handler = function(event, context, callback) {
 			service.devices.forEach(device => {
 				device.data.forEach(data => {
 					chartData.push({
-						start: new Date(data.start * 1000).toISOString().replace(/T/, ' ').replace(/\..+/, ''),
-						end: new Date(data.end * 1000).toISOString().replace(/T/, ' ').replace(/\..+/, ''),
-						category: device.name
+						start: new Date(data.start * 1000).getTime(),
+						end: new Date(data.end * 1000).getTime(),
+						name: device.name
 				    	})
 				});
 			});
