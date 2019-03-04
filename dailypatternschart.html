@@ -15,7 +15,8 @@
 
     function renderChart(apiData) {
         
-        console.log('apiData: ' + JSON.stringify(apiData));
+        console.log('apiData [raw]: ' + apiData);
+        console.log('apiData [stringified]: ' + JSON.stringify(apiData));
         
         var chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
