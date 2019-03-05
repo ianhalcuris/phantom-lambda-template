@@ -2,7 +2,6 @@ var AWS = require('aws-sdk');
 var util = require('util');
 var chartProcessor = require('./chartprocessor');
 
-
 exports.handler = function(event, context, callback) {
 
 	console.log('started');
