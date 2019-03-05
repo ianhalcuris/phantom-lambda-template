@@ -1,6 +1,6 @@
 
-var args = require('system').args;
-var webPage = require('webpage');
+const args = require('system').args;
+const webPage = require('webpage');
 
 var page = webPage.create();
 
