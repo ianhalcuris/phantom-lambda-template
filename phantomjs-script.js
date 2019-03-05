@@ -8,12 +8,12 @@ var htmlFile = args[1];
 var apiData = args[2];
 
 // TODO pass in as args depending on chart type?
-page.viewportSize = { width: 1000, height: 400 };
-
+//page.viewportSize = { width: 1000, height: 400 };
+/*
 page.onConsoleMessage = function(msg) {
   	console.log('console msg: ' + msg);
 }
-
+*/
 page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
@@ -23,7 +23,18 @@ page.open(htmlFile, function (status) {
   	}, apiData);
 	
     	setTimeout(function() {
-		
+
+		var p = page.evaluate(function () {
+            		return document.getElementById('chartdiv').getBoundingClientRect();
+        	});
+
+		page.clipRect = {
+		    top:    p.top,
+		    left:   p.left,
+		    width:  p.width,
+		    height: p.height
+		};
+
         	console.log(
 			page.renderBase64('PNG')
 		);
