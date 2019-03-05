@@ -7,7 +7,7 @@
     <script src="../amcharts4/charts.js"></script>
     <script src="../amcharts4/themes/material.js"></script>
 
-    <div id="chartdiv" style="width: 1000px; height: 400px;" align="center"></div>
+    <div id="chartdiv" style="width: 1000px;" align="center"></div>
 
     <script>
     
@@ -95,7 +95,7 @@
         dateAxis.renderer.tooltipLocation = 0;
 
         var series1 = chart.series.push(new am4charts.ColumnSeries());
-        series1.columns.template.width = am4core.percent(40);
+        series1.columns.template.width = am4core.percent(80);
         series1.columns.template.tooltipText = "{name}: {openDateX} - {dateX}";
 
         series1.dataFields.openDateX = "fromDate";
