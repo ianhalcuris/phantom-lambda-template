@@ -67,6 +67,30 @@
       //  console.log('myChartData: ' + JSON.stringify(myChartData));
 
         var chart = am4core.create("chartdiv", am4charts.XYChart);
+        
+        
+        let cellSize = 30;
+        chart.events.on("datavalidated", function(ev) {
+
+          // Get objects of interest
+          let chart = ev.target;
+          let categoryAxis = chart.yAxes.getIndex(0);
+
+          // Calculate how we need to adjust chart height
+          let adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
+
+          // get current chart height
+          let targetHeight = chart.pixelHeight + adjustHeight;
+
+          // Set it on chart's container
+          chart.svgContainer.htmlElement.style.height = targetHeight + "px";
+        });
+        
+        
+        
+        
+        
+        
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.paddingRight = 30;
@@ -105,10 +129,13 @@
         series1.columns.template.propertyFields.stroke = "color";
         series1.columns.template.strokeOpacity = 1;
         
-        series1.columns.template.height = 20;
+        // Controls the height of the gantt bars
+        series1.columns.template.height = am4core.percent(80);
 
+        
+        
     }
-            
+                   
     </script>
 
 </body>
