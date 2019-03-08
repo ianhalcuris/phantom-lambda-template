@@ -25,12 +25,18 @@
         var chart = am4core.create("chartdiv", am4charts.RadarChart);
         
         chart.addListener("rendered", function(e) {
+            
+            console.log('IAN-TRACE rendered');
+            
             if (typeof window.callPhantom === 'function') {
                 window.callPhantom({ hello: 'world rendered' });
             }
         });
         
         chart.addListener("dataUpdated", function(e) {
+            
+            console.log('IAN-TRACE dataUpdated');
+            
             if (typeof window.callPhantom === 'function') {
                 window.callPhantom({ hello: 'world dataUpdated' });
             }
