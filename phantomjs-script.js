@@ -39,5 +39,5 @@ page.open(htmlFile, function (status) {
 	    
         	phantom.exit();
 	        
-    	}, 5000); // TODO optimise this timeout 
+    	}, 20000); // TODO optimise this timeout 
 });
