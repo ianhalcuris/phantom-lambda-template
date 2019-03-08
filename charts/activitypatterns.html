@@ -11,6 +11,10 @@
 
     <script>
     
+    if (typeof window.callPhantom === 'function') {
+        window.callPhantom({ hello: 'world IAN-TRACE' });
+    }
+        
     am4core.useTheme(am4themes_kelly);
         
     am4core.options.commercialLicense = true;
