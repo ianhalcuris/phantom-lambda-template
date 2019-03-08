@@ -26,10 +26,17 @@
         
         chart.addListener("rendered", function(e) {
             if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world CHART RENDERED' });
+                window.callPhantom({ hello: 'world rendered' });
             }
         });
         
+        chart.addListener("dataUpdated", function(e) {
+            if (typeof window.callPhantom === 'function') {
+                window.callPhantom({ hello: 'world dataUpdated' });
+            }
+        });
+        
+             
         /* Create axes */
         var xAxis = chart.xAxes.push(new am4charts.ValueAxis());
         xAxis.renderer.maxLabelPosition = 0.99;
