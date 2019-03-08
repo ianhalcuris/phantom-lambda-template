@@ -21,49 +21,49 @@
 
         var theData = JSON.parse(apiData);
         
-             console.log('IAN-TRACE creating chart');
-               if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world creating chart' });
-            }
-          
         /* Create chart instance */
         var chart = am4core.create("chartdiv", am4charts.RadarChart);
         
-          console.log('IAN-TRACE chart created');
+        chart.events.on('inited', function(e) {
+            console.log('IAN-TRACE inited ');
             if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world chart created' });
-            }
-        
-        chart.events.on('rendered', function(e) {
-            
-            console.log('IAN-TRACE rendered');
-            
-            if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world rendered' });
+                window.callPhantom({ hello: 'world inited ' });
             }
         });
         
-        chart.events.on('dataUpdated', function(e) {
-            
-            console.log('IAN-TRACE dataUpdated');
-            
+        chart.events.on('datavalidated', function(e) {
+            console.log('IAN-TRACE datavalidated');
             if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world dataUpdated' });
+                window.callPhantom({ hello: 'world datavalidated' });
             }
         });
         
-        chart.events.on('init', function(e) {
-            
-            console.log('IAN-TRACE init');
-            
+        chart.events.on('ready', function(e) {
+            console.log('IAN-TRACE ready');
             if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world init' });
+                window.callPhantom({ hello: 'world ready' });
             }
-        });
+        });    
+        
+        chart.events.on('shown', function(e) {
+            console.log('IAN-TRACE shown');
+            if (typeof window.callPhantom === 'function') {
+                window.callPhantom({ hello: 'world shown' });
+            }
+        });   
+        
+        chart.events.on('validated', function(e) {
+            console.log('IAN-TRACE validated');
+            if (typeof window.callPhantom === 'function') {
+                window.callPhantom({ hello: 'world validated' });
+            }
+        });   
         
         
+         
+         
         
-             
+           
         /* Create axes */
         var xAxis = chart.xAxes.push(new am4charts.ValueAxis());
         xAxis.renderer.maxLabelPosition = 0.99;
@@ -94,11 +94,6 @@
 
         /* Add legend */
         chart.legend = new am4charts.Legend();
-        
-              console.log('IAN-TRACE after chart code');
-               if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world after chart code' });
-            }
     }
             
     </script>
