@@ -20,9 +20,19 @@
         apiData = '{ "sensors": ' + apiData + '}';
 
         var theData = JSON.parse(apiData);
+        
+             console.log('IAN-TRACE creating chart');
+               if (typeof window.callPhantom === 'function') {
+                window.callPhantom({ hello: 'world creating chart' });
+            }
           
         /* Create chart instance */
         var chart = am4core.create("chartdiv", am4charts.RadarChart);
+        
+          console.log('IAN-TRACE chart created');
+            if (typeof window.callPhantom === 'function') {
+                window.callPhantom({ hello: 'world chart created' });
+            }
         
         chart.events.on('rendered', function(e) {
             
@@ -84,6 +94,11 @@
 
         /* Add legend */
         chart.legend = new am4charts.Legend();
+        
+              console.log('IAN-TRACE after chart code');
+               if (typeof window.callPhantom === 'function') {
+                window.callPhantom({ hello: 'world after chart code' });
+            }
     }
             
     </script>
