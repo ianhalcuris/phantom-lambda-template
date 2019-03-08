@@ -7,6 +7,11 @@ var page = webPage.create();
 var htmlFile = args[1];
 var apiData = args[2];
 
+page.onCallback = function(data) {
+  console.log('CALLBACK: ' + JSON.stringify(data));
+  // Prints 'CALLBACK: { "hello": "world" }'
+};
+
 page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
