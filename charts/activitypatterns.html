@@ -24,46 +24,12 @@
         /* Create chart instance */
         var chart = am4core.create("chartdiv", am4charts.RadarChart);
         
-        chart.events.on('inited', function(e) {
-            console.log('IAN-TRACE inited ');
-            if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world inited ' });
-            }
-        });
-        
-        chart.events.on('datavalidated', function(e) {
-            console.log('IAN-TRACE datavalidated');
-            if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world datavalidated' });
-            }
-        });
-        
         chart.events.on('ready', function(e) {
-            console.log('IAN-TRACE ready');
             if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world ready' });
+                window.callPhantom('ready');
             }
         });    
-        
-        chart.events.on('shown', function(e) {
-            console.log('IAN-TRACE shown');
-            if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world shown' });
-            }
-        });   
-        
-        chart.events.on('validated', function(e) {
-            console.log('IAN-TRACE validated');
-            if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ hello: 'world validated' });
-            }
-        });   
-        
-        
-         
-         
-        
-           
+
         /* Create axes */
         var xAxis = chart.xAxes.push(new am4charts.ValueAxis());
         xAxis.renderer.maxLabelPosition = 0.99;
