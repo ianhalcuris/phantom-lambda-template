@@ -24,7 +24,7 @@
         /* Create chart instance */
         var chart = am4core.create("chartdiv", am4charts.RadarChart);
         
-        chart.addListener('rendered', function(e) {
+        chart.events.on('rendered', function(e) {
             
             console.log('IAN-TRACE rendered');
             
@@ -33,7 +33,7 @@
             }
         });
         
-        chart.addListener('dataUpdated', function(e) {
+        chart.events.on('dataUpdated', function(e) {
             
             console.log('IAN-TRACE dataUpdated');
             
@@ -42,7 +42,7 @@
             }
         });
         
-        chart.addListener('init', function(e) {
+        chart.events.on('init', function(e) {
             
             console.log('IAN-TRACE init');
             
