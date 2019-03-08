@@ -19,7 +19,7 @@ page.open(htmlFile, function (status) {
     		renderChart(apiData);
 		
   	}, apiData);
-	
+/*	
     	setTimeout(function() {
 
 		var chartdiv = page.evaluate(function () {
@@ -40,4 +40,5 @@ page.open(htmlFile, function (status) {
         	phantom.exit();
 	        
     	}, 20000); // TODO optimise this timeout 
+*/
 });
