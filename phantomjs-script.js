@@ -12,6 +12,10 @@ page.onCallback = function(data) {
   // Prints 'CALLBACK: { "hello": "world" }'
 };
 
+page.onConsoleMessage = function(msg, lineNum, sourceId) {
+  console.log('CONSOLE: ' + msg + ' (from line #' + lineNum + ' in "' + sourceId + '")');
+};
+
 page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
