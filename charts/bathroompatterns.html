@@ -90,6 +90,8 @@
         series1.columns.template.width = am4core.percent(80);
         series1.columns.template.tooltipText = "{name}: {openDateX} - {dateX}";
 
+        series1.bullets.push(am4core.Rectangle);
+
         series1.dataFields.openDateX = "fromDate";
         series1.dataFields.dateX = "toDate";
         series1.dataFields.categoryY = "name";
