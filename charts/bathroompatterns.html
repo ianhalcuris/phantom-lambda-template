@@ -28,12 +28,12 @@
             }
         });    
         /* Create axes */
-        var xAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        var xAxis = chart.xAxes.push(new am4charts.ValueAxis());
         xAxis.renderer.maxLabelPosition = 0.99;
+       
         xAxis.min = 0.0;
         xAxis.max = 23.59;
-        
-        var yAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+        var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
         yAxis.renderer.labels.template.verticalCenter = "bottom";
         yAxis.renderer.labels.template.horizontalCenter = "right";
         yAxis.renderer.maxLabelPosition = 0.99;
@@ -44,10 +44,10 @@
  
         for (i = 0; i < theData.sensors.length; i++) { 
             var series = chart.series.push(new am4charts.RadarSeries());
-            series.bullets.push(am4core.Rectangle);
+            series.bullets.push(new am4charts.CircleBullet());
             series.strokeOpacity = 0;
-            series.dataFields.categoryX = "hour";
-            series.dataFields.categoryY = "day";
+            series.dataFields.valueX = "hour";
+            series.dataFields.valueY = "day";
             series.name = theData.sensors[i].name;
             series.sequencedInterpolation = true;
             series.sequencedInterpolationDelay = 10;
