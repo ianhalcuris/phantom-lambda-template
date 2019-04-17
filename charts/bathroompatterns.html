@@ -33,7 +33,7 @@
         xAxis.min = 0.0;
         xAxis.max = 23.59;
         
-        var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        var yAxis = chart.yAxes.push(new am4charts.CategoryAxis());
         yAxis.renderer.labels.template.verticalCenter = "bottom";
         yAxis.renderer.labels.template.horizontalCenter = "right";
         yAxis.renderer.maxLabelPosition = 0.99;
@@ -47,7 +47,7 @@
             series.bullets.push(am4core.Rectangle);
             series.strokeOpacity = 0;
             series.dataFields.categoryX = "hour";
-            series.dataFields.valueY = "day";
+            series.dataFields.categoryY = "day";
             series.name = theData.sensors[i].name;
             series.sequencedInterpolation = true;
             series.sequencedInterpolationDelay = 10;
