@@ -1,7 +1,7 @@
 
 const args = require('system').args;
 const webPage = require('webpage');
-var LZUTF8 = require('lzutf8');
+var zlib = require('zlib');
 
 var page = webPage.create();
 
@@ -29,8 +29,8 @@ page.onCallback = function(data) {
 page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
-		
-		var decompressedData = LZUTF8.decompress(apiData);
+
+		var decompressedData = zlib.inflateSync(apiData).toString();
 
     		renderChart(decompressedData);
 		
