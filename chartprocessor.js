@@ -3,10 +3,9 @@ var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 var request = require('request');
 const util = require('util');
-/*
-const redis = require('redis');
-const client = redis.createClient();
-*/
+
+global.chart_data = {};
+
 function getApiData(apiUrl) {
 	
 	console.log('calling api: ' + apiUrl);
