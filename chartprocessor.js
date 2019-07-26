@@ -4,6 +4,9 @@ var fs = require('fs');
 var request = require('request');
 const util = require('util');
 
+const redis = require('redis');
+const client = redis.createClient();
+
 function getApiData(apiUrl) {
 	
 	console.log('calling api: ' + apiUrl);
