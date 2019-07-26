@@ -4,6 +4,8 @@ var fs = require('fs');
 var request = require('request');
 const util = require('util');
 
+const uuid = require('uuid');
+
 global.chart_data = {};
 
 function getApiData(apiUrl) {
@@ -41,7 +43,12 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 			
 		var chartImageBase64 = '';
 
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
+		const chartUuid = uuid.v4();
+		
+		console.log('chartUuid = ' + chartUuid);
+		chart_data[chartUuid] = data;
+		
+		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, chartUuid);
 
 	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
