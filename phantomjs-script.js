@@ -1,7 +1,7 @@
 
 const args = require('system').args;
 const webPage = require('webpage');
-var zlib = require('zlib');
+var snappy = require('snappy');
 
 var page = webPage.create();
 
@@ -30,7 +30,7 @@ page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
 
-		var decompressedData = zlib.inflateSync(apiData).toString();
+		var decompressedData = snappy.uncompressSync(apiData);
 
     		renderChart(decompressedData);
 		
