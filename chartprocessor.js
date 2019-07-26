@@ -3,7 +3,7 @@ var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 var request = require('request');
 const util = require('util');
-var LZUTF8 = require('lzutf8');
+const zlib = require('zlib');
 
 function getApiData(apiUrl) {
 	
@@ -38,8 +38,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 
 		console.log('got data: ' + data);
 		
-		
-		var compressedData = LZUTF8.compress(data);
+		var compressedData = zlib.deflateSync(data);
 					
 		var chartImageBase64 = '';
 		
