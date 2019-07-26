@@ -1,7 +1,7 @@
 
 const args = require('system').args;
 const webPage = require('webpage');
-const jsonc = require('jsonc');
+var LZUTF8 = require('lzutf8');
 
 var page = webPage.create();
 
@@ -30,7 +30,7 @@ page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
 		
-		var decompressedData = jsonc.decompress( apiData );
+		var decompressedData = LZUTF8.decompress(apiData);
 
     		renderChart(decompressedData);
 		
