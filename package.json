@@ -17,7 +17,7 @@
     "mocha": "^3.2.0",
     "phantomjs-prebuilt": "^2.1.14",
     "dateformat": "^3.0.3",
-    "uuid": "^3.3.2"
+    "jsonc": "^2.0.0"
   },
   "devDependencies": {
     "aws-sdk": "^2.7.8"
