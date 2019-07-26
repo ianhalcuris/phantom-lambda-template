@@ -1,18 +1,12 @@
 
 const args = require('system').args;
 const webPage = require('webpage');
+const jsonc = require('jsonc');
 
 var page = webPage.create();
 
 var htmlFile = args[1];
-//var apiData = args[2];
-var chart_uuid = args[2];
-
-console.log('chart_uuid = ' + chart_uuid);
-
-var apiData = chart_data[chart_uuid];
-
-console.log('apiData = ' + apiData);
+var apiData = args[2];
 
 page.onCallback = function(data) {
 
@@ -35,8 +29,10 @@ page.onCallback = function(data) {
 page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
+		
+		var decompressedData = jsonc.decompress( apiData );
 
-    		renderChart(apiData);
+    		renderChart(decompressedData);
 		
   	}, apiData);
 });
