@@ -17,7 +17,7 @@
     "mocha": "^3.2.0",
     "phantomjs-prebuilt": "^2.1.14",
     "dateformat": "^3.0.3",
-    "zlib": "^1.0.5"
+    "snappy": "^6.2.3"
   },
   "devDependencies": {
     "aws-sdk": "^2.7.8"
