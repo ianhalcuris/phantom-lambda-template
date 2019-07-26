@@ -10,7 +10,9 @@ var chart_uuid = args[2];
 
 console.log('chart_uuid = ' + chart_uuid);
 
-var apiData = chartData[chart_uuid];
+var apiData = chart_data[chart_uuid];
+
+console.log('apiData = ' + apiData);
 
 page.onCallback = function(data) {
 
