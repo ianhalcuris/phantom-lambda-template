@@ -3,7 +3,7 @@ var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 var request = require('request');
 const util = require('util');
-const zlib = require('zlib');
+var snappy = require('snappy');
 
 function getApiData(apiUrl) {
 	
@@ -38,7 +38,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 
 		console.log('got data: ' + data);
 		
-		var compressedData = zlib.deflateSync(data);
+		var compressedData = snappy.compressSync(data);
 					
 		var chartImageBase64 = '';
 		
