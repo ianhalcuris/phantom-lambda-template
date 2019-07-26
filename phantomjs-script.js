@@ -5,7 +5,12 @@ const webPage = require('webpage');
 var page = webPage.create();
 
 var htmlFile = args[1];
-var apiData = args[2];
+//var apiData = args[2];
+var chart_uuid = args[2];
+
+console.log('chart_uuid = ' + chart_uuid);
+
+var apiData = chartData[chart_uuid];
 
 page.onCallback = function(data) {
 
