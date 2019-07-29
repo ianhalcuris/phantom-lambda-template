@@ -2,6 +2,8 @@
 const args = require('system').args;
 const webPage = require('webpage');
 
+var zlib = require('zlib');
+
 var page = webPage.create();
 
 var htmlFile = args[1];
