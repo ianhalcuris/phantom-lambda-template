@@ -63,7 +63,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		
 		console.log('IAN-TRACE [chartprocessor] - reloadedData = ' + reloadedData);
 		console.log('IAN-TRACE [chartprocessor] - process.env.MAX_ARG_STRLEN = ' + process.env.MAX_ARG_STRLEN);
-		
+		console.log('IAN-TRACE [chartprocessor] - process.env.ARG_MAX = ' + process.env.ARG_MAX);
 		
 		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
 
