@@ -45,6 +45,15 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		    the data to file and load it in the phantom process.
 		*/
 		console.log('__dirname = ' + __dirname);
+		fs.readdirSync(__dirname).forEach(function (name) {
+			console.log('name = ' + name);
+		});
+		
+		
+		
+		
+		
+		
 		
 		
 		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
