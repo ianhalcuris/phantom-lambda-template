@@ -45,10 +45,12 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		    to either [1] get the data in the phantom process or [2] save 
 		    the data to file and load it in the phantom process.
 		*/
-		var dir = __dirname + '/temp';
-		var f = dir + '/' + uuid.v4() + '.json';
 		
-		console.log('dir = ' + dir);
+		// __dirname = /var/task
+		console.log('__dirname = ' + __dirname);
+
+		var f = '../../tmp/' + uuid.v4() + '.json';
+
 		console.log('f = ' + f);
 		
 		fs.writeFileSync(f, data);
