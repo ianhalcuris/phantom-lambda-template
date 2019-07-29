@@ -1,7 +1,6 @@
 
 const args = require('system').args;
 const webPage = require('webpage');
-var snappy = require('snappy');
 
 var page = webPage.create();
 
@@ -30,9 +29,7 @@ page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
 
-		var decompressedData = snappy.uncompressSync(apiData);
-
-    		renderChart(decompressedData);
+    		renderChart(apiData);
 		
   	}, apiData);
 });
