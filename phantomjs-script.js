@@ -28,6 +28,13 @@ page.onCallback = function(data) {
 
 page.open(htmlFile, function (status) {
 	
+	console.log('IAN-TRACE [phantom-script] - status = ' + status);
+	console.log('IAN-TRACE [phantom-script] - dataFile = ' + dataFile);
+	
+	fs.readdirSync('../../tmp/').forEach(function (name) {
+		console.log('IAN-TRACE [phantom-script] - tmp file = ' + name);
+	});
+	
 	const data = fs.readFileSync(dataFile, 'utf8');
 	
 	console.log('IAN-TRACE [phantom-script] - data = ' + data);
