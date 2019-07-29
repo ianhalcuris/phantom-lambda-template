@@ -18,7 +18,7 @@
     "phantomjs-prebuilt": "^2.1.14",
     "dateformat": "^3.0.3",
     "uuid": "^3.3.2",
-    "snappy": "^6.2.3"
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "aws-sdk": "^2.7.8"
