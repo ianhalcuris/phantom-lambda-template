@@ -7,6 +7,7 @@ var page = webPage.create();
 
 var htmlFile = args[1];
 var dataFile = args[2];
+var data = fs.readFileSync(dataFile);
 
 page.onCallback = function(data) {
 
@@ -30,13 +31,6 @@ page.open(htmlFile, function (status) {
 	
 	console.log('IAN-TRACE [phantom-script] - status = ' + status);
 	console.log('IAN-TRACE [phantom-script] - dataFile = ' + dataFile);
-	
-	fs.readdirSync('../../tmp/').forEach(function (name) {
-		console.log('IAN-TRACE [phantom-script] - tmp file = ' + name);
-	});
-	
-	const data = fs.readFileSync(dataFile, 'utf8');
-	
 	console.log('IAN-TRACE [phantom-script] - data = ' + data);
 	
 	page.evaluate(function(data) {
