@@ -36,7 +36,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 	
 	getApiData(apiUrl).then(function(data) {
 
-		console.log('got data: ' + data);
+		console.log('IAN-TRACE [chartprocessor] - got data: ' + data);
 				
 		var chartImageBase64 = '';
 		
@@ -59,9 +59,9 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 			console.log('IAN-TRACE [chartprocessor] - tmp file = ' + name);
 		});
 		
-		const data = fs.readFileSync(dataFile, 'utf8');
+		const reloadedData = fs.readFileSync(dataFile, 'utf8');
 		
-		console.log('IAN-TRACE [chartprocessor] - data = ' + data);
+		console.log('IAN-TRACE [chartprocessor] - reloadedData = ' + reloadedData);
 		
 		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
 
