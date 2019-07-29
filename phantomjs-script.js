@@ -1,11 +1,12 @@
 
 const args = require('system').args;
 const webPage = require('webpage');
+const fs = require('fs');
 
 var page = webPage.create();
 
 var htmlFile = args[1];
-var apiData = args[2];
+var dataFile = args[2];
 
 page.onCallback = function(data) {
 
@@ -27,13 +28,11 @@ page.onCallback = function(data) {
 
 page.open(htmlFile, function (status) {
 	
-	page.evaluate(function(apiData) {
-		
-		console.log('IAN-TRACE [phantomjs-script] - apiData = ' + apiData);
-		var fs = require('fs');
-		var data = fs.readFileSync(apiData, 'utf8');
+	const data = fs.readFileSync(dataFile, 'utf8');
+	
+	page.evaluate(function(data) {
 		
     		renderChart(data);
 		
-  	}, apiData);
+  	}, data);
 });
