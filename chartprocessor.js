@@ -71,6 +71,10 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		console.log('IAN-TRACE [chartprocessor] - compressedData = ' + compressedData);
 		console.log('IAN-TRACE [chartprocessor] - compressedData.length = ' + compressedData.length);
 		
+		var uncompressedData = snappy.uncompressSync(compressedData);
+		console.log('IAN-TRACE [chartprocessor] - uncompressedData = ' + uncompressedData);
+		console.log('IAN-TRACE [chartprocessor] - uncompressedData.length = ' + uncompressedData.length);
+		
 		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
 
 	    	phantom.stdout.on('data', function(buf) {
