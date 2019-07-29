@@ -2,8 +2,6 @@
 const args = require('system').args;
 const webPage = require('webpage');
 
-var snappy = require('snappy');
-
 var page = webPage.create();
 
 var htmlFile = args[1];
@@ -29,17 +27,9 @@ page.onCallback = function(data) {
 
 page.open(htmlFile, function (status) {
 	
-	console.log('IAN-TRACE [phantom-script] - apiData = ' + apiData);
-	console.log('IAN-TRACE [phantom-script] - apiData.length = ' + apiData.length);
+	page.evaluate(function(apiData) {
 
-	var uncompressedApiData = snappy.uncompressSync(apiData);
-	console.log('IAN-TRACE [phantom-script] - uncompressedApiData = ' + uncompressedApiData);
-	console.log('IAN-TRACE [phantom-script] - uncompressedApiData.length = ' + uncompressedApiData.length);
-		
-	
-	page.evaluate(function(uncompressedApiData) {
+		renderChart(apiData);
 
-		renderChart(uncompressedApiData);
-
-	}, uncompressedApiData);
+	}, apiData);
 });
