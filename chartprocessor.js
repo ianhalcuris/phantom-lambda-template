@@ -4,6 +4,7 @@ var fs = require('fs');
 var request = require('request');
 const util = require('util');
 var uuid = require('uuid');
+var snappy = require('snappy');
 
 function getApiData(apiUrl) {
 	
