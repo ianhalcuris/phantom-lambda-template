@@ -2,8 +2,6 @@
 const args = require('system').args;
 const webPage = require('webpage');
 
-var zlib = require('zlib');
-
 var page = webPage.create();
 
 var htmlFile = args[1];
@@ -29,15 +27,9 @@ page.onCallback = function(data) {
 
 page.open(htmlFile, function (status) {
 	
-	console.log('IAN-TRACE [phantom-script] - apiData = ' + apiData);
-	console.log('IAN-TRACE [phantom-script] - apiData.length = ' + apiData.length);
-	var inflated = zlib.inflateSync(new Buffer(apiData, 'base64')).toString();
-	console.log('IAN-TRACE [phantom-script] - inflated = ' + inflated);
-	console.log('IAN-TRACE [phantom-script] - inflated.length = ' + inflated.length);
-	
-	page.evaluate(function(inflated) {
+	page.evaluate(function(apiData) {
 
-		renderChart(inflated);
+		renderChart(apiData);
 
-	}, inflated);
+	}, apiData);
 });
