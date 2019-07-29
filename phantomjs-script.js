@@ -29,13 +29,11 @@ page.onCallback = function(data) {
 
 page.open(htmlFile, function (status) {
 	
-	console.log('IAN-TRACE [phantom-script] - apiData = ' + apiData);
 	var content = fs.read(apiData);
-	console.log('IAN-TRACE [phantom-script] - content = ' + content);
 	
-	page.evaluate(function(apiData) {
+	page.evaluate(function(content) {
 
-		renderChart(apiData);
+		renderChart(content);
 
-	}, apiData);
+	}, content);
 });
