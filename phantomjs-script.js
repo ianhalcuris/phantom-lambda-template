@@ -28,7 +28,11 @@ page.onCallback = function(data) {
 
 page.open(htmlFile, function (status) {
 	
+	console.log('IAN-TRACE [phantom-script] - dataFile = ' + dataFile);
+	
 	const data = fs.readFileSync(dataFile, 'utf8');
+	
+	console.log('IAN-TRACE [phantom-script] - data = ' + data);
 	
 	page.evaluate(function(data) {
 		
