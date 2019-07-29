@@ -5,6 +5,8 @@ var request = require('request');
 const util = require('util');
 var uuid = require('uuid');
 
+var zlib = require('zlib');
+
 function getApiData(apiUrl) {
 	
 	console.log('calling api: ' + apiUrl);
@@ -64,10 +66,13 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		
 		console.log('IAN-TRACE [chartprocessor] - reloadedData = ' + reloadedData);
 
-		var formattedData = JSON.stringify(JSON.parse(data));
+		var deflated = zlib.deflateSync(data).toString('base64');
+		console.log('IAN-TRACE [chartprocessor] - deflated = ' + deflated);
+		console.log('IAN-TRACE [chartprocessor] - deflated.length = ' + deflated.length);
 		
-		console.log('IAN-TRACE [chartprocessor] - formattedData = ' + formattedData);
-		console.log('IAN-TRACE [chartprocessor] - formattedData.length = ' + formattedData.length);
+		var inflated = zlib.inflateSync(new Buffer(deflated, 'base64')).toString();
+		console.log('IAN-TRACE [chartprocessor] - inflated = ' + inflated);
+		console.log('IAN-TRACE [chartprocessor] - inflated.length = ' + inflated.length);
 		
 		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
 
