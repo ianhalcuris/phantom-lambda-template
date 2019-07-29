@@ -75,7 +75,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		console.log('IAN-TRACE [chartprocessor] - uncompressedData = ' + uncompressedData);
 		console.log('IAN-TRACE [chartprocessor] - uncompressedData.length = ' + uncompressedData.length);
 		
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
+		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, compressedData);
 
 	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
