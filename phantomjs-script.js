@@ -9,6 +9,28 @@ var page = webPage.create();
 var htmlFile = args[1];
 var apiData = args[2];
 
+function getApiData(apiUrl) {
+	
+	console.log('calling api: ' + apiUrl);
+
+	var options = {
+		url: apiUrl,
+		headers: {
+		  'MEMO-USER-ID': '10'
+		}
+	};
+
+ 	return new Promise(function(resolve, reject) {
+		request.get(options, function(err, resp, body) {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(body);
+			}
+		})
+	})
+}
+
 page.onCallback = function(data) {
 
 	var chartdiv = page.evaluate(function () {
