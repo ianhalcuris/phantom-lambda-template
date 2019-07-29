@@ -2,6 +2,8 @@
 const args = require('system').args;
 const webPage = require('webpage');
 
+var fs = require('fs');
+
 var page = webPage.create();
 
 var htmlFile = args[1];
@@ -26,6 +28,10 @@ page.onCallback = function(data) {
 };
 
 page.open(htmlFile, function (status) {
+	
+	console.log('IAN-TRACE [phantom-script] - apiData = ' + apiData);
+	var content = fs.read(apiData);
+	console.log('IAN-TRACE [phantom-script] - content = ' + content);
 	
 	page.evaluate(function(apiData) {
 
