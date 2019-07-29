@@ -1,7 +1,6 @@
 
 const args = require('system').args;
 const webPage = require('webpage');
-var fs = require('fs');
 
 var page = webPage.create();
 
@@ -31,7 +30,7 @@ page.open(htmlFile, function (status) {
 	page.evaluate(function(apiData) {
 		
 		console.log('IAN-TRACE [phantomjs-script] - apiData = ' + apiData);
-
+		var fs = require('fs');
 		var data = fs.readFileSync(apiData, 'utf8');
 		
     		renderChart(data);
