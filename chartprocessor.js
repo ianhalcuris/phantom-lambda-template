@@ -39,17 +39,12 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		console.log('[chart-processor] - data: ' + data);
 		console.log('[chart-processor] - data.length: ' + data.length);
 		
-
 		var dataFile = TMP_DIR + uuid.v4() + '.json';
 		var chartImageBase64 = '';
 		
-		console.log('IAN-TRACE [chartprocessor] - dataFile = ' + dataFile);
+		console.log('[chart-processor] - dataFile: ' + dataFile);
 		
 		fs.writeFileSync(dataFile, data);
-		
-		fs.readdirSync(TMP_DIR).forEach(function (name) {
-			console.log('[chart-processor] - tmp file: ' + name);
-		});
 
 		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
 
