@@ -3,6 +3,7 @@ var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 var request = require('request');
 const util = require('util');
+var uuid = require('uuid');
 
 function getApiData(apiUrl) {
 	
@@ -44,17 +45,17 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		    to either [1] get the data in the phantom process or [2] save 
 		    the data to file and load it in the phantom process.
 		*/
-		console.log('__dirname = ' + __dirname);
-		fs.readdirSync(__dirname).forEach(function (name) {
+		var dir = __dirname + '/temp';
+		var f = dir + '/' + uuid.v4() + '.json';
+		
+		console.log('dir = ' + dir);
+		console.log('f = ' + f);
+		
+		fs.writeFileSync(f, data);
+		
+		fs.readdirSync(dir).forEach(function (name) {
 			console.log('name = ' + name);
 		});
-		
-		
-		
-		
-		
-		
-		
 		
 		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
 
