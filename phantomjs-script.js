@@ -1,7 +1,7 @@
 
 const args = require('system').args;
 const webPage = require('webpage');
-const fs = require('fs');
+var fs = require('fs');
 
 var page = webPage.create();
 
@@ -29,6 +29,8 @@ page.onCallback = function(data) {
 page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
+		
+		console.log('IAN-TRACE [phantomjs-script] - apiData = ' + apiData);
 
 		var data = fs.readFileSync(apiData, 'utf8');
 		
