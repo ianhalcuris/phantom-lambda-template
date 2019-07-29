@@ -55,7 +55,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		
 		fs.writeFileSync(f, data);
 		
-		fs.readdirSync(dir).forEach(function (name) {
+		fs.readdirSync('../../tmp/').forEach(function (name) {
 			console.log('name = ' + name);
 		});
 		
