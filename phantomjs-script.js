@@ -28,17 +28,12 @@ page.onCallback = function(data) {
 
 page.onError = function(msg, trace) {
 
-  var msgStack = ['ERROR: ' + msg];
+  console.log('IAN-TRACE [phantom-script::onError] - msg = ' + msg);
 
-  if (trace && trace.length) {
-    msgStack.push('TRACE:');
-    trace.forEach(function(t) {
-      msgStack.push(' -> ' + t.file + ': ' + t.line + (t.function ? ' (in function "' + t.function +'")' : ''));
-    });
-  }
+};
 
-  console.log('IAN-TRACE [phantom-script::onError] - ' + msgStack.join('\n'));
-
+page.onResourceError = function(resourceError) {
+      console.log('IAN-TRACE [phantom-script::resourceError] - resourceError = ' + resourceError);
 };
 
 page.open(htmlFile, function (status) {
