@@ -1,13 +1,12 @@
 
 const args = require('system').args;
 const webPage = require('webpage');
-
-var fs = require('fs');
+const fs = require('fs');
 
 var page = webPage.create();
 
 var htmlFile = args[1];
-var apiData = args[2];
+var dataFile = args[2];
 
 page.onCallback = function(data) {
 
@@ -29,11 +28,11 @@ page.onCallback = function(data) {
 
 page.open(htmlFile, function (status) {
 	
-	var content = fs.read(apiData);
+	var apiData = fs.read(dataFile);
 	
-	page.evaluate(function(content) {
+	page.evaluate(function(apiData) {
 
-		renderChart(content);
+		renderChart(apiData);
 
-	}, content);
+	}, apiData);
 });
