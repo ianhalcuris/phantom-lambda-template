@@ -7,7 +7,7 @@ var page = webPage.create();
 
 var htmlFile = args[1];
 var dataFile = args[2];
-var data = fs.readFileSync(dataFile);
+var data = fs.readFileSync(dataFile, 'utf-8');
 
 page.onCallback = function(data) {
 
