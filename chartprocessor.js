@@ -62,8 +62,10 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		const reloadedData = fs.readFileSync(dataFile, 'utf8');
 		
 		console.log('IAN-TRACE [chartprocessor] - reloadedData = ' + reloadedData);
+		console.log('IAN-TRACE [chartprocessor] - process.env.MAX_ARG_STRLEN = ' + process.env.MAX_ARG_STRLEN);
 		
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
+		
+		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
 
 	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
