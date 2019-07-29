@@ -49,17 +49,17 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		// __dirname = /var/task
 		console.log('__dirname = ' + __dirname);
 
-		var f = '../../tmp/' + uuid.v4() + '.json';
+		var dataFile = '../../tmp/' + uuid.v4() + '.json';
 
-		console.log('f = ' + f);
+		console.log('dataFile = ' + dataFile);
 		
-		fs.writeFileSync(f, data);
+		fs.writeFileSync(dataFile, data);
 		
 		fs.readdirSync('../../tmp/').forEach(function (name) {
-			console.log('name = ' + name);
+			console.log('tmp file = ' + name);
 		});
 		
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
+		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
 
 	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
