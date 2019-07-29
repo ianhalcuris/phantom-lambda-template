@@ -4,7 +4,6 @@ var fs = require('fs');
 var request = require('request');
 const util = require('util');
 var uuid = require('uuid');
-var snappy = require('snappy');
 
 function getApiData(apiUrl) {
 	
@@ -64,18 +63,13 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		const reloadedData = fs.readFileSync(dataFile, 'utf8');
 		
 		console.log('IAN-TRACE [chartprocessor] - reloadedData = ' + reloadedData);
-		console.log('IAN-TRACE [chartprocessor] - process.env.MAX_ARG_STRLEN = ' + process.env.MAX_ARG_STRLEN);
-		console.log('IAN-TRACE [chartprocessor] - process.env.ARG_MAX = ' + process.env.ARG_MAX);
+
+		var formattedData = JSON.stringify(JSON.parse(data));
 		
-		var compressedData = snappy.compressSync(data);
-		console.log('IAN-TRACE [chartprocessor] - compressedData = ' + compressedData);
-		console.log('IAN-TRACE [chartprocessor] - compressedData.length = ' + compressedData.length);
+		console.log('IAN-TRACE [chartprocessor] - formattedData = ' + formattedData);
+		console.log('IAN-TRACE [chartprocessor] - formattedData.length = ' + formattedData.length);
 		
-		var uncompressedData = snappy.uncompressSync(compressedData);
-		console.log('IAN-TRACE [chartprocessor] - uncompressedData = ' + uncompressedData);
-		console.log('IAN-TRACE [chartprocessor] - uncompressedData.length = ' + uncompressedData.length);
-		
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, compressedData);
+		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
 
 	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
