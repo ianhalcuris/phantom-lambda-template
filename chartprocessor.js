@@ -37,6 +37,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 	getApiData(apiUrl).then(function(data) {
 
 		console.log('IAN-TRACE [chartprocessor] - got data: ' + data);
+		console.log('IAN-TRACE [chartprocessor] - data.length = ' + data.length);
 				
 		var chartImageBase64 = '';
 		
