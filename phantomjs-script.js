@@ -52,8 +52,12 @@ page.onCallback = function(data) {
 page.open(htmlFile, function (status) {
 	
 	page.evaluate(function(apiData) {
+		
+		
+	    getApiData(apiData).then(function(data) {
 
-    		renderChart(apiData);
+    		renderChart(data);
+	    }
 		
   	}, apiData);
 });
