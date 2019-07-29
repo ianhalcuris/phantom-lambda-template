@@ -44,6 +44,9 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		    to either [1] get the data in the phantom process or [2] save 
 		    the data to file and load it in the phantom process.
 		*/
+		console.log('__dirname = ' + __dirname);
+		
+		
 		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
 
 	    	phantom.stdout.on('data', function(buf) {
