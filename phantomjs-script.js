@@ -29,9 +29,17 @@ page.onCallback = function(data) {
 
 page.open(htmlFile, function (status) {
 	
-	page.evaluate(function(apiData) {
+	console.log('IAN-TRACE [phantom-script] - apiData = ' + apiData);
+	console.log('IAN-TRACE [phantom-script] - apiData.length = ' + apiData.length);
 
-		renderChart(apiData);
+	var uncompressedApiData = snappy.uncompressSync(apiData);
+	console.log('IAN-TRACE [phantom-script] - uncompressedApiData = ' + uncompressedApiData);
+	console.log('IAN-TRACE [phantom-script] - uncompressedApiData.length = ' + uncompressedApiData.length);
+		
+	
+	page.evaluate(function(uncompressedApiData) {
 
-	}, apiData);
+		renderChart(uncompressedApiData);
+
+	}, uncompressedApiData);
 });
