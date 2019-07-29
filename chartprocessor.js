@@ -47,17 +47,21 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 		*/
 		
 		// __dirname = /var/task
-		console.log('__dirname = ' + __dirname);
+		console.log('IAN-TRACE [chartprocessor] - __dirname = ' + __dirname);
 
 		var dataFile = '../../tmp/' + uuid.v4() + '.json';
 
-		console.log('dataFile = ' + dataFile);
+		console.log('IAN-TRACE [chartprocessor] - dataFile = ' + dataFile);
 		
 		fs.writeFileSync(dataFile, data);
 		
 		fs.readdirSync('../../tmp/').forEach(function (name) {
-			console.log('tmp file = ' + name);
+			console.log('IAN-TRACE [chartprocessor] - tmp file = ' + name);
 		});
+		
+		const data = fs.readFileSync(dataFile, 'utf8');
+		
+		console.log('IAN-TRACE [chartprocessor] - data = ' + data);
 		
 		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
 
