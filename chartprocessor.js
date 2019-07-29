@@ -3,7 +3,6 @@ var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 var request = require('request');
 const util = require('util');
-var snappy = require('snappy');
 
 function getApiData(apiUrl) {
 	
@@ -37,12 +36,10 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 	getApiData(apiUrl).then(function(data) {
 
 		console.log('got data: ' + data);
-		
-		var compressedData = snappy.compressSync(data);
-					
+				
 		var chartImageBase64 = '';
 		
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, compressedData);
+		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, data);
 
 	    	phantom.stdout.on('data', function(buf) {
 			var base64Data = String(buf).replace(/\n$/, '');
