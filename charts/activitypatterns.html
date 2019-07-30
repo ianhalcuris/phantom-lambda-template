@@ -80,6 +80,11 @@
                 window.callPhantom('ready');
             }
         });    
+        
+        chart.data = trendData.categories;
+        chart.series.clear();
+        chart.colors.reset();
+        var series = [];
     }
             
     </script>
