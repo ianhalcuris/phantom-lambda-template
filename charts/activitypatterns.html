@@ -102,21 +102,26 @@
         
         var stacked = true;
 
+        console.log('series.length = ' + series.length);
+        
         for (i = 0; i < series.length; i++) {
             var s = series[i];
+            
+            console.log('s = ' + JSON.stringify(s));
+            
             if (s.data && s.data.length > 0 ) {
-                var series = chart.series.push(new am4charts.RadarColumnSeries());
-                series.dataFields.openDateX = 'start';
-                series.dataFields.dateX = 'end';
-                series.dataFields.categoryY = 'category';
-                series.name = s.title;
-                series.data = s.data;
-                series.strokeOpacity = 0;
-                series.strokeWidth = 0;
-                series.fillOpacity = 0.7;
-                series.columns.template.height = (stacked) ? 15:5;
-                series.stacked = stacked;
-                series.clustered = true;
+                var series1 = chart.series.push(new am4charts.RadarColumnSeries());
+                series1.dataFields.openDateX = 'start';
+                series1.dataFields.dateX = 'end';
+                series1.dataFields.categoryY = 'category';
+                series1.name = s.title;
+                series1.data = s.data;
+                series1.strokeOpacity = 0;
+                series1.strokeWidth = 0;
+                series1.fillOpacity = 0.7;
+                series1.columns.template.height = (stacked) ? 15:5;
+                series1.stacked = stacked;
+                series1.clustered = true;
             }
         }
     }
