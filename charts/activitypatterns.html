@@ -93,6 +93,26 @@
                 data: m.data
             })
         }
+        
+        var stacked = true;
+
+        for (i = 0; i < series.length; i++) {
+            var s = series[i];
+            if (s.data && s.data.length > 0 ) {
+                var series = chart.series.push(new am4charts.RadarColumnSeries());
+                series.dataFields.openDateX = 'start';
+                series.dataFields.dateX = 'end';
+                series.dataFields.categoryY = 'category';
+                series.name = s.title;
+                series.data = s.data;
+                series.strokeOpacity = 0;
+                series.strokeWidth = 0;
+                series.fillOpacity = 0.7;
+                series.columns.template.height = (stacked) ? 15:5;
+                series.stacked = stacked;
+                series.clustered = true;
+            }
+        }
     }
             
     </script>
