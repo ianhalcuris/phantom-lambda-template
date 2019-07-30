@@ -19,9 +19,7 @@
         
         apiData = '{ "sensors": ' + apiData + '}';
 
-        var theData = JSON.parse(apiData);
-        
-        
+        var trendData = JSON.parse(apiData);
         
         var chartConfig = {
             xAxes: [
@@ -74,12 +72,8 @@
             }
         }
         
-        
-        
-        
-        
         /* Create chart instance */
-        var chart = am4core.create("chartdiv", am4charts.RadarChart);
+        var chart = am4core.createFromConfig(chartConfig, 'chartdiv', am4charts.RadarChart);
         
         chart.events.on('ready', function(e) {
             if (typeof window.callPhantom === 'function') {
@@ -87,39 +81,35 @@
             }
         });    
 
-        /* Create axes */
-        var xAxis = chart.xAxes.push(new am4charts.ValueAxis());
-        xAxis.renderer.maxLabelPosition = 0.99;
-       
-        xAxis.min = 0.0;
-        xAxis.max = 23.59;
+        chart.data = trendData.categories;
+        chart.series.clear();
+        chart.colors.reset();
+        var series = []
+        trendData.data.forEach(m => {
+            series.push({
+                title: m.name,
+                data: m.data
+            })
+        });
 
-        var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
-        yAxis.renderer.labels.template.verticalCenter = "bottom";
-        yAxis.renderer.labels.template.horizontalCenter = "right";
-        yAxis.renderer.maxLabelPosition = 0.99;
-        yAxis.renderer.labels.template.paddingBottom = 1;
-        yAxis.renderer.labels.template.paddingRight = 3;
-        yAxis.min = -13;
-        yAxis.max = 0;
- 
-        for (i = 0; i < theData.sensors.length; i++) { 
-            var series = chart.series.push(new am4charts.RadarSeries());
-//            series.bullets.push(new am4charts.CircleBullet());
-            
-            series.bullets.push(am4core.Rectangle);
-            
-            series.strokeOpacity = 0;
-            series.dataFields.valueX = "hour";
-            series.dataFields.valueY = "day";
-            series.name = theData.sensors[i].name;
-            series.sequencedInterpolation = true;
-            series.sequencedInterpolationDelay = 10;
-            series.data = theData.sensors[i].data;
-        }
+        var stacked = true;
 
-        /* Add legend */
-        chart.legend = new am4charts.Legend();
+        series.forEach(s => {
+            if (s.data && s.data.length > 0 ) {
+                var series = chart.series.push(new am4charts.RadarColumnSeries());
+                series.dataFields.openDateX = 'start';
+                series.dataFields.dateX = 'end';
+                series.dataFields.categoryY = 'category';
+                series.name = s.title;
+                series.data = s.data;
+                series.strokeOpacity = 0;
+                series.strokeWidth = 0;
+                series.fillOpacity = 0.7;
+                series.columns.template.height = (stacked) ? 15:5;
+                series.stacked = stacked;
+                series.clustered = true;
+            }
+        })
     }
             
     </script>
