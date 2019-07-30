@@ -36,3 +36,7 @@ page.open(htmlFile, function (status) {
 
 	}, apiData);
 });
+
+page.onConsoleMessage = function(msg, lineNum, sourceId) {
+  console.log('IAN-TRACE: ' + msg + ' (from line #' + lineNum + ' in "' + sourceId + '")');
+};
