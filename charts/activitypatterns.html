@@ -50,7 +50,7 @@
             var series = chart.series.push(new am4charts.RadarSeries());
 //            series.bullets.push(new am4charts.CircleBullet());
             
-            series.bullets.push(new am4core.Rectangle());
+            series.bullets.push(am4core.Rectangle);
             
             series.strokeOpacity = 0;
             series.dataFields.valueX = "hour";
