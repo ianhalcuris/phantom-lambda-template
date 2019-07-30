@@ -88,6 +88,9 @@
         
         for (i = 0; i < trendData.data.length; i++) {
             var m = trendData.data[i];
+            
+            console.log('pushing series ~ name: ' + m.name + ', data: ' + m.data);
+            
             series.push({
                 title: m.name,
                 data: m.data
