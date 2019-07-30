@@ -17,7 +17,7 @@
 
     function renderChart(apiData) {
         
-        apiData = '{ "sensors": ' + apiData + '}';
+      //  apiData = '{ "sensors": ' + apiData + '}';
 
         var trendData = JSON.parse(apiData);
         
@@ -86,15 +86,9 @@
         chart.colors.reset();
         var series = [];
         
-        console.log('IAN-TRACE [activitypatterns.html] - 1');
-        
         for (i = 0; i < trendData.data.length; i++) {
             
-            console.log('IAN-TRACE [activitypatterns.html] - 2');
-            
             var m = trendData.data[i];
-            
-            console.log('pushing series ~ name: ' + m.name + ', data: ' + m.data);
             
             series.push({
                 title: m.name,
