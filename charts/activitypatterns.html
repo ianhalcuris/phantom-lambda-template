@@ -86,9 +86,13 @@
         chart.colors.reset();
         var series = [];
         
+        console.log('trendData.data.length = ' + trendData.data.length);
+        
         for (i = 0; i < trendData.data.length; i++) {
             
             var m = trendData.data[i];
+            
+            console.log('m = ' + JSON.stringify(m));
             
             series.push({
                 title: m.name,
