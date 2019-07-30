@@ -4,7 +4,7 @@ var chartProcessor = require('./chartprocessor');
 
 exports.handler = function(event, context, callback) {
 
-	console.log('started, event = ' + event);
+	console.log('started, event = ' + JSON.stringify(event));
 		
 	const apiUrl = util.format('https://' + process.env.API_HOSTNAME + '/memo/service/insight/patient/%s/service/trend/environment?offset=13&range=14&precision=5', event.patientId);
 	const chartTemplate = process.env.LAMBDA_TASK_ROOT + '/charts/activitypatterns.html';
