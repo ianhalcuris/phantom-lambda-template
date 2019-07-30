@@ -21,6 +21,63 @@
 
         var theData = JSON.parse(apiData);
         
+        
+        
+        let chartConfig = {
+            xAxes: [
+                {
+                    type: 'DateAxis',
+                    min: 0, //start.getTime(),
+                    max: 86399000, //end.getTime(),
+                    strictMinMax: true,
+                    dateFormatter: {
+                        dateFormat: 'HH:mm',
+                        utc: true
+                    },
+                    fontSize: 12,
+                    renderer: {
+                        minGridDistance: 45,
+                        labels: {
+                            location: 0.01
+                        }
+                    },
+                    baseInterval: {
+                        count: 1,
+                        timeUnit: 'minute'
+                    }
+                }
+            ],
+            yAxes: [
+                {
+                    id:"a1",
+                    type: 'CategoryAxis',
+                    fontSize: 8,
+                    dataFields:{
+                        category:'category'
+                    },
+                    renderer: {
+                        minGridDistance: 5,
+                        grid: {
+                            location: 0
+                        }
+                    }
+                }
+            ],
+            legend: {
+                position: 'right',
+                marginLeft: 10,
+                marginRight: 10
+            },
+            cursor: {
+                type: 'RadarCursor',
+                behaviour: 'zoomY'
+            }
+        }
+        
+        
+        
+        
+        
         /* Create chart instance */
         var chart = am4core.create("chartdiv", am4charts.RadarChart);
         
