@@ -85,6 +85,13 @@
         chart.series.clear();
         chart.colors.reset();
         var series = [];
+        
+        trendData.data.forEach(m => {
+            series.push({
+                title: m.name,
+                data: m.data
+            })
+        });
     }
             
     </script>
