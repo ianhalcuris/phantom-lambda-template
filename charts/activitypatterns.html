@@ -6,19 +6,17 @@
     <script src="../amcharts4/core.js"></script>
     <script src="../amcharts4/charts.js"></script>
     <script src="../amcharts4/themes/kelly.js"></script>
+    <script src="../amcharts4/themes/animated.js"></script>
 
     <div id="chartdiv" style="width: 1000px; height: 800px;" align="center"></div>
 
     <script>
     
-    am4core.useTheme(am4themes_kelly);
-        
+    am4core.useTheme(am4themes_animated);
     am4core.options.commercialLicense = true;
 
     function renderChart(apiData) {
         
-      //  apiData = '{ "sensors": ' + apiData + '}';
-
         var trendData = JSON.parse(apiData);
         
         var chartConfig = {
@@ -77,9 +75,6 @@
         
         chart.events.on('ready', function(e) {
             if (typeof window.callPhantom === 'function') {
-                
- //               console.log('calling phantom ready');
-                
                 window.callPhantom('ready');
             }
         });    
@@ -87,16 +82,10 @@
         chart.data = trendData.categories;
         chart.series.clear();
         chart.colors.reset();
+        
         var series = [];
-        
-//        console.log('trendData.data.length = ' + trendData.data.length);
-        
         for (i = 0; i < trendData.data.length; i++) {
-            
             var m = trendData.data[i];
-            
-//            console.log('m = ' + JSON.stringify(m));
-            
             series.push({
                 title: m.name,
                 data: m.data
@@ -104,18 +93,9 @@
         }
         
         var stacked = false;
-
-//        console.log('series.length = ' + series.length);
-        
         for (i = 0; i < series.length; i++) {
             var s = series[i];
-            
-//            console.log('s = ' + JSON.stringify(s));
-            
             if (s.data && s.data.length > 0 ) {
-                
-//                console.log('RENDERING s = ' + JSON.stringify(s));
-                
                 var series1 = chart.series.push(new am4charts.RadarColumnSeries());
                 series1.dataFields.openDateX = 'start';
                 series1.dataFields.dateX = 'end';
@@ -128,8 +108,6 @@
                 series1.columns.template.height = (stacked) ? 15:5;
                 series1.stacked = stacked;
                 series1.clustered = true;
-                
- //               console.log('FINISHED s = ' + JSON.stringify(s));
             }
         }
     }
