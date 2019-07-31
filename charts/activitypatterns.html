@@ -78,7 +78,7 @@
         chart.events.on('ready', function(e) {
             if (typeof window.callPhantom === 'function') {
                 
-                console.log('calling phantom ready');
+ //               console.log('calling phantom ready');
                 
                 window.callPhantom('ready');
             }
@@ -89,13 +89,13 @@
         chart.colors.reset();
         var series = [];
         
-        console.log('trendData.data.length = ' + trendData.data.length);
+//        console.log('trendData.data.length = ' + trendData.data.length);
         
         for (i = 0; i < trendData.data.length; i++) {
             
             var m = trendData.data[i];
             
-            console.log('m = ' + JSON.stringify(m));
+//            console.log('m = ' + JSON.stringify(m));
             
             series.push({
                 title: m.name,
@@ -105,16 +105,16 @@
         
         var stacked = true;
 
-        console.log('series.length = ' + series.length);
+//        console.log('series.length = ' + series.length);
         
         for (i = 0; i < series.length; i++) {
             var s = series[i];
             
-            console.log('s = ' + JSON.stringify(s));
+//            console.log('s = ' + JSON.stringify(s));
             
             if (s.data && s.data.length > 0 ) {
                 
-                console.log('RENDERING s = ' + JSON.stringify(s));
+//                console.log('RENDERING s = ' + JSON.stringify(s));
                 
                 var series1 = chart.series.push(new am4charts.RadarColumnSeries());
                 series1.dataFields.openDateX = 'start';
@@ -129,7 +129,7 @@
                 series1.stacked = stacked;
                 series1.clustered = true;
                 
-                console.log('FINISHED s = ' + JSON.stringify(s));
+ //               console.log('FINISHED s = ' + JSON.stringify(s));
             }
         }
     }
