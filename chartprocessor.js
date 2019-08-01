@@ -10,6 +10,8 @@ const TMP_DIR = '../../tmp/';
 function getApiData(apiUrl) {
 	
 	console.log('calling api: ' + apiUrl);
+	
+	// TODO login system user
 
 	var options = {
 		url: apiUrl,
