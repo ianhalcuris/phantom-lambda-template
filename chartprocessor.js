@@ -12,6 +12,7 @@ function getApiData(apiUrl) {
 	console.log('calling api: ' + apiUrl);
 	
 	// TODO login system user
+	//      use same API env vars as other lambdas
 
 	var options = {
 		url: apiUrl,
