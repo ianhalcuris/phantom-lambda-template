@@ -16,12 +16,7 @@ function getApiData(apiUrl) {
 	request.post({
   		headers: {'content-type' : 'application/json'},
 		url:     'https://alcuris.eu.auth0.com/oauth/token',
-		body:    '{
-				"grant_type": "client_credentials"
-				"client_id": "AqJzLKWDlH8S6p0Jz4cWbM9QvchbeacK"
-    				"client_secret": "_G4ybbmZhYPR_s1mqw0YMXMBcFdQHEM3QGXe8saYhnK1cLQlSHUuCX0m7sRMsmhL"
-    				"audience": "https://alcuris.eu.auth0.com/api/v2/"
-			  }'
+		body:    '{"grant_type": "client_credentials","client_id": "AqJzLKWDlH8S6p0Jz4cWbM9QvchbeacK","client_secret": "_G4ybbmZhYPR_s1mqw0YMXMBcFdQHEM3QGXe8saYhnK1cLQlSHUuCX0m7sRMsmhL","audience": "https://alcuris.eu.auth0.com/api/v2/"}'
 	}, function(error, response, body){
   		console.log('auth0 response = ' + body);
 	});
