@@ -5,6 +5,9 @@ var request = require('request');
 const util = require('util');
 var uuid = require('uuid');
 
+var PropertiesReader = require('properties-reader');
+var authProps = PropertiesReader('./auth.properties');
+
 const TMP_DIR = '../../tmp/';
 
 function apiGet(url, accessToken) {
@@ -32,7 +35,9 @@ function apiGet(url, accessToken) {
 
 function login() {
 
-    console.log('Logging in...');
+    log('login', 'Logging in...');
+    var audience = authProps.get('audience');
+    log('login', 'audience: ' + audience);
 	
     var options = {
         url: 'https://alcuris.eu.auth0.com/oauth/token',
