@@ -1,16 +1,21 @@
-var AWS = require('aws-sdk');
-var util = require('util');
 var chartProcessor = require('./chartprocessor');
+
+const CHARTS_DIR = '/charts/';
+
+function log(method, message){
+    console.log('[dailypatternschart::' + method + '] - ' + message);
+}
 
 exports.handler = function(event, context, callback) {
 
-	console.log('started');
-		
-	const apiUrl = util.format('https://' + process.env.API_HOSTNAME + '/memo/service/insight/hub/%s/service/discreteData?precision=5', event.hubId);
-	const chartTemplate = process.env.LAMBDA_TASK_ROOT + '/charts/dailypatterns.html';
+    log('handler', 'event: ' + JSON.stringify(event));
+
+    // TODO use offset/range/precision from event?
+    var apiUrl = process.env.MemoBaseURL + '/memo/service/insight/hub/' + event.patientId + '/service/discreteData?precision=5';
+    var chartTemplate = process.env.LAMBDA_TASK_ROOT + CHARTS_DIR + 'dailypatterns.html';
 	
-	console.log('apiUrl: ' + apiUrl);
-	console.log('chartTemplate: ' + chartTemplate);
+    log('handler', 'apiUrl: ' + apiUrl);
+    log('handler', 'chartTemplate: ' + chartTemplate);
 	
-	chartProcessor.renderChart(apiUrl, chartTemplate, context, callback);
+    chartProcessor.renderChart(apiUrl, chartTemplate, context, callback);
 };
