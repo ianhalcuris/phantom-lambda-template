@@ -55,7 +55,7 @@ function login() {
 	    if (err) {
 		reject(err);
 	    } else {
-		resolve(body);
+		resolve(JSON.parse(body).access_token);
 	    }
 	})
     })
@@ -68,10 +68,10 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 	
 	
     login().then(
-        function(result) {
+        function(accessToken) {
 
-		console.log('LOGIN RESULT: ' + result);
-		console.log('access_token: ' + JSON.parse(result).access_token);
+		console.log('accessToken: ' + accessToken);
+		//console.log('access_token: ' + JSON.parse(result).access_token);
 		
 	getApiData(apiUrl).then(function(data) {
 
