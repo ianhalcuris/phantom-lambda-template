@@ -1,12 +1,11 @@
-var AWS = require('aws-sdk');
+//var AWS = require('aws-sdk');
 var phantomjs = require('phantomjs-prebuilt');
 var fs = require('fs');
 var request = require('request');
-const util = require('util');
+//const util = require('util');
 var uuid = require('uuid');
-
-var PropertiesReader = require('properties-reader');
-var authProps = PropertiesReader('./auth.properties');
+var propertiesReader = require('properties-reader');
+var authProps = propertiesReader('./auth.properties');
 
 const TMP_DIR = '../../tmp/';
 
@@ -71,8 +70,8 @@ function log(method, message) {
 
 exports.renderChart = function(apiUrl, chartTemplate, context, callback) {	
 	
-    log('renderChart', 'apiUrl:' + apiUrl);
-    log('renderChart', 'chartTemplate:' + chartTemplate);
+    log('renderChart', 'apiUrl: ' + apiUrl);
+    log('renderChart', 'chartTemplate: ' + chartTemplate);
 	
     // Login to Auth0
     login().then(function(accessToken) {
@@ -80,7 +79,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
         // Call Memo API
         apiGet(apiUrl, accessToken).then(function(apiResponse) {
 
-            log('renderChart', 'apiResponse:' + apiResponse);
+            log('renderChart', 'apiResponse: ' + apiResponse);
 
 	    var dataFile = TMP_DIR + uuid.v4() + '.json';
 	    var chartImageBase64 = '';
@@ -97,7 +96,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 	        log('renderChart', 'base64Data: ' + base64Data);
 		chartImageBase64 += base64Data;
             });
-
+/*
 	    phantom.stderr.on('data', function(buf) {
 		console.log('stderr "%s"', String(buf));
 	    });
@@ -105,7 +104,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 	    phantom.on('close', function(code) {
 		console.log('code', code);
 	    });
-
+*/
 	    phantom.on('exit', code => {
 		    
       		log('renderChart', 'phantomjs exit, code: ' + code);
