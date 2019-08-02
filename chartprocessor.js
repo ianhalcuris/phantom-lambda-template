@@ -36,13 +36,6 @@ function apiGet(url, accessToken) {
 function login() {
 
     log('login', 'Logging in...');
-
-log('login', 'audience: ' + authProps.get('audience'));
-log('login', 'client_id: ' + authProps.get('client_id'));
-log('login', 'client_secret: ' + authProps.get('client_secret'));
-log('login', 'grant_type: ' + authProps.get('grant_type'));
-log('login', 'realm: ' + authProps.get('realm'));
-log('login', 'scope: ' + authProps.get('scope'));
 	
     var options = {
         url: 'https://alcuris.eu.auth0.com/oauth/token',
