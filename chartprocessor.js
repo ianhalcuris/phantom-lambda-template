@@ -36,8 +36,13 @@ function apiGet(url, accessToken) {
 function login() {
 
     log('login', 'Logging in...');
-    var audience = authProps.get('audience');
-    log('login', 'audience: ' + audience);
+
+log('login', 'audience: ' + authProps.get('audience'));
+log('login', 'client_id: ' + authProps.get('client_id'));
+log('login', 'client_secret: ' + authProps.get('client_secret'));
+log('login', 'grant_type: ' + authProps.get('grant_type'));
+log('login', 'realm: ' + authProps.get('realm'));
+log('login', 'scope: ' + authProps.get('scope'));
 	
     var options = {
         url: 'https://alcuris.eu.auth0.com/oauth/token',
@@ -45,14 +50,14 @@ function login() {
   	    'Content-Type': 'application/json'
 	},
         body: JSON.stringify({
-	    password: 'AlCuRiS123', 
-	    audience: 'https://dev-api.memohub.co.uk', 
-	    grant_type: 'http://auth0.com/oauth/grant-type/password-realm', 
-	    scope: 'openid contacts', 
-	    realm: 'memo-insight-dev', 
-	    client_secret: '_G4ybbmZhYPR_s1mqw0YMXMBcFdQHEM3QGXe8saYhnK1cLQlSHUuCX0m7sRMsmhL', 
-	    client_id: 'AqJzLKWDlH8S6p0Jz4cWbM9QvchbeacK', 
-	    username: 'system@alcuris.co.uk'
+      	    audience: authProps.get('audience'),
+	    client_id: authProps.get('client_id'),
+	    client_secret: authProps.get('client_secret'),
+	    grant_type: authProps.get('grant_type'),
+	    realm: authProps.get('realm'),
+	    scope: authProps.get('scope'),
+	    username: 'system@alcuris.co.uk',
+	    password: 'AlCuRiS123'
 	})
     };
 
