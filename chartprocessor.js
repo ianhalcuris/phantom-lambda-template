@@ -37,6 +37,10 @@ function login() {
 
     log('login', 'Logging in...');
 	
+    log('login', 'MemoBaseURL: ' + process.env.MemoBaseURL);
+    log('login', 'SysUser: ' + process.env.SysUser);
+    log('login', 'SysPassword: ' + process.env.SysPassword);
+	
     var options = {
         url: 'https://alcuris.eu.auth0.com/oauth/token',
 	headers: {
