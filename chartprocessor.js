@@ -37,12 +37,8 @@ function login() {
 
     log('login', 'Logging in...');
 	
-    log('login', 'MemoBaseURL: ' + process.env.MemoBaseURL);
-    log('login', 'SysUser: ' + process.env.SysUser);
-    log('login', 'SysPassword: ' + process.env.SysPassword);
-	
     var options = {
-        url: 'https://alcuris.eu.auth0.com/oauth/token',
+        url: 'https://' + authProps.get('domain') + '/oauth/token',
 	headers: {
   	    'Content-Type': 'application/json'
 	},
@@ -53,8 +49,8 @@ function login() {
 	    grant_type: authProps.get('grant_type'),
 	    realm: authProps.get('realm'),
 	    scope: authProps.get('scope'),
-	    username: 'system@alcuris.co.uk',
-	    password: 'AlCuRiS123'
+	    username: process.env.SysUser,
+	    password: process.env.SysPassword
 	})
     };
 
