@@ -38,16 +38,16 @@ function login() {
 	headers: {
   	    'Content-Type': 'application/json'
 	},
-        body: {
-	    'password': 'AlCuRiS123', 
-	    'audience': 'https://dev-api.memohub.co.uk', 
-	    'grant_type': 'http://auth0.com/oauth/grant-type/password-realm', 
-	    'scope': 'openid contacts', 
-	    'realm': 'memo-insight-dev', 
-	    'client_secret': '_G4ybbmZhYPR_s1mqw0YMXMBcFdQHEM3QGXe8saYhnK1cLQlSHUuCX0m7sRMsmhL', 
-	    'client_id': 'AqJzLKWDlH8S6p0Jz4cWbM9QvchbeacK', 
-	    'username': 'system@alcuris.co.uk'
-	}
+        body: JSON.stringify({
+	    password: 'AlCuRiS123', 
+	    audience: 'https://dev-api.memohub.co.uk', 
+	    grant_type: 'http://auth0.com/oauth/grant-type/password-realm', 
+	    scope: 'openid contacts', 
+	    realm: 'memo-insight-dev', 
+	    client_secret: '_G4ybbmZhYPR_s1mqw0YMXMBcFdQHEM3QGXe8saYhnK1cLQlSHUuCX0m7sRMsmhL', 
+	    client_id: 'AqJzLKWDlH8S6p0Jz4cWbM9QvchbeacK', 
+	    username: 'system@alcuris.co.uk'
+	})
     };
 
     return new Promise(function(resolve, reject) {
