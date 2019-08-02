@@ -71,7 +71,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
         function(result) {
 
 		console.log('LOGIN RESULT: ' + result);
-		console.log('access_token: ' + result.access_token);
+		console.log('access_token: ' + JSON.parse(result).access_token);
 		
 	getApiData(apiUrl).then(function(data) {
 
