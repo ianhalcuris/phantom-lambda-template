@@ -16,6 +16,7 @@
   "dependencies": {
     "mocha": "^3.2.0",
     "phantomjs-prebuilt": "^2.1.14",
+    "properties-reader": "^0.3.1",
     "dateformat": "^3.0.3",
     "uuid": "^3.3.2",
     "zlib": "^1.0.5"
