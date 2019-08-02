@@ -51,7 +51,7 @@ function login() {
     };
 
     return new Promise(function(resolve, reject) {
-	request.get(options, function(err, resp, body) {
+	request.post(options, function(err, resp, body) {
 	    if (err) {
 		reject(err);
 	    } else {
