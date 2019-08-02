@@ -3,7 +3,7 @@ var chartProcessor = require('./chartprocessor');
 const CHARTS_DIR = '/charts/';
 
 function log(method, message){
-    console.log('[dailypatternschart::' + method + '] - ' + message);
+    console.log('[bathroompatternschart::' + method + '] - ' + message);
 }
 
 exports.handler = function(event, context, callback) {
