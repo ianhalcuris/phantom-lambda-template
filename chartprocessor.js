@@ -7,26 +7,26 @@ var uuid = require('uuid');
 
 const TMP_DIR = '../../tmp/';
 
-function getApiData(apiUrl) {
+function apiGet(url, accesstoken) {
 	
-	console.log('calling api: ' + apiUrl);
+    console.log('doing API GET, url: ' + url);
 
-	var options = {
-		url: apiUrl,
-		headers: {
-		  'MEMO-USER-ID': '10'
-		}
-	};
+    var options = {
+        url: url,
+	headers: {
+            'Authorization': 'Bearer ' + accessToken
+	}
+    };
 
- 	return new Promise(function(resolve, reject) {
-		request.get(options, function(err, resp, body) {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(body);
-			}
-		})
+    return new Promise(function(resolve, reject) {
+        request.get(options, function(err, resp, body) {
+	    if (err) {
+	        reject(err);
+            } else {
+		resolve(body);
+	    }
 	})
+    })
 }
 
 function login() {
@@ -61,73 +61,71 @@ function login() {
     })
 }
 
+function log(method, message) {
+    console.log('[chartprocessor::' + method + '] - ' + message);
+}
+
 exports.renderChart = function(apiUrl, chartTemplate, context, callback) {	
 	
-	console.log('[chart-processor] apiUrl:' + apiUrl);
-	console.log('[chart-processor] chartTemplate:' + chartTemplate);
+    log('renderChart', 'apiUrl:' + apiUrl);
+    log('renderChart', 'chartTemplate:' + chartTemplate);
 	
-	
-    login().then(
-        function(accessToken) {
+    // Login to Auth0
+    login().then(function(accessToken) {
+	    
+        // Call Memo API
+        apiGet(apiUrl, accessToken).then(function(apiResponse) {
 
-		console.log('accessToken: ' + accessToken);
-		//console.log('access_token: ' + JSON.parse(result).access_token);
+            log('renderChart', 'apiResponse:' + apiResponse);
+
+	    var dataFile = TMP_DIR + uuid.v4() + '.json';
+	    var chartImageBase64 = '';
 		
-	getApiData(apiUrl).then(function(data) {
+	    log('renderChart', 'dataFile: ' + dataFile);
 
-		console.log('[chart-processor] - data: ' + data);
-		console.log('[chart-processor] - data.length: ' + data.length);
-		
-		var dataFile = TMP_DIR + uuid.v4() + '.json';
-		var chartImageBase64 = '';
-		
-		console.log('[chart-processor] - dataFile: ' + dataFile);
-		
-		fs.writeFileSync(dataFile, data);
+	    // Write API response to tmp file
+	    fs.writeFileSync(dataFile, apiResponse);
 
-		var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
+	    var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
 
-	    	phantom.stdout.on('data', function(buf) {
-			var base64Data = String(buf).replace(/\n$/, '');
-			console.log('[chart-processor] - got base64 data: ' + base64Data);
-			chartImageBase64 += base64Data;
-	    	});
+	    phantom.stdout.on('data', function(buf) {
+		var base64Data = String(buf).replace(/\n$/, '');
+	        log('renderChart', 'base64Data: ' + base64Data);
+		chartImageBase64 += base64Data;
+            });
 
-	    	phantom.stderr.on('data', function(buf) {
-			console.log('stderr "%s"', String(buf));
-	    	});
-	    	phantom.on('close', function(code) {
-			console.log('code', code);
-	    	});
+	    phantom.stderr.on('data', function(buf) {
+		console.log('stderr "%s"', String(buf));
+	    });
+	    	
+	    phantom.on('close', function(code) {
+		console.log('code', code);
+	    });
 
-	    	phantom.on('exit', code => {
+	    phantom.on('exit', code => {
+		    
+      		log('renderChart', 'phantomjs exit, code: ' + code);
 
-			console.log('phantomjs exit, code: ' + code);
+		var response = {
+		    statusCode: 200,
+		    headers: {'Content-type' : 'image/png'},
+		    body: chartImageBase64,
+		    isBase64Encoded : true,
+		};
 
-			const response = {
-				statusCode: 200,
-				headers: {'Content-type' : 'image/png'},
-				body: chartImageBase64,
-				isBase64Encoded : true,
-			};
-
-			// TODO error response
-
-			callback(null, response);
-		});
+		// TODO error response
+		callback(null, response);
+	    });
 	
 	}, function(err) {
-
-		console.log('error getting discrete data: ' + err);
-		// TODO error function response
+	
+	    // TODO error function response
+	    log('renderChart', 'apiGet error: ' + err);
 	})
-		
-		
-	}, 
-        function(err) {
-
-		console.log('LOGIN ERROR: ' + err);
-		// TODO error function response
-	}
-    );
+    
+    }, function(err) {
+        
+	// TODO error function response
+	log('renderChart', 'login error: ' + err);
+    });
 };
