@@ -7,10 +7,11 @@ var uuid = require('uuid');
 
 const TMP_DIR = '../../tmp/';
 
-function apiGet(url, accesstoken) {
+function apiGet(url, accessToken) {
 	
-    console.log('doing API GET, url: ' + url);
-
+    log('apiGet', 'url: ' + url);
+    log('apiGet', 'accessToken: ' + accessToken);
+	
     var options = {
         url: url,
 	headers: {
