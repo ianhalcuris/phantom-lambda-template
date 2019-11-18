@@ -27,19 +27,30 @@ page.onCallback = function(data) {
 };
 
 page.onError = function(msg, trace) {
-
-  var msgStack = ['IAN-TRACE ERROR: ' + msg];
-
+  console.log('IAN-TRACE page.onError::msg : ' + msg);
   if (trace && trace.length) {
-    msgStack.push('IAN-TRACE STACKTRACE:');
+    var msgStack = ['IAN-TRACE page.onError::stack : '];
+    msgStack.push('TRACE:');
     trace.forEach(function(t) {
-      msgStack.push(' -> ' + t.file + ': ' + t.line + (t.function ? ' (in function "' + t.function +'")' : ''));
+      msgStack.push(' -> ' + (t.file || t.sourceURL) + ': ' + t.line + (t.function ? ' (in function ' + t.function +')' : ''));
     });
+    console.log(msgStack.join('\n'));
   }
-
-  console.log(msgStack.join('\n'));
-
 };
+phantom.onError = function(msg, trace) {
+  console.log('IAN-TRACE phantom.onError::msg : ' + msg);
+  if (trace && trace.length) {
+    var msgStack = ['IAN-TRACE phantom.onError::stack : '];
+    msgStack.push('TRACE:');
+    trace.forEach(function(t) {
+      msgStack.push(' -> ' + (t.file || t.sourceURL) + ': ' + t.line + (t.function ? ' (in function ' + t.function +')' : ''));
+    });
+    console.log(msgStack.join('\n'));
+  }
+  phantom.exit(1);
+};
+
+
 
 page.open(htmlFile, function (status) {
 	
