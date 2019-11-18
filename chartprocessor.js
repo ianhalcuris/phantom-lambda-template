@@ -94,11 +94,11 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 	        log('renderChart', 'base64Data: ' + base64Data);
 		chartImageBase64 += base64Data;
             });
-/*
+
 	    phantom.stderr.on('data', function(buf) {
 		console.log('stderr "%s"', String(buf));
 	    });
-	    	
+/*	    	
 	    phantom.on('close', function(code) {
 		console.log('code', code);
 	    });
