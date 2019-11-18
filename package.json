@@ -25,10 +25,11 @@
     "aws-sdk": "^2.7.8"
   },
   "scripts": {
+    "preinstall": "apt-get update && apt-get -y install libfontconfig1",
     "deploy-pipeline": "aws cloudformation deploy --template-file pipeline.yaml --stack-name \"phantom-pipeline\" --capabilities CAPABILITY_IAM",
     "package": "aws cloudformation package --template-file serverless.yaml --s3-bucket $BUILD_BUCKET --s3-prefix \"phantom\" --output-template-file serverless-output.yaml",
     "publish": "aws cloudformation deploy --template-file serverless-output.yaml --stack-name \"phantom\" --capabilities CAPABILITY_IAM",
-    "deploy": "npm run package && npm run publish"
+    "deploy": "npm run preinstall && npm run package && npm run publish"
   },
   "keywords": [
     "phantomjs",
