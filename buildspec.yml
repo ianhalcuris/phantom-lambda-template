@@ -2,6 +2,7 @@ version: 0.1
 phases:
   install:
     commands:
+      - apt-get update && apt-get -y install libfontconfig1
       - npm install
   pre_build:
     commands:
