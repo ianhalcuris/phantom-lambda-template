@@ -26,6 +26,21 @@ page.onCallback = function(data) {
 	phantom.exit();
 };
 
+page.onError = function(msg, trace) {
+
+  var msgStack = ['ERROR: ' + msg];
+
+  if (trace && trace.length) {
+    msgStack.push('STACKTRACE:');
+    trace.forEach(function(t) {
+      msgStack.push(' -> ' + t.file + ': ' + t.line + (t.function ? ' (in function "' + t.function +'")' : ''));
+    });
+  }
+
+  console.log(msgStack.join('\n'));
+
+};
+
 page.open(htmlFile, function (status) {
 	
 	var apiData = fs.read(dataFile);
