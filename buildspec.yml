@@ -10,11 +10,7 @@ phases:
       - npm install
   pre_build:
     commands:
-      - ls
-      - ls -l /lib
-      - ls -l /lib64
-      - ls -l /usr/lib
-      
+      - ls -l /usr/lib/x86_64-linux-gnu
       - mkdir ./lib
       - cp /usr/lib/x86_64-linux-gnu/libfontconfig.so.1 ./lib
 #      - env
