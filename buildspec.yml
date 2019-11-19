@@ -19,6 +19,12 @@ phases:
       - cp /usr/lib/x86_64-linux-gnu/libpng16.so.16 ./lib
       - ldd /usr/lib/x86_64-linux-gnu/libpng16.so.16
       - dpkg -L zlib1g
+      
+      - curl -LO https://www.zlib.net/fossils/zlib-1.2.9.tar.gz
+      - tar -xvf ./zlib-1.2.9.tar.gz
+      - cd ./zlib-1.2.9
+      - ./configure; make; make install
+      - ls
   build:
     commands:
       - npm run deploy
