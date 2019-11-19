@@ -18,6 +18,7 @@ phases:
       - cp /lib/x86_64-linux-gnu/libexpat.so.1 ./lib
       - cp /usr/lib/x86_64-linux-gnu/libpng16.so.16 ./lib
       - ldd /usr/lib/x86_64-linux-gnu/libpng16.so.16
+      - cp /lib/x86_64-linux-gnu/libz.so.1 ./lib
   build:
     commands:
       - npm run deploy
