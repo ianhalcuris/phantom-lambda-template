@@ -18,7 +18,6 @@ phases:
       - cp /lib/x86_64-linux-gnu/libexpat.so.1 ./lib
       - cp /usr/lib/x86_64-linux-gnu/libpng16.so.16 ./lib
       - ldd /usr/lib/x86_64-linux-gnu/libpng16.so.16
-      - apt-get install zlib1g=1.2.9
       - dpkg -L zlib1g
   build:
     commands:
