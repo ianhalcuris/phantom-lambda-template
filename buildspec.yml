@@ -1,8 +1,6 @@
 version: 0.1
 phases:
   install:
-    runtime-versions:
-      nodejs: 10
     commands:
       - ldconfig -p | grep libfontconfig
       - npm install
