@@ -1,8 +1,8 @@
-version: 0.2
+version: 0.1 # 2
 phases:
   install:
-    runtime-versions:
-      nodejs: 10
+#    runtime-versions:
+#      nodejs: 10
     commands:
       - ldconfig -p | grep libfontconfig
       - ldconfig -p | grep libz
