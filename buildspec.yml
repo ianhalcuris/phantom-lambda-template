@@ -17,6 +17,7 @@ phases:
       - cp /usr/lib/x86_64-linux-gnu/libfreetype.so.6 ./lib
       - cp /lib/x86_64-linux-gnu/libexpat.so.1 ./lib
       - cp /usr/lib/x86_64-linux-gnu/libpng16.so.16 ./lib
+      - cp /lib/x86_64-linux-gnu/libz.so.1 ./lib
 
 #      - env
 #      - ap t-get install bzip2
