@@ -16,7 +16,7 @@ phases:
       - cp /usr/lib/x86_64-linux-gnu/libfontconfig.so.1 ./lib
       - cp /usr/lib/x86_64-linux-gnu/libfreetype.so.6 ./lib
       - cp /lib/x86_64-linux-gnu/libexpat.so.1 ./lib
-      - apt-get upgrade libpng16
+      - apt-get install libpng16-16
       - ldd /usr/lib/x86_64-linux-gnu/libpng16.so.16
       - cp /usr/lib/x86_64-linux-gnu/libpng16.so.16 ./lib
       - ldd /lib64/libz.so.1
