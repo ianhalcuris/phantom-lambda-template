@@ -19,7 +19,7 @@ phases:
       - cp /usr/lib/x86_64-linux-gnu/libpng16.so.16 ./lib
       - ldd /usr/lib/x86_64-linux-gnu/libpng16.so.16
       - apt-get install zlib1g
-      - ldconfig -p | grep zlib1g
+      - dpkg -L zlib1g
   build:
     commands:
       - npm run deploy
