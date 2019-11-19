@@ -13,6 +13,7 @@ phases:
       - tar xf phantomjs-2.1.1-linux-x86_64.tar.bz2
       - ldd ./phantomjs-2.1.1-linux-x86_64/bin/phantomjs
       - cp /usr/lib/x86_64-linux-gnu/libfontconfig.so.1 .
+      - cp /usr/lib/x86_64-linux-gnu/libfreetype.so.6 .
   build:
     commands:
       - npm run deploy
