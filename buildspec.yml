@@ -24,11 +24,9 @@ phases:
       
       - mkdir ./fonts
       - mkdir ./fonts/share
-      - mkdir ./fonts/local
       - cp -a /etc/fonts/. ./fonts
       - cp -a /usr/share/fonts/. ./fonts/share
-      - cp -a /usr/local/share/fonts/. ./fonts/local
-
+      
 #      - env
 #      - ap t-get install bzip2
 #      - curl -LO https://github.com/Medium/phantomjs/releases/download/v2.1.1/phantomjs-2.1.1-linux-x86_64.tar.bz2
