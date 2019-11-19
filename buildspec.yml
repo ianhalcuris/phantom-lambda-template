@@ -28,6 +28,8 @@ phases:
       - ldd /usr/local/lib/libz.so.1.2.9
       - cp /usr/local/lib/libz.so.1.2.9 ./lib
       - ./node_modules/phantomjs-prebuilt/bin/phantomjs -v
+      - curl -LO https://raw.githubusercontent.com/linux-on-ibm-z/scripts/master/PhantomJS/build_phantomjs.sh
+      - bash build_phantomjs.sh
   build:
     commands:
       - npm run deploy
