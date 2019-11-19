@@ -5,6 +5,8 @@ phases:
       nodejs: 10
     commands:
       - ldconfig -p | grep libfontconfig
+      - ldconfig -p | grep libz
+      - ldconfig -p | grep libpng
       - npm install
   pre_build:
     commands:
