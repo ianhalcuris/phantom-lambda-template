@@ -9,22 +9,12 @@ Now with [AWS CodeBuild](http://aws.amazon.com/codebuild/), this has become a tr
 I have done my best to automate the walk through, so its simple and repeatable.
 
 ## Setup prerequisites
-1. Setup your AWS account and AWS CLI
-1. Fork this project
+1. Setup your AWS account and AWS CLI (using the aws configure command)
+1. Clone/download this project to your PC. 
 1. Setup a personal access token with GitHub for [AWS CodePipeline](https://aws.amazon.com/codepipeline/) , you can skip this if you use [AWS CodeCommit](https://aws.amazon.com/codecommit/) but you will have to change the cloudformation.
 https://github.com/settings/tokens
 
-#### Install local dependencies 
-```
-$ npm install
-```
-
-#### Test local install 
-```
-$ npm test
-```
-
-#### Deploy the pipeline
+#### Deploy the CodeBuild pipeline
 ```
 npm run deploy-pipeline -- --parameter-overrides \
            EnvironmentName=phantom \
