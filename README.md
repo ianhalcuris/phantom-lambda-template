@@ -38,3 +38,12 @@ npm run deploy-pipeline -- --parameter-overrides \
 1. Checkout [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/home)
 1. Watch as [AWS CodePipeline](https://console.aws.amazon.com/codepipeline/home) creates a new stack
 1. Once the stacks are finished test your [AWS Lambda](https://console.aws.amazon.com/lambda/home)
+
+#### Configuring the Chart Lambda functions
+You have to set two environment variables on the chart Lambda functions:
+
+LD_LIBRARY_PATH=/var/task:/var/task/lib:/var/lang/lib:/lib64:/usr/lib64:/var/runtime:/var/runtime/lib:/opt/lib
+
+FONTCONFIG_PATH=/var/task/fonts
+
+These are in addition to the MemoBaseURL, SysUser etc. environment variables.
