@@ -65,18 +65,18 @@
             }
         });
 
-        let cellSize = 10;
+        const cellSize = 10;
         chart.events.on("datavalidated", function(ev) {
 
             // Get objects of interest
-            let chart = ev.target;
-            let categoryAxis = chart.yAxes.getIndex(0);
+            var chart = ev.target;
+            var categoryAxis = chart.yAxes.getIndex(0);
 
             // Calculate how we need to adjust chart height
-            let adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
+            var adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
 
             // get current chart height
-            let targetHeight = chart.pixelHeight + adjustHeight;
+            var targetHeight = chart.pixelHeight + adjustHeight;
 
             // Set it on chart's container
             chart.svgContainer.htmlElement.style.height = targetHeight + "px";
