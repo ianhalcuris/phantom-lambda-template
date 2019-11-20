@@ -25,10 +25,11 @@ phases:
 
 #      - ls -l /etc/fonts
 #      - ls -l /usr/share/fonts
-      - mkdir ./fonts
-      - cp -a /etc/fonts/. ./fonts
-      - cp -a /usr/share/fonts/. ./fonts
-      - mkdir -p ./tmp/fonts-cache
+#      - mkdir ./fonts
+      - cp -a /etc/fonts/conf.avail/. ./fonts
+      - cp -a /etc/fonts/conf.d/. ./fonts
+      - cp -a /usr/share/fonts/truetype/. ./fonts
+      - mkdir -p ./fonts/cache/fontconfig
       
 #      - mkdir ./fonts
 #      - mkdir ./fonts/share
