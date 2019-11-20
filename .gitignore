@@ -23,3 +23,5 @@ serverless-output.yaml
 
 # Copy and Paste scratch pad I use for account specific stuff
 account-notes.txt
+
+*.iml
