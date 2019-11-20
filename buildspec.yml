@@ -29,7 +29,7 @@ phases:
 #      - cp -a /etc/fonts/conf.avail/. ./fonts
 #      - cp -a /etc/fonts/conf.d/. ./fonts
 #      - cp -a /usr/share/fonts/truetype/. ./fonts
-      - mkdir -p ./fonts/cache/fontconfig
+#      - mkdir -p ./fonts/cache/fontconfig
       
 #      - mkdir ./fonts
 #      - mkdir ./fonts/share
