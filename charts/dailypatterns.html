@@ -26,6 +26,7 @@
         
         var myChartData = [];
         var c = 0;
+        var sensorCount = 0;
         
         for (i = 0; i < theData.sensors.length; i++) { 
             for (j = 0; j < theData.sensors[i].devices.length; j++) { 
@@ -54,6 +55,8 @@
                 }
                 
                 c = c + 2;
+                
+                sensorCount++;
             }
         }
        
@@ -72,6 +75,7 @@
             var chart = ev.target;
             var categoryAxis = chart.yAxes.getIndex(0);
             
+console.error('IAN-TRACE - sensorCount: ' + sensorCount);
 console.error('IAN-TRACE - chart.data.length: ' + chart.data.length);
 console.error('IAN-TRACE - cellSize: ' + cellSize);
 console.error('IAN-TRACE - categoryAxis.pixelHeight: ' + categoryAxis.pixelHeight);
