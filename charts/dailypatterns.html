@@ -71,13 +71,20 @@
             // Get objects of interest
             var chart = ev.target;
             var categoryAxis = chart.yAxes.getIndex(0);
-
+            
+console.error('IAN-TRACE - chart.data.length: ' + chart.data.length);
+console.error('IAN-TRACE - cellSize: ' + cellSize);
+console.error('IAN-TRACE - categoryAxis.pixelHeight: ' + categoryAxis.pixelHeight);
+            
             // Calculate how we need to adjust chart height
             var adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
+            
+console.error('IAN-TRACE - adjustHeight: ' + adjustHeight);
 
             // get current chart height
             var targetHeight = chart.pixelHeight + adjustHeight;
-            
+      
+console.error('IAN-TRACE - chart.pixelHeight: ' + chart.pixelHeight);
 console.error('IAN-TRACE - targetHeight: ' + targetHeight);
 
             // Set it on chart's container
