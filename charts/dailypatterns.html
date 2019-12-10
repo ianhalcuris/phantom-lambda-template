@@ -81,7 +81,7 @@ console.error('IAN-TRACE - cellSize: ' + cellSize);
 console.error('IAN-TRACE - categoryAxis.pixelHeight: ' + categoryAxis.pixelHeight);
             
             // Calculate how we need to adjust chart height
-            var adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
+            var adjustHeight = sensorCount * cellSize - categoryAxis.pixelHeight;
             
 console.error('IAN-TRACE - adjustHeight: ' + adjustHeight);
 
