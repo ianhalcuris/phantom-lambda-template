@@ -77,6 +77,8 @@
 
             // get current chart height
             var targetHeight = chart.pixelHeight + adjustHeight;
+            
+console.error('IAN-TRACE - targetHeight: ' + targetHeight);
 
             // Set it on chart's container
             chart.svgContainer.htmlElement.style.height = targetHeight + "px";
