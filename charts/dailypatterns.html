@@ -69,7 +69,7 @@
         });
 
         // Set cell size in pixels
-        const cellSize = 30;
+        const rowHeight = 43;
         chart.events.on("datavalidated", function(ev) {
             
 //console.error('IAN-TRACE - deviceCount: ' + deviceCount);
@@ -83,7 +83,7 @@
 //console.error('IAN-TRACE - chart.data.length: ' + chart.data.length);
             
           // Calculate how we need to adjust chart height
-          var adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
+          var adjustHeight = (deviceCount * rowHeight) - categoryAxis.pixelHeight;
             
 //console.error('IAN-TRACE - adjustHeight: ' + adjustHeight);
 
@@ -94,7 +94,7 @@
 //console.error('IAN-TRACE - targetHeight: ' + targetHeight);
 
           // Set it on chart's container
-//          chart.svgContainer.htmlElement.style.height = targetHeight + "px";
+          chart.svgContainer.htmlElement.style.height = targetHeight + "px";
         });
 
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
