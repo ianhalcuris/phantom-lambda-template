@@ -26,7 +26,7 @@
         
         var myChartData = [];
         var c = 0;
-        var sensorCount = 0;
+        var deviceCount = 0;
         
         for (i = 0; i < theData.sensors.length; i++) { 
             for (j = 0; j < theData.sensors[i].devices.length; j++) { 
@@ -56,7 +56,7 @@
                 
                 c = c + 2;
                 
-                sensorCount++;
+                deviceCount++;
             }
         }
        
@@ -72,6 +72,7 @@
         const cellSize = 30;
         chart.events.on("datavalidated", function(ev) {
             
+console.error('IAN-TRACE - deviceCount: ' + deviceCount);
 console.error('IAN-TRACE - cellSize: ' + cellSize);
 
           // Get objects of interest
@@ -84,7 +85,6 @@ console.error('IAN-TRACE - chart.data.length: ' + chart.data.length);
           // Calculate how we need to adjust chart height
           var adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
             
-console.error('IAN-TRACE - categoryAxis.pixelHeight: ' + categoryAxis.pixelHeight);
 console.error('IAN-TRACE - adjustHeight: ' + adjustHeight);
 
           // get current chart height
