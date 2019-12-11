@@ -68,31 +68,22 @@
             }
         });
 
-        const cellSize = 12;
+        // Set cell size in pixels
+        const cellSize = 30;
         chart.events.on("datavalidated", function(ev) {
 
-            // Get objects of interest
-            var chart = ev.target;
-            var categoryAxis = chart.yAxes.getIndex(0);
-            
-//console.error('IAN-TRACE - sensorCount: ' + sensorCount);
-//console.error('IAN-TRACE - chart.data.length: ' + chart.data.length);
-//console.error('IAN-TRACE - cellSize: ' + cellSize);
-//console.error('IAN-TRACE - categoryAxis.pixelHeight: ' + categoryAxis.pixelHeight);
-            
-            // Calculate how we need to adjust chart height
-            var adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
-            
-//console.error('IAN-TRACE - adjustHeight: ' + adjustHeight);
+          // Get objects of interest
+          var chart = ev.target;
+          var categoryAxis = chart.yAxes.getIndex(0);
 
-            // get current chart height
-            var targetHeight = chart.pixelHeight + adjustHeight;
-      
-//console.error('IAN-TRACE - chart.pixelHeight: ' + chart.pixelHeight);
-//console.error('IAN-TRACE - targetHeight: ' + targetHeight);
+          // Calculate how we need to adjust chart height
+          var adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
 
-            // Set it on chart's container
-            chart.svgContainer.htmlElement.style.height = targetHeight + "px";
+          // get current chart height
+          var targetHeight = chart.pixelHeight + adjustHeight;
+
+          // Set it on chart's container
+          chart.svgContainer.htmlElement.style.height = targetHeight + "px";
         });
 
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
