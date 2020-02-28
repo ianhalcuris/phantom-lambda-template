@@ -9,8 +9,8 @@ const TMP_DIR = '../../tmp/';
 
 function apiGet(url, accessToken) {
 	
-    log('apiGet', 'url: ' + url);
-    log('apiGet', 'accessToken: ' + accessToken);
+ //   log('apiGet', 'url: ' + url);
+ //   log('apiGet', 'accessToken: ' + accessToken);
 	
     var options = {
         url: url,
@@ -32,7 +32,7 @@ function apiGet(url, accessToken) {
 
 function login() {
 
-    log('login', 'Logging in...');
+//    log('login', 'Logging in...');
 	
     var options = {
         url: 'https://' + authProps.get('domain') + '/oauth/token',
@@ -61,15 +61,15 @@ function login() {
 	})
     })
 }
-
+/*
 function log(method, message) {
     console.log('[chartprocessor::' + method + '] - ' + message);
 }
-
+*/
 exports.renderChart = function(apiUrl, chartTemplate, context, callback) {	
 	
-    log('renderChart', 'apiUrl: ' + apiUrl);
-    log('renderChart', 'chartTemplate: ' + chartTemplate);
+//    log('renderChart', 'apiUrl: ' + apiUrl);
+//    log('renderChart', 'chartTemplate: ' + chartTemplate);
 	
     // Login to Auth0
     login().then(function(accessToken) {
@@ -77,12 +77,12 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
         // Call Memo API
         apiGet(apiUrl, accessToken).then(function(apiResponse) {
 
-            log('renderChart', 'apiResponse: ' + apiResponse);
+  //          log('renderChart', 'apiResponse: ' + apiResponse);
 
 	    var dataFile = TMP_DIR + uuid.v4() + '.json';
 	    var chartImageBase64 = '';
 		
-	    log('renderChart', 'dataFile: ' + dataFile);
+//	    log('renderChart', 'dataFile: ' + dataFile);
 
 	    // Write API response to tmp file
 	    fs.writeFileSync(dataFile, apiResponse);
@@ -91,7 +91,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 
 	    phantom.stdout.on('data', function(buf) {
 		var base64Data = String(buf).replace(/\n$/, '');
-	        log('renderChart', 'base64Data: ' + base64Data);
+//	        log('renderChart', 'base64Data: ' + base64Data);
 		chartImageBase64 += base64Data;
             });
 
@@ -105,7 +105,7 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 */
 	    phantom.on('exit', code => {
 		    
-      		log('renderChart', 'phantomjs exit, code: ' + code);
+//      		log('renderChart', 'phantomjs exit, code: ' + code);
 
 		var response = {
 		    statusCode: 200,
@@ -121,12 +121,12 @@ exports.renderChart = function(apiUrl, chartTemplate, context, callback) {
 	}, function(err) {
 	
 	    // TODO error function response
-	    log('renderChart', 'apiGet error: ' + err);
+//	    log('renderChart', 'apiGet error: ' + err);
 	})
     
     }, function(err) {
         
 	// TODO error function response
-	log('renderChart', 'login error: ' + err);
+//	log('renderChart', 'login error: ' + err);
     });
 };
