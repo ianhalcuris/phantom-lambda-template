@@ -66,15 +66,15 @@ function log(method, message) {
     console.log('[chartprocessor::' + method + '] - ' + message);
 }
 
-exports.renderChart = function(apiUrl, chartTemplate, accessTokenNew, context, callback) {	
+exports.renderChart = function(apiUrl, chartTemplate, accessToken, context, callback) {	
 	
 //    log('renderChart', 'apiUrl: ' + apiUrl);
 //    log('renderChart', 'chartTemplate: ' + chartTemplate);
 	
-    log('renderChart', 'accessTokenNew = ' + accessTokenNew);
+//    log('renderChart', 'accessToken = ' + accessToken);
 	
     // Login to Auth0
-    login().then(function(accessToken) {
+//    login().then(function(accessToken) {
 	    
         // Call Memo API
         apiGet(apiUrl, accessToken).then(function(apiResponse) {
@@ -124,11 +124,12 @@ exports.renderChart = function(apiUrl, chartTemplate, accessTokenNew, context, c
 	
 	    // TODO error function response
 //	    log('renderChart', 'apiGet error: ' + err);
-	})
-    
+	});
+/*    
     }, function(err) {
         
 	// TODO error function response
 //	log('renderChart', 'login error: ' + err);
     });
+ */
 };
