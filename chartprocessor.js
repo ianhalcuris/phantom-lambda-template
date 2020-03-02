@@ -75,17 +75,9 @@ exports.renderChart = function(apiUrl, chartTemplate, accessToken, context, call
 	
     // Login to Auth0
 //    login().then(function(accessToken) {
-	
-var time, stop, start = Date.now();
-log('renderChart', 'apiGet start = ' + start);
-	    
+
         // Call Memo API
         apiGet(apiUrl, accessToken).then(function(apiResponse) {
-		
-stop = Date.now();
-log('renderChart', 'apiGet stop = ' + stop);
-time = stop - start;
-log('renderChart', 'apiGet time = ' + time);
 
   //          log('renderChart', 'apiResponse: ' + apiResponse);
 
@@ -96,9 +88,6 @@ log('renderChart', 'apiGet time = ' + time);
 		
 	    // Write API response to tmp file
 	    fs.writeFileSync(dataFile, apiResponse);
-	
-var time2, stop2, start2 = Date.now();
-log('renderChart', 'phantomjs start = ' + start2);
 		
 	    var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
 
@@ -117,11 +106,6 @@ log('renderChart', 'phantomjs start = ' + start2);
 	    });
 */
 	    phantom.on('exit', code => {
-		    
-stop2 = Date.now();
-log('renderChart', 'phantomjs stop = ' + stop2);
-time2 = stop2 - start2;
-log('renderChart', 'phantomjs time = ' + time2);
 		    
 //      		log('renderChart', 'phantomjs exit, code: ' + code);
 
