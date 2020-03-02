@@ -75,9 +75,17 @@ exports.renderChart = function(apiUrl, chartTemplate, accessToken, context, call
 	
     // Login to Auth0
 //    login().then(function(accessToken) {
+	
+var time, stop, start = Date.now();
+log('renderChart', 'apiGet start = ' + start);
 	    
         // Call Memo API
         apiGet(apiUrl, accessToken).then(function(apiResponse) {
+		
+stop = Date.now();
+log('renderChart', 'apiGet stop = ' + stop);
+time = stop - start;
+log('renderChart', 'apiGet time = ' + time);
 
   //          log('renderChart', 'apiResponse: ' + apiResponse);
 
@@ -85,32 +93,17 @@ exports.renderChart = function(apiUrl, chartTemplate, accessToken, context, call
 	    var chartImageBase64 = '';
 		
 //	    log('renderChart', 'dataFile: ' + dataFile);
-
-var time, stop, start = Date.now();
-log('renderChart', 'file write start = ' + start);
 		
 	    // Write API response to tmp file
 	    fs.writeFileSync(dataFile, apiResponse);
-
-stop = Date.now();
-log('renderChart', 'file write stop = ' + stop);
-time = stop - start;
-log('renderChart', 'file write time = ' + time);
+	
+var time2, stop2, start2 = Date.now();
+log('renderChart', 'phantomjs start = ' + start2);
 		
 	    var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
 
 	    phantom.stdout.on('data', function(buf) {
-		    
-var time2, stop2, start2 = Date.now();
-log('renderChart', 'base64Data replace start = ' + start2);
-		    
 		var base64Data = String(buf).replace(/\n$/, '');
-		    
-stop2 = Date.now();
-log('renderChart', 'base64Data replace stop = ' + stop2);
-time2 = stop2 - start2;
-log('renderChart', 'base64Data replace time = ' + time2);
-		    
 //	        log('renderChart', 'base64Data: ' + base64Data);
 		chartImageBase64 += base64Data;
             });
@@ -124,6 +117,11 @@ log('renderChart', 'base64Data replace time = ' + time2);
 	    });
 */
 	    phantom.on('exit', code => {
+		    
+stop2 = Date.now();
+log('renderChart', 'phantomjs stop = ' + stop2);
+time2 = stop2 - start2;
+log('renderChart', 'phantomjs time = ' + time2);
 		    
 //      		log('renderChart', 'phantomjs exit, code: ' + code);
 
