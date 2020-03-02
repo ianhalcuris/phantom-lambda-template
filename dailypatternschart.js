@@ -1,6 +1,9 @@
 var chartProcessor = require('./chartprocessor');
 
 const CHARTS_DIR = '/charts/';
+const CHART_TEMPLATE = process.env.LAMBDA_TASK_ROOT + CHARTS_DIR + 'dailypatterns.html';
+const API_URL_PREFIX = process.env.MemoBaseURL + '/memo/service/insight/hub/';
+const API_URL_SUFFIX = '/service/discreteData?precision=5';
 
 function log(method, message){
     console.log('[dailypatternschart::' + method + '] - ' + message);
@@ -8,14 +11,16 @@ function log(method, message){
 
 exports.handler = function(event, context, callback) {
 
-    log('handler', 'event: ' + JSON.stringify(event));
+//    log('handler', 'event: ' + JSON.stringify(event));
 
     // TODO use offset/range/precision from event?
-    var apiUrl = process.env.MemoBaseURL + '/memo/service/insight/hub/' + event.hubId + '/service/discreteData?precision=5';
-    var chartTemplate = process.env.LAMBDA_TASK_ROOT + CHARTS_DIR + 'dailypatterns.html';
+    var apiUrl =  API_URL_PREFIX + event.hubId + API_URL_SUFFIX;
 	
-    log('handler', 'apiUrl: ' + apiUrl);
-    log('handler', 'chartTemplate: ' + chartTemplate);
+    var accessToken = event.accessToken;
+//    log('handler', 'accessToken: ' + accessToken);
 	
-    chartProcessor.renderChart(apiUrl, chartTemplate, context, callback);
+//    log('handler', 'apiUrl: ' + apiUrl);
+//    log('handler', 'chartTemplate: ' + chartTemplate);
+	
+    chartProcessor.renderChart(apiUrl, CHART_TEMPLATE, accessToken, context, callback);
 };
