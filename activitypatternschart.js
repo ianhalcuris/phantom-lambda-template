@@ -16,7 +16,7 @@ exports.handler = function(event, context, callback) {
     var apiUrl = API_URL_PREFIX + event.patientId + API_URL_SUFFIX;
 	
     var accessToken = event.accessToken;
-    log('accessToken: ' + accessToken);
+    log('handler', 'accessToken: ' + accessToken);
 	
 //    log('handler', 'apiUrl: ' + apiUrl);
 //    log('handler', 'chartTemplate: ' + chartTemplate);
