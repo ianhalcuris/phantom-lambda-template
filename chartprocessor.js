@@ -61,15 +61,17 @@ function login() {
 	})
     })
 }
-/*
+
 function log(method, message) {
     console.log('[chartprocessor::' + method + '] - ' + message);
 }
-*/
-exports.renderChart = function(apiUrl, chartTemplate, context, callback) {	
+
+exports.renderChart = function(apiUrl, chartTemplate, accessTokenNew, context, callback) {	
 	
 //    log('renderChart', 'apiUrl: ' + apiUrl);
 //    log('renderChart', 'chartTemplate: ' + chartTemplate);
+	
+    log('renderChart', 'accessTokenNew = ' + accessTokenNew);
 	
     // Login to Auth0
     login().then(function(accessToken) {
