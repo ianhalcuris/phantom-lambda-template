@@ -1,9 +1,8 @@
 var chartProcessor = require('./chartprocessor');
-/*
+
 function log(method, message){
     console.log('[activitypatternschart::' + method + '] - ' + message);
 }
-*/
 
 const CHART_TEMPLATE = process.env.LAMBDA_TASK_ROOT + '/charts/activitypatterns.html';
 const API_URL_PREFIX = process.env.MemoBaseURL + '/memo/service/insight/patient/';
@@ -15,6 +14,9 @@ exports.handler = function(event, context, callback) {
 
     // TODO use offset/range/precision from event?
     var apiUrl = API_URL_PREFIX + event.patientId + API_URL_SUFFIX;
+	
+    var accessToken = event.accessToken;
+    log('accessToken: ' + accessToken);
 	
 //    log('handler', 'apiUrl: ' + apiUrl);
 //    log('handler', 'chartTemplate: ' + chartTemplate);
