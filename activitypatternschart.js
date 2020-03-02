@@ -10,16 +10,16 @@ const API_URL_SUFFIX = '/service/trend/environment?offset=6&range=7&precision=5'
 
 exports.handler = function(event, context, callback) {
 
-    log('handler', 'event: ' + JSON.stringify(event));
+//    log('handler', 'event: ' + JSON.stringify(event));
 
     // TODO use offset/range/precision from event?
     var apiUrl = API_URL_PREFIX + event.patientId + API_URL_SUFFIX;
 	
     var accessToken = event.accessToken;
-    log('handler', 'accessToken: ' + accessToken);
+//    log('handler', 'accessToken: ' + accessToken);
 	
 //    log('handler', 'apiUrl: ' + apiUrl);
 //    log('handler', 'chartTemplate: ' + chartTemplate);
 	
-    chartProcessor.renderChart(apiUrl, CHART_TEMPLATE, context, callback);
+    chartProcessor.renderChart(apiUrl, CHART_TEMPLATE, accessToken, context, callback);
 };
