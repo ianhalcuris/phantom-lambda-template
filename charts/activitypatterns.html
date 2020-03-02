@@ -83,19 +83,28 @@
         chart.series.clear();
         chart.colors.reset();
         
-        var stacked = false;
+        var series = [];
         for (i = 0; i < trendData.data.length; i++) {
-            var s = trendData.data[i];
+            var m = trendData.data[i];
+            series.push({
+                title: m.name,
+                data: m.data
+            })
+        }
+        
+        var stacked = false;
+        for (i = 0; i < series.length; i++) {
+            var s = series[i];
             if (s.data && s.data.length > 0 ) {
                 var series1 = chart.series.push(new am4charts.RadarColumnSeries());
                 series1.dataFields.openDateX = 'start';
                 series1.dataFields.dateX = 'end';
                 series1.dataFields.categoryY = 'category';
-                series1.name = s.name;
+                series1.name = s.title;
                 series1.data = s.data;
-                series1.strokeOpacity = 1;
+                series1.strokeOpacity = 0;
                 series1.strokeWidth = 0;
-                series1.fillOpacity = 1;
+                series1.fillOpacity = 0.7;
                 series1.columns.template.height = (stacked) ? 15:5;
                 series1.stacked = stacked;
                 series1.clustered = true;
