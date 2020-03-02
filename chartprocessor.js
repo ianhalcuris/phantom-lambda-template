@@ -79,7 +79,7 @@ exports.renderChart = function(apiUrl, chartTemplate, accessToken, context, call
         // Call Memo API
         apiGet(apiUrl, accessToken).then(function(apiResponse) {
 
-            log('renderChart', 'apiResponse: ' + apiResponse);
+//            log('renderChart', 'apiResponse: ' + apiResponse);
 
 	    var dataFile = TMP_DIR + uuid.v4() + '.json';
 	    var chartImageBase64 = '';
