@@ -87,11 +87,13 @@ exports.renderChart = function(apiUrl, chartTemplate, accessToken, context, call
 //	    log('renderChart', 'dataFile: ' + dataFile);
 
 var time, stop, start = Date.now();
+log('renderChart', 'file write start = ' + start);
 		
 	    // Write API response to tmp file
 	    fs.writeFileSync(dataFile, apiResponse);
 
 stop = Date.now();
+log('renderChart', 'file write stop = ' + stop);
 time = stop - start;
 log('renderChart', 'file write time = ' + time);
 		
@@ -100,10 +102,12 @@ log('renderChart', 'file write time = ' + time);
 	    phantom.stdout.on('data', function(buf) {
 		    
 var time2, stop2, start2 = Date.now();
+log('renderChart', 'base64Data replace start = ' + start2);
 		    
 		var base64Data = String(buf).replace(/\n$/, '');
 		    
 stop2 = Date.now();
+log('renderChart', 'base64Data replace stop = ' + stop2);
 time2 = stop2 - start2;
 log('renderChart', 'base64Data replace time = ' + time2);
 		    
