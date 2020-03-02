@@ -86,13 +86,27 @@ exports.renderChart = function(apiUrl, chartTemplate, accessToken, context, call
 		
 //	    log('renderChart', 'dataFile: ' + dataFile);
 
+var time, stop, start = Date.now();
+		
 	    // Write API response to tmp file
 	    fs.writeFileSync(dataFile, apiResponse);
 
+stop = Date.now();
+time = stop - start;
+log('renderChart', 'file write time = ' + time);
+		
 	    var phantom = phantomjs.exec('phantomjs-script.js', chartTemplate, dataFile);
 
 	    phantom.stdout.on('data', function(buf) {
+		    
+var time2, stop2, start2 = Date.now();
+		    
 		var base64Data = String(buf).replace(/\n$/, '');
+		    
+stop2 = Date.now();
+time2 = stop2 - start2;
+log('renderChart', 'base64Data replace time = ' + time2);
+		    
 //	        log('renderChart', 'base64Data: ' + base64Data);
 		chartImageBase64 += base64Data;
             });
