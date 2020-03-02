@@ -10,7 +10,7 @@ const API_URL_SUFFIX = '/service/trend/environment?offset=6&range=7&precision=5'
 
 exports.handler = function(event, context, callback) {
 
-//    log('handler', 'event: ' + JSON.stringify(event));
+    log('handler', 'event: ' + JSON.stringify(event));
 
     // TODO use offset/range/precision from event?
     var apiUrl = API_URL_PREFIX + event.patientId + API_URL_SUFFIX;
