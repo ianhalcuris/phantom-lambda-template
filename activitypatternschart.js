@@ -10,7 +10,7 @@ const API_URL_SUFFIX = '/service/trend/environment?offset=6&range=7&precision=5'
 
 exports.handler = function(event, context, callback) {
 
-//    log('handler', 'event: ' + JSON.stringify(event));
+    log('handler', 'event: ' + JSON.stringify(event));
 	
     if (event["isKeepalivePing"]) {
 	var response = {
