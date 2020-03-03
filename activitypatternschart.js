@@ -6,11 +6,11 @@ function log(method, message){
 
 const CHART_TEMPLATE = process.env.LAMBDA_TASK_ROOT + '/charts/activitypatterns.html';
 const API_URL_PREFIX = process.env.MemoBaseURL + '/memo/service/insight/patient/';
-const API_URL_SUFFIX = '/service/trend/environment?offset=6&range=7&precision=5';
+const API_URL_SUFFIX = '/service/trend/environment?';
 
 exports.handler = function(event, context, callback) {
 
-    log('handler', 'event: ' + JSON.stringify(event));
+//  log('handler', 'event: ' + JSON.stringify(event));
 	
     if (event["isKeepalivePing"]) {
 	var response = {
@@ -18,9 +18,12 @@ exports.handler = function(event, context, callback) {
 	};
 	callback(null, response);
     } else {
-	    
+
     	// TODO use offset/range/precision from event?
-    	var apiUrl = API_URL_PREFIX + event.patientId + API_URL_SUFFIX;
+    	var apiUrl = API_URL_PREFIX + event.patientId + API_URL_SUFFIX + 
+		'offset=' + event.offset + '&' + 
+		'range=' + event.range + '&' +
+		'precision=' + event.precision;
 	
     	var accessToken = event.accessToken;
 //      log('handler', 'accessToken: ' + accessToken);
