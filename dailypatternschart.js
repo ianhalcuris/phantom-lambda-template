@@ -3,7 +3,7 @@ var chartProcessor = require('./chartprocessor');
 const CHARTS_DIR = '/charts/';
 const CHART_TEMPLATE = process.env.LAMBDA_TASK_ROOT + CHARTS_DIR + 'dailypatterns.html';
 const API_URL_PREFIX = process.env.MemoBaseURL + '/memo/service/insight/hub/';
-const API_URL_SUFFIX = '/service/discreteData?precision=5';
+const API_URL_SUFFIX = '/service/discreteData?';
 
 function log(method, message){
     console.log('[dailypatternschart::' + method + '] - ' + message);
@@ -21,7 +21,10 @@ exports.handler = function(event, context, callback) {
     } else {
 
     	// TODO use offset/range/precision from event?
-    	var apiUrl =  API_URL_PREFIX + event.hubId + API_URL_SUFFIX;
+    	var apiUrl = API_URL_PREFIX + event.hubId + API_URL_SUFFIX + 
+		'offset=' + event.offset + '&' + 
+		'range=' + event.range + '&' +
+		'precision=' + event.precision;
 	
     	var accessToken = event.accessToken;
 //      log('handler', 'accessToken: ' + accessToken);
