@@ -12,13 +12,13 @@ exports.handler = function(event, context, callback) {
 
 //  log('handler', 'event: ' + JSON.stringify(event));
 	
-    if (event["isKeepalivePing"]) {
+/*    if (event["isKeepalivePing"]) {
 	var response = {
 	    statusCode: 200
 	};
 	callback(null, response);
     } else {
-
+*/
     	// TODO use offset/range/precision from event?
     	var apiUrl = API_URL_PREFIX + event.patientId + API_URL_SUFFIX; /* + 
 		'offset=' + event.offset + '&' + 
@@ -32,5 +32,5 @@ exports.handler = function(event, context, callback) {
 //      log('handler', 'chartTemplate: ' + chartTemplate);
 	
     	chartProcessor.renderChart(apiUrl, CHART_TEMPLATE, accessToken, context, callback);
-    }
+//    }
 };
